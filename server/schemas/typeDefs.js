@@ -10,14 +10,14 @@ const typeDefs = gql`
   }
 
   type Category {
-    id: ID!
+    _id: ID!
     name: String
     user: User
     todos: [ToDo]
   }
 
   type ToDo {
-    id: ID!
+    _id: ID!
     text: String!
     completed: Boolean!
     date: String!
@@ -34,13 +34,10 @@ const typeDefs = gql`
     users: [User]
   }
 
-  type Query {
-    users: [User]
-  }
-
-  type Mutations{
+  type Mutation{
+    newUser(username: String!, email:String!, password: String!) : Auth
     login(email: String!, password: String!): Auth
-    newCategory(name: String, user: ID): Category
+    newCategory(name: String!, user: ID): Category
     newToDo(user: ID!, text: String!, completed: Boolean): ToDo
   }
 `;
