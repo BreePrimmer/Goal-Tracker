@@ -34,7 +34,11 @@ const typeDefs = gql`
     users: [User]
   }
 
-  type Mutation {
+  type Query {
+    users: [User]
+  }
+
+  type Mutations{
     login(email: String!, password: String!): Auth
     newCategory(name: String, user: ID): Category
     newToDo(user: ID!, text: String!, completed: Boolean): ToDo
