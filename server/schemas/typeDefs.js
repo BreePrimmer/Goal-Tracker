@@ -5,19 +5,21 @@ const typeDefs = `
     email: String
     password: String
     category: [category]
-    todo: [toDo]
   }
 
   type category {
     id: ID!
     name: String
-    user:  User
-    todos: toDo
+    user:  [User]
+    todos: [toDo]
   }
 
   type toDo {
     id: ID!
     text: String!
+    completed: boolean!
+    date: String!
+    category: [category]
   }
 
   type Auth {
@@ -32,6 +34,7 @@ const typeDefs = `
   type Mutations{
     login(email: String!, password: String!): Auth
     newCategory(name:String, user: ID): category
+    newToDo(user: ID!, text: String!, completed: boolean,) : toDo
   }
 `;
 
