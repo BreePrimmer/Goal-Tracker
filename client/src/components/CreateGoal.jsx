@@ -4,15 +4,15 @@ export default function CreateGoal() {
       <span>Make a new goal</span>
       <form>
         <div>
-          <label for="newGoalCategory">Category:</label>
+          <label htmlFor="newGoalCategory">Category:</label>
           <input type="text" name="newGoalCategory" id="" />
         </div>
         <div>
-          <label for="newGoalDesc">Description:</label>
+          <label htmlFor="newGoalDesc">Description:</label>
           <input type="text" name="newGoalDesc" />
         </div>
         <div>
-          <label for="newGoalDate">End Date</label>
+          <label htmlFor="newGoalDate">End Date</label>
           <input type="datetime-local" />
         </div>
       </form>

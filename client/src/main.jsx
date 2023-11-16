@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.jsx";
 import Homepage from "./pages/Homepage.jsx";
+import GoalView from "./pages/GoalView.jsx";
+import CategoryView from "./pages/CategoryView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Homepage />,
+      },
+      {
+        path: "/Category",
+        element: <CategoryView />,
+      },
+      {
+        path: "/Goal",
+        element: <GoalView />,
       },
     ],
   },
