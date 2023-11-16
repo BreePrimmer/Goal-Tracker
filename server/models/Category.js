@@ -5,6 +5,7 @@ const categorySchema = new Schema({
         type: String,
         required: true,
         trim: true,
+        default: 'General'
     },
     user: {
         type: Schema.Types.ObjectId,
