@@ -10,7 +10,9 @@ const typeDefs = `
 
   type category {
     id: ID!
-    text:  String!
+    name: String
+    user:  User
+    todos: toDo
   }
 
   type toDo {
@@ -29,6 +31,7 @@ const typeDefs = `
 
   type Mutations{
     login(email: String!, password: String!): Auth
+    newCategory(name:String, user: ID): category
   }
 `;
 
