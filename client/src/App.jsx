@@ -1,20 +1,27 @@
-import './index.css'
+import "./index.css";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
+const client = new ApolloClient({
+  uri: "/graphql",
+  cache: new InMemoryCache(),
+});
+
+function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-    </>
+    <ApolloProvider client={client}>
+      <>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </>
+    </ApolloProvider>
   );
 }
 

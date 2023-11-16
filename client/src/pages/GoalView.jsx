@@ -6,8 +6,7 @@ export default function GoalView() {
   let { id } = useParams();
   return (
     <div>
-      <div>General</div>
-      <h2>Viewing a goal??</h2>
+      <h2>General</h2>
       <SingleGoalView />
       <Categories />
     </div>

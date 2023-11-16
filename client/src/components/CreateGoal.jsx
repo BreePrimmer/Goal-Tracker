@@ -12,6 +12,9 @@ export default function CreateGoal() {
           <input type="text" name="newGoalDesc" />
         </div>
         <div>
+          <span>Short term</span> or <span>long term</span>
+        </div>
+        <div>
           <label htmlFor="newGoalDate">End Date</label>
           <input type="datetime-local" />
         </div>
