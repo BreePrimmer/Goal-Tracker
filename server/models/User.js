@@ -1,6 +1,33 @@
 const { mongoose, Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const todoSchema = new Schema({
+  text: {
+    type: String,
+    required: true
+  },
+  completed: {
+    type: Boolean,
+    default: false
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+const categorySchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+    default: 'General'
+  },
+  todos: [
+    todoSchema
+  ]
+});
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -18,10 +45,7 @@ const userSchema = new Schema({
     minlength: 5
   },
   categories: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Category'
-    }
+    categorySchema
   ]
 });
 
