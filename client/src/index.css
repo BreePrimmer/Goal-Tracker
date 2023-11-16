@@ -132,6 +132,26 @@ button:focus-visible {
     padding: 15px;
     background-color: #BBE3F1;
     color: #0D85D8;
+    font-size: 110%;
+  }
+  .goal-spacing {
+    margin-top: 15px;
+  }
+  .form-title {
+    color:#0D85D8;
+    margin: 0px 10px;
+  }
+  .input-space {
+  
+  }
+
+  /* footer styling */
+  footer {
+    background-color: #77DD76;
+    padding: 10px;
+    text-align: center;
+    color: green;
+    font-size: 130%;
   }
 }
 

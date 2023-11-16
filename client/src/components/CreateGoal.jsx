@@ -3,19 +3,19 @@ export default function CreateGoal() {
     <div>
       <span id='new-goal'>Make a new goal</span>
       <form>
-        <div>
-          <label htmlFor="newGoalCategory">Category:</label>
+        <div className='goal-spacing'>
+          <label className='form-title' htmlFor="newGoalCategory">Category:</label>
           <input type="text" name="newGoalCategory" id="" />
         </div>
-        <div>
-          <label htmlFor="newGoalDesc">Description:</label>
+        <div className='goal-spacing'>
+          <label className='form-title' htmlFor="newGoalDesc">Description:</label>
           <input type="text" name="newGoalDesc" />
         </div>
-        <div>
-          <span>Short term</span> or <span>long term</span>
+        <div className='goal-spacing'>
+          <span className='form-title'>Short term</span> or <span>long term</span>
         </div>
-        <div>
-          <label htmlFor="newGoalDate">End Date</label>
+        <div className='goal-spacing'>
+          <label className='form-title' htmlFor="newGoalDate">End Date</label>
           <input type="datetime-local" />
         </div>
       </form>
