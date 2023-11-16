@@ -1,7 +1,7 @@
 export default function Header() {
   return (
-    <header>
-      <h1>Goal Tracker</h1>
+    <header className='header-container'>
+      <h1 className='title'>Goal Tracker</h1>
 
       <nav>
         <ul>

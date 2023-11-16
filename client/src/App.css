@@ -1,11 +1,16 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
+/* body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: aqua;
+} */
+
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -39,4 +44,14 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
+
+/* .title {
+  color: green;
+} */
+
+/* @media screen and (max-width: 480) {
+  .title {
+    color: green;
+  } */
+/* } */ */
