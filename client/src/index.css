@@ -39,7 +39,6 @@ body {
 
 li {
   list-style-type: none;
-  padding-left: 0px;
 }
 
 button {
@@ -85,13 +84,17 @@ button:focus-visible {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: lightblue;
+    background-color: #77DD76;
     padding: 0px 10px;
   }
   .title {
     color: green;
-    text-align: center;
-    font-size: 120%;
+    font-size: 160%;
+    font-weight: bold;
+  }
+  .login {
+    color: green;
+    font-size: 160%;
   }
   
   /* categories styling */
@@ -102,12 +105,33 @@ button:focus-visible {
 
   .categories {
     text-align: center;
-    background-color: lightgreen;
+    padding: 0px;
+    margin: 0px;
   }
 
   .category {
-    background-color: green;
-    width: auto
+    background-color: #FDFD97;
+    padding: 10px;
+    color: #C8A951;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+  }
+  #my-category {
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    padding: 15px;
+    background-color: #BBE3F1;
+    color: #0D85D8;
+    font-size: 110%;
+  }
+
+  /* New goal styling */
+  #new-goal{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color: #BBE3F1;
+    color: #0D85D8;
   }
 }
 

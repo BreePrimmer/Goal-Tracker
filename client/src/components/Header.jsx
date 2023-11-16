@@ -5,7 +5,7 @@ export default function Header() {
 
       <nav>
         <ul>
-          <li>Login</li>
+          <li className='login'>Login</li>
         </ul>
       </nav>
     </header>

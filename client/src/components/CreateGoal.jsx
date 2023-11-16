@@ -1,7 +1,7 @@
 export default function CreateGoal() {
   return (
     <div>
-      <span>Make a new goal</span>
+      <span id='new-goal'>Make a new goal</span>
       <form>
         <div>
           <label htmlFor="newGoalCategory">Category:</label>
