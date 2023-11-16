@@ -2,9 +2,9 @@ export default function Categories() {
   return (
     <div className='category-container'>
       <ul className='categories'>
-        <li className='category'>My categories</li>
-        <li>General</li>
-        <li>New +</li>
+        <li id='my-category'>My categories</li>
+        <li className='category'>General</li>
+        <li className='category'>New +</li>
       </ul>
     </div>
   );
