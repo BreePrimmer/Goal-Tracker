@@ -1,13 +1,22 @@
 const { User, Category, Todo } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
+
+
 const resolvers = {
   Query: {
     users: async () => {
       return await User.find({});
     },
     categories: async () => {
-      return await Category.find({})
+      const users = await User.find({});
+      
+      const categories = users.reduce((acc, user) => {
+        return acc.concat(user.categories);
+      }, []);
+
+      
+      return await categories
     }
   },
 
@@ -38,7 +47,9 @@ const resolvers = {
 
     newCategory: async (parent , {name, user}, context) => {
       if (context.user) {
-        const newCategory = await Category.create({
+        const userCat = await user.find({});
+        newuser = userCat.categories
+        const newCategory = await newuser.create({
           name
         });
         
