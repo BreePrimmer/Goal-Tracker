@@ -37,21 +37,21 @@ export default function CreateGoal() {
               setGoalName(e.target.value);
             }}
           />
-        </div>
-        <div className="goal-spacing">
-          <label className="form-title" htmlFor="goalCategory">
-            Category:
-          </label>
-          <input
-            className="form-input"
-            type="text"
-            name="newGoalCategory"
-            id="goalCategory"
-            value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-            }}
-          />
+          <div className="goal-spacing">
+            <label className="form-title" htmlFor="goalCategory">
+              Category:
+            </label>
+            <input
+              className="form-input"
+              type="text"
+              name="newGoalCategory"
+              id="goalCategory"
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+            />
+          </div>
         </div>
         <div className="goal-spacing" id="desc-cont">
           <label className="form-title" htmlFor="desc">
