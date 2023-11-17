@@ -40,27 +40,27 @@ const resolvers = {
 
     newCategory: async (parent, { name, user }, context) => {
 
-      console.log(`user: ${user} created category: ${name}`);
-
       if (user && name) {
-        const existingUser = await User.findById(user);
 
+        const existingUser = await User.findById(user);
         if(!existingUser) {
           throw new Error('User not Found')
         }
 
-        console.log(existingUser);
+        const newCategory = {
+          name: name,
+          todos: []
+        };
 
-        const updateUser = await User.findOneAndUpdate(
-          { _id: user.id },
-          { $addToSet: {categories: name} },
-          { new: true, runValidators }
-        )
+        existingUser.categories.push(newCategory);
+        const updatedUser = await existingUser.save();
 
-        console.log(updateUser)
-
-
+        console.log(`user: ${user} created category: ${name}`);
+        return updatedUser;
       }
+
+    },
+    newToDo: async (parent, { user, categoryId, text, completed}, context) => {
 
     }
   }
