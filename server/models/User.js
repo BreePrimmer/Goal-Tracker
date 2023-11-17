@@ -1,4 +1,5 @@
 const { mongoose, Schema } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 const bcrypt = require('bcrypt');
 
 const todoSchema = new Schema({
@@ -11,8 +12,9 @@ const todoSchema = new Schema({
     default: false
   },
   date: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp)
   }
 });
 
