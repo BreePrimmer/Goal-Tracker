@@ -20,7 +20,18 @@ export default function CreateGoal() {
   return (
     <div className="goal-cont">
       <span id="new-goal">Make a new goal</span>
-      <form onSubmit={goalFormHandler}>
+      <form className="new-goal-cont" onSubmit={goalFormHandler}>
+        <div className="goal-spacing">
+          <label className="form-title" htmlFor="newGoalCategory">
+            Name:
+          </label>
+          <input
+            className="form-input"
+            type="text"
+            name="newGoalCategory"
+            id="goalName"
+          />
+        </div>
         <div className="goal-spacing">
           <label className="form-title" htmlFor="newGoalCategory">
             Category:
@@ -29,7 +40,7 @@ export default function CreateGoal() {
             className="form-input"
             type="text"
             name="newGoalCategory"
-            id=""
+            id="goalCategory"
             value={category}
             onChange={(e) => {
               setCategory(e.target.value);
@@ -81,7 +92,9 @@ export default function CreateGoal() {
             }}
           />
         </div>
-        <button type="submit">Create Goal</button>
+        <button className="goal-btn" type="submit">
+          Create Goal
+        </button>
       </form>
     </div>
   );
