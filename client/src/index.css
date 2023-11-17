@@ -149,7 +149,7 @@ button:focus-visible {
     color:#0D85D8;
     font-size: 110%;
     font-weight: bold;
-    margin: 0px 10px;
+    margin: 0px 20px;
   }
   .form-input {
     border-style: hidden;
@@ -212,10 +212,10 @@ button:focus-visible {
   /* goal view page styling */
   /* /goal */
   .goal-desc {
-    padding-left: 10px;
+    padding: 0px20px;
   }
   #goal-cat {
-    padding-left: 10px;
+    padding-left: 20px;
   }
   #desc-date {
     display: flex;
@@ -230,7 +230,14 @@ button:focus-visible {
   /* ------------------------------------- */
   /* category view page styling
   /* /category */
-
+  #goal-list {
+    padding-left: 0px;
+  }
+  #rtn-btn {
+    background-color: white;
+    padding: 10px;
+    margin-top: 10px;
+  }
 
   /* footer styling */
   footer {

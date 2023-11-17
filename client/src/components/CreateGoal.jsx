@@ -10,6 +10,17 @@ export default function CreateGoal() {
     <div className="goal-cont">
       <span id="new-goal">Make a new goal</span>
       <form className='new-goal-cont'>
+      <div className="goal-spacing">
+          <label className="form-title" htmlFor="newGoalCategory">
+            Name:
+          </label>
+          <input
+            className="form-input"
+            type="text"
+            name="newGoalCategory"
+            id="goalName"
+          />
+        </div>
         <div className="goal-spacing">
           <label className="form-title" htmlFor="newGoalCategory">
             Category:
@@ -18,7 +29,7 @@ export default function CreateGoal() {
             className="form-input"
             type="text"
             name="newGoalCategory"
-            id=""
+            id="goalCategory"
           />
         </div>
         <div className="goal-spacing" id="desc-cont">
