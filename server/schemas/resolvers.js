@@ -65,12 +65,8 @@ const resolvers = {
       }
 
     },
-    // Date is not working
+    //Date Needs to be formatted in ISO 8601 timestamps. Ex. 2023-11-17T03:36:41.779Z
     newToDo: async (parent, { user, categoryId, text, date }, context) => {
-      // console.log(user)
-      // console.log(categoryId)
-      // console.log(text)
-      console.log(date) 
 
       if (user && categoryId && text && date) {
 
@@ -99,11 +95,7 @@ const resolvers = {
         }
 
         updatedCategory.todos.push(newToDo)
-
         await existingUser.save();
-        // console.log(existingUser);
-
-
         console.log(`user: ${user} created todo: \'${text}\' in category: ${categoryId} for date: ${date}`)
       }
       else {
