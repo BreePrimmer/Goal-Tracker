@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function GoalView() {
   let { id } = useParams();
   return (
     <div>
-      <div>&lt;- Return home</div>
+      <Link to={"/"}>&lt;- Return home</Link>
       <ul>
         <li>Goal one</li>
         <li>Goal two</li>
