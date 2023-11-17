@@ -114,6 +114,7 @@ button:focus-visible {
     padding: 10px;
     color: #C8A951;
     font-size: 110%;
+    font-weight: bold;
     border-bottom-style: solid;
     border-bottom-color: white;
   }
@@ -124,6 +125,7 @@ button:focus-visible {
     background-color: #BBE3F1;
     color: #0D85D8;
     font-size: 120%;
+    font-weight: bold;
     padding: 20px
   }
 
@@ -135,6 +137,10 @@ button:focus-visible {
     background-color: #BBE3F1;
     color: #0D85D8;
     font-size: 120%;
+    font-weight: bold;
+  }
+  .new-goal-cont {
+    padding-top:10px;
   }
   .goal-spacing {
     margin-top: 15px;
@@ -142,6 +148,7 @@ button:focus-visible {
   .form-title {
     color:#0D85D8;
     font-size: 110%;
+    font-weight: bold;
     margin: 0px 10px;
   }
   .form-input {
@@ -161,7 +168,69 @@ button:focus-visible {
   .goal-cont {
     background-color: lightblue;
     padding-bottom: 15px;
+    margin-bottom: -15px;
   }
+  .goal-btn {
+    margin-left: 31%;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+
+  /* todos styling */
+  .todo-cont {
+    background-color: lightcoral;
+    /* height: 300px; */
+    padding-bottom: 15px;
+  }
+  #to-do {
+    text-align: center;
+    font-size: 150%;
+    background-color: coral;
+    padding: 15px;
+    margin-bottom: -15px;
+  }
+  .to-do-ul {
+    background-color: lightgoldenrodyellow;
+    padding: 20px 0px;
+    padding-bottom: 0px;
+  }
+  .to-do-li {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-size: 110%;
+    font-weight: bold;
+    margin: 10px;
+    border-bottom-style: solid;
+  }
+  #to-do-btn {
+    margin-left: 10px;
+    margin-top: -3px;
+    margin-bottom: 10px;
+  }
+
+  /* --------------------------------- */
+  /* goal view page styling */
+  /* /goal */
+  .goal-desc {
+    padding-left: 10px;
+  }
+  #goal-cat {
+    padding-left: 10px;
+  }
+  #desc-date {
+    display: flex;
+    flex-direction: column;
+  }
+  #desc-date span {
+    padding-top: 5px;
+  }
+  #desc-cont {
+    padding-bottom: 25px;
+  }
+  /* ------------------------------------- */
+  /* category view page styling
+  /* /category */
+
 
   /* footer styling */
   footer {
@@ -170,6 +239,7 @@ button:focus-visible {
     text-align: center;
     color: green;
     font-size: 130%;
+    bottom: 0;
   }
 }
 

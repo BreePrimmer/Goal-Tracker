@@ -9,7 +9,7 @@ export default function CreateGoal() {
   return (
     <div className="goal-cont">
       <span id="new-goal">Make a new goal</span>
-      <form>
+      <form className='new-goal-cont'>
         <div className="goal-spacing">
           <label className="form-title" htmlFor="newGoalCategory">
             Category:
@@ -42,7 +42,7 @@ export default function CreateGoal() {
           </label>
           <input className="form-input" type="datetime-local" />
         </div>
-        <button type="submit">Create Goal</button>
+        <button className="goal-btn" type="submit">Create Goal</button>
       </form>
     </div>
   );
