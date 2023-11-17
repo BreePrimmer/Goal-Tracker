@@ -9,6 +9,7 @@ export default function CreateGoal() {
 
   const goalFormHandler = (e) => {
     e.preventDefault();
+    console.log(goalName);
     console.log(category);
     console.log(description);
     console.log(`Long term: ${longTerm}`);
@@ -23,37 +24,37 @@ export default function CreateGoal() {
       <span id="new-goal">Make a new goal</span>
       <form className="new-goal-cont" onSubmit={goalFormHandler}>
         <div className="goal-spacing">
-          <label className="form-title" htmlFor="newGoalName">
+          <label className="form-title" htmlFor="goalName">
             Name:
           </label>
           <input
             className="form-input"
             type="text"
-            name="newGoalName"
-            id=""
+            name="newGoalCategory"
+            id="goalName"
             value={goalName}
             onChange={(e) => {
               setGoalName(e.target.value);
             }}
           />
-        <div className="goal-spacing">
-          <label className="form-title" htmlFor="newGoalCategory">
-            Category:
-          </label>
-          <input
-            className="form-input"
-            type="text"
-            name="newGoalCategory"
-            id="goalCategory"
-            value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-            }}
-          />
-        </div>
+          <div className="goal-spacing">
+            <label className="form-title" htmlFor="goalCategory">
+              Category:
+            </label>
+            <input
+              className="form-input"
+              type="text"
+              name="newGoalCategory"
+              id="goalCategory"
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+            />
+          </div>
         </div>
         <div className="goal-spacing" id="desc-cont">
-          <label className="form-title" htmlFor="newGoalDesc">
+          <label className="form-title" htmlFor="desc">
             Description:
           </label>
           <textarea
@@ -85,12 +86,13 @@ export default function CreateGoal() {
           </span>
         </div>
         <div className="goal-spacing">
-          <label className="form-title" htmlFor="newGoalDate">
+          <label className="form-title" htmlFor="endDate">
             End Date
           </label>
           <input
             className="form-input"
             type="datetime-local"
+            id="endDate"
             value={endDate}
             onChange={(e) => {
               setEndDate(e.target.value);

@@ -19,7 +19,7 @@ export default function Categories() {
         <li
           className="category"
           onClick={() => {
-            setCreateCategory(true);
+            setCreateCategory(!createCategory);
           }}>
           New +
         </li>
