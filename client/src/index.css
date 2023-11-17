@@ -88,12 +88,12 @@ button:focus-visible {
     padding: 10px 20px;
   }
   .title {
-    color: green;
+    color: white;
     font-size: 160%;
     font-weight: bold;
   }
   .login {
-    color: green;
+    color: white;
     font-size: 160%;
   }
   
@@ -110,20 +110,20 @@ button:focus-visible {
   }
 
   .category {
-    background-color: #FDFD97;
+    background-color: white;
     padding: 10px;
-    color: #C8A951;
+    color: #a9f573fe;
     font-size: 110%;
     font-weight: bold;
     border-bottom-style: solid;
     border-bottom-color: white;
   }
   #my-category {
-    border-bottom-style: solid;
-    border-bottom-color: white;
+    /* border-bottom-style: solid;
+    border-bottom-color: #77DD76; */
     padding: 15px;
-    background-color: #BBE3F1;
-    color: #0D85D8;
+    background-color: #a9f573fe;
+    color: white;
     font-size: 120%;
     font-weight: bold;
     padding: 20px
@@ -134,10 +134,12 @@ button:focus-visible {
     display: flex;
     justify-content: center;
     padding: 15px;
-    background-color: #BBE3F1;
-    color: #0D85D8;
+    background-color: #a9f573fe;
+    color: white;
     font-size: 120%;
     font-weight: bold;
+    /* border-bottom-style: solid;
+    border-bottom-color: #77DD76; */
   }
   .new-goal-cont {
     padding-top:10px;
@@ -146,14 +148,15 @@ button:focus-visible {
     margin-top: 15px;
   }
   .form-title {
-    color:#0D85D8;
+    color: #77DD76;
     font-size: 110%;
     font-weight: bold;
     margin: 0px 20px;
   }
   .form-input {
-    border-style: hidden;
+    border-width: 2px;
     border-radius: 10px;
+    border-color:#a9f573fe
   }
   #desc-cont {
     display: flex;
@@ -166,7 +169,7 @@ button:focus-visible {
     width: 70%;
   }
   .goal-cont {
-    background-color: lightblue;
+    background-color: white;
     padding-bottom: 15px;
     margin-bottom: -15px;
   }
@@ -174,23 +177,26 @@ button:focus-visible {
     margin-left: 31%;
     margin-top: 25px;
     margin-bottom: 15px;
+    background-color: #a9f573fe;
+    color: white;
   }
 
   /* todos styling */
   .todo-cont {
-    background-color: lightcoral;
+    background-color: white;
     /* height: 300px; */
     padding-bottom: 15px;
   }
   #to-do {
     text-align: center;
     font-size: 150%;
-    background-color: coral;
+    background-color: #a9f573fe;
+    color: white;
     padding: 15px;
     margin-bottom: -15px;
   }
   .to-do-ul {
-    background-color: lightgoldenrodyellow;
+    background-color: white;
     padding: 20px 0px;
     padding-bottom: 0px;
   }
@@ -201,11 +207,15 @@ button:focus-visible {
     font-weight: bold;
     margin: 10px;
     border-bottom-style: solid;
+    border-color: #a9f573fe;
+    color: #77DD76;
   }
   #to-do-btn {
     margin-left: 10px;
     margin-top: -3px;
     margin-bottom: 10px;
+    background-color:#a9f573fe;
+    color: white;
   }
 
   /* --------------------------------- */
@@ -263,7 +273,7 @@ button:focus-visible {
     background-color: #77DD76;
     padding: 10px;
     text-align: center;
-    color: green;
+    color: white;
     font-size: 130%;
     bottom: 0;
   }
