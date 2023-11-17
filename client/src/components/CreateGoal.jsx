@@ -7,35 +7,40 @@ export default function CreateGoal() {
     e.preventDefault();
   };
   return (
-    <div>
+    <div className="goal-cont">
       <span id="new-goal">Make a new goal</span>
-      <form id="goalForm" onSubmit={goalFormHandler}>
-        <div>
-          <label htmlFor="newGoalCategory">Category:</label>
-          <input type="text" name="newGoalCategory" id="" />
+      <form>
+        <div className="goal-spacing">
+          <label className="form-title" htmlFor="newGoalCategory">
+            Category:
+          </label>
+          <input
+            className="form-input"
+            type="text"
+            name="newGoalCategory"
+            id=""
+          />
         </div>
-        <div>
-          <label htmlFor="newGoalDesc">Description:</label>
-          <input type="text" name="newGoalDesc" />
+        <div className="goal-spacing" id="desc-cont">
+          <label className="form-title" htmlFor="newGoalDesc">
+            Description:
+          </label>
+          <textarea
+            className="form-input"
+            id="desc"
+            type="text"
+            name="newGoalDesc"
+          />
         </div>
-        <div>
-          <span
-            onClick={() => {
-              setLongTerm(false);
-            }}>
-            Short term
-          </span>{" "}
-          or {""}
-          <span
-            onClick={() => {
-              setLongTerm(true);
-            }}>
-            long term
-          </span>
+        <div className="goal-spacing">
+          <span className="form-title">Short term</span> or{" "}
+          <span className="form-title">Long term</span>
         </div>
-        <div>
-          <label htmlFor="newGoalDate">End Date</label>
-          <input type="datetime-local" />
+        <div className="goal-spacing">
+          <label className="form-title" htmlFor="newGoalDate">
+            End Date
+          </label>
+          <input className="form-input" type="datetime-local" />
         </div>
         <button type="submit">Create Goal</button>
       </form>

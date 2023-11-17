@@ -85,7 +85,7 @@ button:focus-visible {
     align-items: center;
     justify-content: space-between;
     background-color: #77DD76;
-    padding: 0px 10px;
+    padding: 10px 20px;
   }
   .title {
     color: green;
@@ -113,6 +113,7 @@ button:focus-visible {
     background-color: #FDFD97;
     padding: 10px;
     color: #C8A951;
+    font-size: 110%;
     border-bottom-style: solid;
     border-bottom-color: white;
   }
@@ -122,7 +123,8 @@ button:focus-visible {
     padding: 15px;
     background-color: #BBE3F1;
     color: #0D85D8;
-    font-size: 110%;
+    font-size: 120%;
+    padding: 20px
   }
 
   /* New goal styling */
@@ -132,6 +134,42 @@ button:focus-visible {
     padding: 15px;
     background-color: #BBE3F1;
     color: #0D85D8;
+    font-size: 120%;
+  }
+  .goal-spacing {
+    margin-top: 15px;
+  }
+  .form-title {
+    color:#0D85D8;
+    font-size: 110%;
+    margin: 0px 10px;
+  }
+  .form-input {
+    border-style: hidden;
+    border-radius: 10px;
+  }
+  #desc-cont {
+    display: flex;
+    flex-direction: column;
+  }
+  #desc {
+    margin-top: 15px;
+    margin-left: 10px;
+    height: 50px;
+    width: 70%;
+  }
+  .goal-cont {
+    background-color: lightblue;
+    padding-bottom: 15px;
+  }
+
+  /* footer styling */
+  footer {
+    background-color: #77DD76;
+    padding: 10px;
+    text-align: center;
+    color: green;
+    font-size: 130%;
   }
 }
 
