@@ -1,4 +1,4 @@
-const { User, Category, Todo } = require('../models');
+const { User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 
@@ -8,26 +8,19 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
-    categories: async () => {
-      const users = await User.find({});
-      
-      const categories = users.reduce((acc, user) => {
-        return acc.concat(user.categories);
-      }, []);
-
-      
-      return await categories
+    user: async (parent, args, context) => {
+      return await User.findOne({ _id: args.id });
     }
   },
 
   Mutation: {
-    newUser: async (parent, {username, email, password, context}) => {
-      const newUser = await User.create({username, email, password});
+    newUser: async (parent, { username, email, password, context }) => {
+      const newUser = await User.create({ username, email, password });
       const token = signToken(newUser);
 
-      return {newUser, token};
+      return { newUser, token };
     },
-     login: async (parent, { email, password }, c) => {
+    login: async (parent, { email, password }, c) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -45,21 +38,30 @@ const resolvers = {
       return { token, user };
     },
 
-    newCategory: async (parent , {name, user}, context) => {
-      if (context.user) {
-        const userCat = await user.find({});
-        newuser = userCat.categories
-        const newCategory = await newuser.create({
-          name
-        });
-        
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { categories: newCategory._id } }
-        );
+    newCategory: async (parent, { name, user }, context) => {
 
-        return thought;
-    }
+      console.log(`user: ${user} created category: ${name}`);
+
+      if (user && name) {
+        const existingUser = await User.findById(user);
+
+        if(!existingUser) {
+          throw new Error('User not Found')
+        }
+
+        console.log(existingUser);
+
+        const updateUser = await User.findOneAndUpdate(
+          { _id: user.id },
+          { $addToSet: {categories: name} },
+          { new: true, runValidators }
+        )
+
+        console.log(updateUser)
+
+
+      }
+
     }
   }
 
