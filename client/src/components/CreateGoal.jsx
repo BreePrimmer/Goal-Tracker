@@ -23,19 +23,8 @@ export default function CreateGoal() {
       <span id="new-goal">Make a new goal</span>
       <form className="new-goal-cont" onSubmit={goalFormHandler}>
         <div className="goal-spacing">
-          <label className="form-title" htmlFor="newGoalCategory">
-            Name:
-          </label>
-          <input
-            className="form-input"
-            type="text"
-            name="newGoalCategory"
-            id="goalName"
-          />
-        </div>
-        <div className="goal-spacing">
           <label className="form-title" htmlFor="newGoalName">
-            Goal name:
+            Name:
           </label>
           <input
             className="form-input"
@@ -47,6 +36,7 @@ export default function CreateGoal() {
               setGoalName(e.target.value);
             }}
           />
+        <div className="goal-spacing">
           <label className="form-title" htmlFor="newGoalCategory">
             Category:
           </label>
@@ -60,6 +50,7 @@ export default function CreateGoal() {
               setCategory(e.target.value);
             }}
           />
+        </div>
         </div>
         <div className="goal-spacing" id="desc-cont">
           <label className="form-title" htmlFor="newGoalDesc">
