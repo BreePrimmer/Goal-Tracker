@@ -5,6 +5,7 @@ export default function CreateGoal() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [goalName, setGoalName] = useState("");
 
   const goalFormHandler = (e) => {
     e.preventDefault();
@@ -22,6 +23,19 @@ export default function CreateGoal() {
       <span id="new-goal">Make a new goal</span>
       <form onSubmit={goalFormHandler}>
         <div className="goal-spacing">
+          <label className="form-title" htmlFor="newGoalName">
+            Goal name:
+          </label>
+          <input
+            className="form-input"
+            type="text"
+            name="newGoalName"
+            id=""
+            value={goalName}
+            onChange={(e) => {
+              setGoalName(e.target.value);
+            }}
+          />
           <label className="form-title" htmlFor="newGoalCategory">
             Category:
           </label>
