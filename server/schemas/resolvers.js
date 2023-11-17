@@ -43,7 +43,8 @@ const resolvers = {
       if (user && name) {
 
         const existingUser = await User.findById(user);
-        if(!existingUser) {
+        if (!existingUser) {
+          console.error('User not Found')
           throw new Error('User not Found')
         }
 
@@ -58,9 +59,57 @@ const resolvers = {
         console.log(`user: ${user} created category: ${name}`);
         return updatedUser;
       }
+      else {
+        console.error('Missing Category Name or User');
+        throw new Error('Missing Category Name or User');
+      }
 
     },
-    newToDo: async (parent, { user, categoryId, text, completed}, context) => {
+    // Date is not working
+    newToDo: async (parent, { user, categoryId, text, date }, context) => {
+      // console.log(user)
+      // console.log(categoryId)
+      // console.log(text)
+      console.log(date) 
+
+      if (user && categoryId && text && date) {
+
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        // console.log(existingUser.categories);
+
+        const updatedCategory = existingUser.categories.find(
+          (category) => category._id.toString() === categoryId
+        );
+
+        // console.log(updatedCategory);
+
+        if (!updatedCategory) {
+          console.error('Category not found');
+          throw new Error('Category not found');
+        }
+
+        const newToDo = {
+          text: text,
+          date: date
+        }
+
+        updatedCategory.todos.push(newToDo)
+
+        await existingUser.save();
+        // console.log(existingUser);
+
+
+        console.log(`user: ${user} created todo: \'${text}\' in category: ${categoryId} for date: ${date}`)
+      }
+      else {
+        console.error('Missing Category id, User, or Todo text')
+        throw new Error('Missing Category id, User, or Todo text')
+      }
 
     }
   }
