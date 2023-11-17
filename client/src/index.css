@@ -25,15 +25,20 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex; */
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  font-size: 15px;
 }
 
-h1 {
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
+} */
+
+li {
+  list-style-type: none;
 }
 
 button {
@@ -66,4 +71,119 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* breakpoint for phone screens */
+@media screen and (max-width: 480px) {
+
+  body {
+    background-color: lightyellow;
+  }
+  /* header/navbar styling */
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #77DD76;
+    padding: 10px 20px;
+  }
+  .title {
+    color: green;
+    font-size: 160%;
+    font-weight: bold;
+  }
+  .login {
+    color: green;
+    font-size: 160%;
+  }
+  
+  /* categories styling */
+  .category-container {
+    display: block;
+    justify-content: center;
+  }
+
+  .categories {
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .category {
+    background-color: #FDFD97;
+    padding: 10px;
+    color: #C8A951;
+    font-size: 110%;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+  }
+  #my-category {
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    padding: 15px;
+    background-color: #BBE3F1;
+    color: #0D85D8;
+    font-size: 120%;
+    padding: 20px
+  }
+
+  /* New goal styling */
+  #new-goal{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color: #BBE3F1;
+    color: #0D85D8;
+    font-size: 120%;
+  }
+  .goal-spacing {
+    margin-top: 15px;
+  }
+  .form-title {
+    color:#0D85D8;
+    font-size: 110%;
+    margin: 0px 10px;
+  }
+  .form-input {
+    border-style: hidden;
+    border-radius: 10px;
+  }
+  #desc-cont {
+    display: flex;
+    flex-direction: column;
+  }
+  #desc {
+    margin-top: 15px;
+    margin-left: 10px;
+    height: 50px;
+    width: 70%;
+  }
+  .goal-cont {
+    background-color: lightblue;
+    padding-bottom: 15px;
+  }
+
+  /* footer styling */
+  footer {
+    background-color: #77DD76;
+    padding: 10px;
+    text-align: center;
+    color: green;
+    font-size: 130%;
+  }
+}
+
+/* breakpoint for ipads/tablets */
+@media screen and (max-width: 768px) {
+
+}
+
+/* breakpoint for laptops/small screens */
+@media screen and (max-width: 1024px) {
+
+}
+
+/* desktops */
+@media screen and (max-width: 1200px) {
+
 }
