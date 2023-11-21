@@ -18,19 +18,21 @@ export default function Login() {
   return (
     <div>
       <form onSubmit={loggingIn ? loginUser : signupUser}>
-        <label htmlFor="Username">Username:</label>
+        <label htmlFor="username">Username:</label>
         <input
           type="text"
-          name="Username"
+          name="username"
+          id="username"
           value={username}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
         />
-        <label htmlFor="Password">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
-          name="Password"
+          name="password"
+          id="password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
@@ -56,7 +58,7 @@ export default function Login() {
             onClick={() => {
               setLoggingIn(true);
             }}>
-            Sign up!
+            Log in!
           </span>
         </span>
       )}
