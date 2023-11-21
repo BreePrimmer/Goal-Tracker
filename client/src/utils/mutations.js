@@ -25,8 +25,12 @@ mutation newUser($username: String!, $email: String!, password: String!) {
 
 export const NEW_CATEGORY = gql`
 mutation newCategory($name: String, user:ID) {
-    newCategory (name: $name, userID: user) {
+    newCategory (name: $name, userID: $user) {
         name
+        toDo {
+            completed
+            date
+        }
         user {
             username
             _id
@@ -37,7 +41,7 @@ mutation newCategory($name: String, user:ID) {
 
 export const NEW_TO_DO = gql`
 mutation newToDo($user: ID!, text: String!, completed: Boolean) {
-    newToDo (user: user, text: text, completed: completed) {
+    newToDo (user: $user, text: $text, completed: $completed) {
         _id
         text
         completed
@@ -51,7 +55,7 @@ mutation newToDo($user: ID!, text: String!, completed: Boolean) {
 
 export const DELETE_CATEGORY = gql`
 mutation deleteCategory($CatId: ID!) {
-    deleteCategory(CatID: CatId){
+    deleteCategory(CatID: $CatId){
         _id
         name
         user {
@@ -63,7 +67,7 @@ mutation deleteCategory($CatId: ID!) {
 
 export const DELETE_TODO = gql` 
 mutation deleteToDo($toDoId: ID!){
-    deleteToDo(toDoId: toDoId) {
+    deleteToDo(toDoId: $toDoId) {
         _id
         text
         completed
@@ -71,3 +75,20 @@ mutation deleteToDo($toDoId: ID!){
     }
 }
 `;
+
+export const COMPLETED_TODO = gql`
+mutation completedToDo ($user: ID!, $toDoId: ID!) {
+    completeToDo(userId: $user, toDoId: $toDoID) {
+        _id
+        text
+        completed
+        date
+        user{
+            _id
+            username
+        }
+    }
+}
+
+`
+
