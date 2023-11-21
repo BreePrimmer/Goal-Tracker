@@ -27,8 +27,9 @@ export const NEW_CATEGORY = gql`
 mutation newCategory($name: String, user:ID) {
     newCategory (name: $name, userID: user) {
         name
-        Category {
-            name
+        user {
+            username
+            _id
         }
     }
 }
@@ -37,7 +38,10 @@ mutation newCategory($name: String, user:ID) {
 export const NEW_TO_DO = gql`
 mutation newToDo($user: ID!, text: String!, completed: Boolean) {
     newToDo (user: user, text: text, completed: completed) {
+        _id
         text
+        completed
+        date
         user {
             username
         }
@@ -49,6 +53,10 @@ export const DELETE_CATEGORY = gql`
 mutation deleteCategory($CatId: ID!) {
     deleteCategory(CatID: CatId){
         _id
+        name
+        user {
+            username
+        }
     }
 }
 `;
@@ -57,6 +65,9 @@ export const DELETE_TODO = gql`
 mutation deleteToDo($toDoId: ID!){
     deleteToDo(toDoId: toDoId) {
         _id
+        text
+        completed
+        date
     }
 }
 `;
