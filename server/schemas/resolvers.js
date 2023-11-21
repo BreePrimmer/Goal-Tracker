@@ -176,6 +176,33 @@ const resolvers = {
         console.error('Missing todo id, user, or flag')
         throw new Error('Missing todo id, user, or flag')
       }
+    },
+
+    deleteCategory: async (parent, { user, categoryId }) => {
+      console.log(categoryId)
+
+      if (user && categoryId) {
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        const categoryIndex = existingUser.categories.findIndex(
+          category => category._id.toString === categoryId
+        );
+
+        console.log(categoryIndex);
+
+        if(categoryIndex !== -1){
+          existingUser.categories.splice(categoryIndex, 1);
+          await existingUser.save();
+
+          console.log(`user: ${user} succesfully deleted category: ${categoryId}`) 
+        }
+
+      }
+
     }
 
   }

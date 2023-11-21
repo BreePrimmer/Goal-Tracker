@@ -39,7 +39,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     newCategory(name: String!, user: ID): Category
     newToDo(user: ID!, text: String!, categoryId: ID, date: String): ToDo
-    deleteCategory(CatId: ID!): Category
+    deleteCategory(user: ID!, categoryId: ID!): Category
     deleteToDo(user: ID!, toDoId: ID!) : ToDo
     completeToDo(user: ID!, toDoId: ID!, completed: Boolean): ToDo
   }
