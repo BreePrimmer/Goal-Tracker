@@ -50,7 +50,7 @@ const resolvers = {
 
         const newCategory = {
           name: name,
-          todos: []
+          goals: []
         };
 
         existingUser.categories.push(newCategory);
@@ -66,7 +66,7 @@ const resolvers = {
 
     },
     //Date Needs to be formatted in ISO 8601 timestamps. Ex. 2023-11-17T03:36:41.779Z
-    newToDo: async (parent, { user, categoryId, text, date }, context) => {
+    newGoal: async (parent, { user, categoryId, text, date }, context) => {
 
       if (user && categoryId && text && date) {
 
@@ -89,59 +89,59 @@ const resolvers = {
           throw new Error('Category not found');
         }
 
-        const newToDo = {
+        const newGoal = {
           text: text,
           date: date
         }
 
-        updatedCategory.todos.push(newToDo)
+        updatedCategory.goals.push(newGoal)
         await existingUser.save();
-        console.log(`user: ${user} created todo: \'${text}\' in category: ${categoryId} for date: ${date}`)
+        console.log(`user: ${user} created goal: \'${text}\' in category: ${categoryId} for date: ${date}`)
       }
       else {
-        console.error('Missing Category id, User, or Todo text')
-        throw new Error('Missing Category id, User, or Todo text')
+        console.error('Missing Category id, User, or goal text')
+        throw new Error('Missing Category id, User, or goal text')
       }
 
     },
 
-    deleteToDo: async (parent, { user, toDoId }, context) => {
-      // console.log(toDoId);
-      if (user && toDoId) {
+    deleteGoal: async (parent, { user, goalId }, context) => {
+      // console.log(goalId);
+      if (user && goalId) {
         const existingUser = await User.findById(user);
         if (!existingUser) {
           console.error('User not Found')
           throw new Error('User not Found')
         }
 
-        var todoDeleted = false
+        var goalDeleted = false
 
         existingUser.categories.forEach(category => {
-          const todoIndex = category.todos.findIndex(todo => todo._id.toString() === toDoId);
-          if (todoIndex !== -1) {
-            category.todos.splice(todoIndex, 1);
-            todoDeleted = true
+          const goalIndex = category.goals.findIndex(goal => goal._id.toString() === goalId);
+          if (goalIndex !== -1) {
+            category.goals.splice(goalIndex, 1);
+            goalDeleted = true
           }
         });
 
-        if (!todoDeleted) {
-          console.error('Todo not Found')
-          throw new Error('Todo not Found')
+        if (!goalDeleted) {
+          console.error('Goal not Found')
+          throw new Error('Goal not Found')
         }
         else {
           await existingUser.save();
-          console.log(`user: ${user} succesfully deleted todo`)
+          console.log(`user: ${user} succesfully deleted goal`)
         }
       }
       else {
-        console.error('Missing todo id or user')
-        throw new Error('Missing todo id or user')
+        console.error('Missing goal id or user')
+        throw new Error('Missing goal id or user')
       }
     },
     // Pass completed as true to mark completed as true
-    completeToDo: async (parent, { user, toDoId, completed }, context) => {
+    completeGoal: async (parent, { user, goalId, completed }, context) => {
       // console.log(completed)
-      if (user && toDoId && completed) {
+      if (user && goalId && completed) {
 
 
         const existingUser = await User.findById(user);
@@ -150,31 +150,31 @@ const resolvers = {
           throw new Error('User not Found')
         }
 
-        var todoFound = false
+        var goalFound = false
 
         existingUser.categories.forEach(category => {
-          const todoIndex = category.todos.findIndex(todo => todo._id.toString() === toDoId);
-          if (todoIndex !== -1) {
-            if (category.todos[todoIndex].completed === true) {
-              console.error('Todo already completed')
-              throw new Error('Todo already completed')
+          const goalIndex = category.goals.findIndex(goal => goal._id.toString() === goalId);
+          if (goalIndex !== -1) {
+            if (category.goals[goalIndex].completed === true) {
+              console.error('Goal already completed')
+              throw new Error('Goal already completed')
             }
-            category.todos[todoIndex].completed = completed;
-            todoFound = true;
+            category.goals[goalIndex].completed = completed;
+            goalFound = true;
           }
         });
 
-        if (!todoFound) {
-          console.error('Todo not Found')
-          throw new Error('Todo not Found')
+        if (!goalFound) {
+          console.error('Goal not Found')
+          throw new Error('Goal not Found')
         } else {
           await existingUser.save();
-          console.log(`user: ${user} succesfully completed todo: ${toDoId}`)
+          console.log(`user: ${user} succesfully completed goal: ${goalId}`)
         }
 
       } else {
-        console.error('Missing todo id, user, or flag')
-        throw new Error('Missing todo id, user, or flag')
+        console.error('Missing goal id, user, or flag')
+        throw new Error('Missing goal id, user, or flag')
       }
     },
 

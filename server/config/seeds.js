@@ -15,9 +15,9 @@ db.once('open', async () => {
             categories: [
                 {
                     name: 'General',
-                    todos: [
-                        { text: 'Finish report', completed: false, date: new Date(), _id: new ObjectId() },
-                        { text: 'Attend Class', completed: true, date: new Date(), _id: new ObjectId() }
+                    goals: [
+                        { title: 'School report', text: 'Finish report', completed: false, date: new Date(), _id: new ObjectId() },
+                        { title: 'Attend Class' ,text: 'Attend Class', completed: true, date: new Date(), _id: new ObjectId() }
                     ]
                 }
             ]
@@ -30,24 +30,24 @@ db.once('open', async () => {
             categories: [
                 {
                     name: 'General',
-                    todos: [
-                        { text: 'test', completed: false, date: new Date(), _id: new ObjectId() },
+                    goals: [
+                        {title: 'test title', text: 'test', completed: false, date: new Date(), _id: new ObjectId() },
                     ]
                 },
                 {
                     name: 'Personal',
-                    todos: [
-                        { text: 'Walk the dog', completed: false, date: new Date(), _id: new ObjectId() },
-                        { text: 'Eat Dinner', completed: true, date: new Date(), _id: new ObjectId() },
-                        { text: 'Goto the gym', completed: false, date: new Date(), _id: new ObjectId() },
+                    goals: [
+                        { title: 'DOG' ,text: 'Walk the dog', completed: false, date: new Date(), _id: new ObjectId() },
+                        { title: 'Dinner Reservations' ,text: 'Eat Dinner', completed: true, date: new Date(), _id: new ObjectId() },
+                        { title: 'Workout', text: 'Goto the gym', completed: false, date: new Date(), _id: new ObjectId() },
                     ]
                 },
                 {
                     name: 'Work',
-                    todos: [
-                        { text: 'Attend Meeting', completed: true, date: new Date(), _id: new ObjectId() },
-                        { text: 'Send resignation letter', completed: false, date: new Date(), _id: new ObjectId() },
-                        { text: 'Go home', completed: true, date: new Date(), _id: new ObjectId() },
+                    goals: [
+                        { title: 'Work', text: 'Attend Meeting', completed: true, date: new Date(), _id: new ObjectId() },
+                        { title: 'Work', text: 'Send resignation letter', completed: false, date: new Date(), _id: new ObjectId() },
+                        { title: 'Work', text: 'Go home', completed: true, date: new Date(), _id: new ObjectId() },
                     ]
                 }
             ]

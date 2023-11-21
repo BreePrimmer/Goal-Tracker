@@ -2,7 +2,11 @@ const { mongoose, Schema } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 const bcrypt = require('bcrypt');
 
-const todoSchema = new Schema({
+const goalSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
   text: {
     type: String,
     required: true
@@ -25,8 +29,8 @@ const categorySchema = new Schema({
     trim: true,
     default: 'General'
   },
-  todos: [
-    todoSchema
+  goals: [
+    goalSchema
   ]
 });
 
