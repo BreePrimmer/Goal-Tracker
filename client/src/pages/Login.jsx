@@ -16,10 +16,11 @@ export default function Login() {
     console.log("User signed up!");
   };
   return (
-    <div>
-      <form onSubmit={loggingIn ? loginUser : signupUser}>
-        <label htmlFor="username">Username:</label>
+    <div id='login-cont'>
+      <form id='login-form' onSubmit={loggingIn ? loginUser : signupUser}>
+        <label className='login-label' htmlFor="username">Username:</label>
         <input
+          className='login-input'
           type="text"
           name="username"
           id="username"

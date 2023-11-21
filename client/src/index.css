@@ -266,6 +266,25 @@ footer {
   height: 82vh;
 }
 
+/* ------------------ LOGIN PAGE STYLING -------------------- */
+
+#login-cont {
+  background-color: lightblue;
+}
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-label {
+  display: flex;
+  flex-direction: row;
+}
+.login-input {
+  width: 20%;
+}
+
+
 /* ======================= BREAKPOINTS ===================== */
 
 /* ---------------------- PHONE SCREENS -------------------- */
