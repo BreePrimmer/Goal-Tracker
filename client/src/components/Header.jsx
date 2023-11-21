@@ -9,7 +9,9 @@ export default function Header() {
 
       <nav>
         <ul>
-          <li className="login">Login</li>
+          <li className="login">
+            <Link to="/login">Login</Link>
+          </li>
         </ul>
       </nav>
     </header>
