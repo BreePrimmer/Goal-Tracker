@@ -269,19 +269,37 @@ footer {
 /* ------------------ LOGIN PAGE STYLING -------------------- */
 
 #login-cont {
-  background-color: lightblue;
+  /* background-color: lightblue; */
+  height: 56vh;
 }
 #login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
+  background-color: lightblue;
+  margin-top: 15%;
 }
-.login-label {
+.login-input-cont {
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
 }
 .login-input {
-  width: 20%;
+  width: 50%;
+}
+#login-btn {
+  margin-top: 20px;
+}
+#email {
+  margin-left: 37px;
+}
+#password {
+  margin-left: 8px;
+}
+#new-user {
+  margin-left: 41%;
+  padding-top: 20px;
 }
 
 

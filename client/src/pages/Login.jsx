@@ -23,9 +23,9 @@ export default function Login() {
   };
   return (
     <div id='login-cont'>
-      <form onSubmit={loggingIn ? loginUser : signupUser}>
+      <form id='login-form' onSubmit={loggingIn ? loginUser : signupUser}>
         <div className='login-input-cont'>
-          <label htmlFor="username">Username:</label>
+          <label className='form-title' htmlFor="username">Username:</label>
           <input
             className='login-input'
             type="text"
@@ -38,7 +38,7 @@ export default function Login() {
           />
         </div>
         <div className='login-input-cont'>
-          <label htmlFor="email">Email:</label>
+          <label className='form-title' htmlFor="email">Email:</label>
           <input
             className='login-input'
             type="email"
@@ -51,7 +51,7 @@ export default function Login() {
           />
         </div>
         <div className='login-input-cont'>
-          <label htmlFor="password">Password:</label>
+          <label className='form-title' htmlFor="password">Password:</label>
           <input
             className='login-input'
             type="password"
@@ -63,11 +63,11 @@ export default function Login() {
             }}
           />
         </div>
-        <button type="submit">{loggingIn ? `Log in` : `Sign up`}</button>
+        <button id='login-btn' type="submit">{loggingIn ? `Log in` : `Sign up`}</button>
       </form>
 
       {loggingIn ? (
-        <span>
+        <span className='form-title' id='new-user'>
           New to us?{" "}
           <span
             onClick={() => {
@@ -77,7 +77,7 @@ export default function Login() {
           </span>
         </span>
       ) : (
-        <span>
+        <span className='form-title'>
           Already have an account?{" "}
           <span
             onClick={() => {
