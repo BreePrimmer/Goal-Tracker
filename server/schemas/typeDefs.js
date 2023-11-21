@@ -2,7 +2,7 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type User {
-    _id: ID
+    _id: ID!
     username: String
     email: String
     password: String
@@ -21,7 +21,6 @@ const typeDefs = gql`
     text: String!
     completed: Boolean!
     date: String!
-    category: Category
   }
 
   type Auth {
@@ -39,9 +38,10 @@ const typeDefs = gql`
     newUser(username: String!, email:String!, password: String!) : Auth
     login(email: String!, password: String!): Auth
     newCategory(name: String!, user: ID): Category
-    newToDo(user: ID!, text: String!, completed: Boolean): ToDo
-    deleteCategory(CatId: ID!): Category
-    deleteToDo(toDoId: ID!) : ToDo
+    newToDo(user: ID!, text: String!, categoryId: ID, date: String): ToDo
+    deleteCategory(user: ID!, categoryId: ID!): Category
+    deleteToDo(user: ID!, toDoId: ID!) : ToDo
+    completeToDo(user: ID!, toDoId: ID!, completed: Boolean): ToDo
   }
 `;
 
