@@ -106,7 +106,7 @@ const resolvers = {
     },
 
     deleteToDo: async (parent, { user, toDoId }, context) => {
-      console.log(toDoId);
+      // console.log(toDoId);
       if (user && toDoId) {
         const existingUser = await User.findById(user);
         if (!existingUser) {
@@ -124,22 +124,61 @@ const resolvers = {
           }
         });
 
-        if(!todoDeleted){
+        if (!todoDeleted) {
           console.error('Todo not Found')
           throw new Error('Todo not Found')
         }
-        else{
+        else {
           await existingUser.save();
-        console.log(`user: ${user} succesfully deleted todo`)
+          console.log(`user: ${user} succesfully deleted todo`)
         }
       }
       else {
         console.error('Missing todo id or user')
         throw new Error('Missing todo id or user')
       }
-    }
-  }
+    },
+    // Pass completed as true to mark completed as true
+    completeToDo: async (parent, { user, toDoId, completed }, context) => {
+      // console.log(completed)
+      if (user && toDoId && completed) {
 
+
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        var todoFound = false
+
+        existingUser.categories.forEach(category => {
+          const todoIndex = category.todos.findIndex(todo => todo._id.toString() === toDoId);
+          if (todoIndex !== -1) {
+            if (category.todos[todoIndex].completed === true) {
+              console.error('Todo already completed')
+              throw new Error('Todo already completed')
+            }
+            category.todos[todoIndex].completed = completed;
+            todoFound = true;
+          }
+        });
+
+        if (!todoFound) {
+          console.error('Todo not Found')
+          throw new Error('Todo not Found')
+        } else {
+          await existingUser.save();
+          console.log(`user: ${user} succesfully completed todo: ${toDoId}`)
+        }
+
+      } else {
+        console.error('Missing todo id, user, or flag')
+        throw new Error('Missing todo id, user, or flag')
+      }
+    }
+
+  }
 
 };
 

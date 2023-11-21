@@ -41,6 +41,7 @@ const typeDefs = gql`
     newToDo(user: ID!, text: String!, categoryId: ID, date: String): ToDo
     deleteCategory(CatId: ID!): Category
     deleteToDo(user: ID!, toDoId: ID!) : ToDo
+    completeToDo(user: ID!, toDoId: ID!, completed: Boolean): ToDo
   }
 `;
 
