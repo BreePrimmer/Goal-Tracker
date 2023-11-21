@@ -20,6 +20,9 @@ db.once('open', async () => {
                         { title: 'Attend Class' ,text: 'Attend Class', completed: true, date: new Date(), _id: new ObjectId() }
                     ]
                 }
+            ],
+            todos: [
+                { text: 'Do Homework 1.2' }
             ]
         })
 
@@ -50,6 +53,10 @@ db.once('open', async () => {
                         { title: 'Work', text: 'Go home', completed: true, date: new Date(), _id: new ObjectId() },
                     ]
                 }
+            ],
+            todos : [
+                { text: 'Pick up the package outside' },
+                { text: 'Drink Water' }
             ]
 
         })

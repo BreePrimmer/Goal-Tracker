@@ -34,6 +34,13 @@ const categorySchema = new Schema({
   ]
 });
 
+const todoScema = new Schema({
+  text: {
+    type: String,
+    required: true
+  }
+});
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -52,6 +59,9 @@ const userSchema = new Schema({
   },
   categories: [
     categorySchema
+  ],
+  todos : [
+    todoScema
   ]
 });
 

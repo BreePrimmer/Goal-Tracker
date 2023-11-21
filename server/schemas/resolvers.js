@@ -207,6 +207,59 @@ const resolvers = {
 
       }
 
+    },
+
+    createTodo: async (parent, { user, text }) => {
+      // console.log(user)
+      if (user && text) {
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        const newTodo = {
+          text: text,
+        };
+
+        existingUser.todos.push(newTodo);
+        await existingUser.save();
+
+        console.log(`user: ${user} created new todo`)
+
+      } else {
+        console.error('Missing todo text or User');
+        throw new Error('Missing todo text or User');
+      }
+    },
+
+    deleteTodo: async (parent, { user, todoId }) => {
+      if (user && todoId) {
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        // console.log(existingUser)
+
+        const todoIndex = existingUser.todos.findIndex(
+          todo => todo._id.toString() === todoId
+        );
+
+        if (todoIndex !== -1) {
+          existingUser.todos.splice(todoIndex, 1)
+          await existingUser.save();
+          console.log(`user: ${user} succesfully deleted category: ${todoId}`)
+        } else {
+          console.error('Todo not found');
+          throw new Error('Todo not found');
+        }
+      } else {
+        console.error('Missing todo id or User');
+        throw new Error('Missing todo id Name or User');
+      }
+
     }
 
   }

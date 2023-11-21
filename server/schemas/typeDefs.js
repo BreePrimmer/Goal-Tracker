@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     categories: [Category]
+    todos: [Todo]
   }
 
   type Category {
@@ -24,6 +25,11 @@ const typeDefs = gql`
     date: String!
   }
 
+  type Todo {
+    _id: ID!
+    text: String
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -32,7 +38,6 @@ const typeDefs = gql`
   type Query {
     user(id: ID!): User
     users: [User]
-    categories: [Category]
   }
 
   type Mutation{
@@ -43,6 +48,8 @@ const typeDefs = gql`
     deleteCategory(user: ID!, categoryId: ID!): Category
     deleteGoal(user: ID!, goalId: ID!) : Goal
     completeGoal(user: ID!, goalId: ID!, completed: Boolean): Goal
+    createTodo(user: ID!, text: String!): Todo
+    deleteTodo(user: ID!, todoId: ID!): Todo
   }
 `;
 
