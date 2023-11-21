@@ -103,6 +103,40 @@ const resolvers = {
         throw new Error('Missing Category id, User, or Todo text')
       }
 
+    },
+
+    deleteToDo: async (parent, { user, toDoId }, context) => {
+      console.log(toDoId);
+      if (user && toDoId) {
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        var todoDeleted = false
+
+        existingUser.categories.forEach(category => {
+          const todoIndex = category.todos.findIndex(todo => todo._id.toString() === toDoId);
+          if (todoIndex !== -1) {
+            category.todos.splice(todoIndex, 1);
+            todoDeleted = true
+          }
+        });
+
+        if(!todoDeleted){
+          console.error('Todo not Found')
+          throw new Error('Todo not Found')
+        }
+        else{
+          await existingUser.save();
+        console.log(`user: ${user} succesfully deleted todo`)
+        }
+      }
+      else {
+        console.error('Missing todo id or user')
+        throw new Error('Missing todo id or user')
+      }
     }
   }
 

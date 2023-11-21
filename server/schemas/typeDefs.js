@@ -40,7 +40,7 @@ const typeDefs = gql`
     newCategory(name: String!, user: ID): Category
     newToDo(user: ID!, text: String!, categoryId: ID, date: String): ToDo
     deleteCategory(CatId: ID!): Category
-    deleteToDo(toDoId: ID!) : ToDo
+    deleteToDo(user: ID!, toDoId: ID!) : ToDo
   }
 `;
 
