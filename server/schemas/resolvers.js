@@ -179,8 +179,7 @@ const resolvers = {
     },
 
     deleteCategory: async (parent, { user, categoryId }) => {
-      console.log(categoryId)
-
+      // console.log(categoryId)
       if (user && categoryId) {
         const existingUser = await User.findById(user);
         if (!existingUser) {
@@ -188,18 +187,23 @@ const resolvers = {
           throw new Error('User not Found')
         }
 
+        // console.log(existingUser.categories);
+
         const categoryIndex = existingUser.categories.findIndex(
-          category => category._id.toString === categoryId
+          category => category._id.toString() === categoryId
         );
 
-        console.log(categoryIndex);
+        // console.log(categoryIndex);
 
-        if(categoryIndex !== -1){
-          existingUser.categories.splice(categoryIndex, 1);
+        if (categoryIndex !== -1) {
+          existingUser.categories.splice(categoryIndex, 1)
           await existingUser.save();
-
-          console.log(`user: ${user} succesfully deleted category: ${categoryId}`) 
+          console.log(`user: ${user} succesfully deleted category: ${categoryId}`)
+        } else {
+          console.error('Category not found');
+          throw new Error('Category not found');
         }
+
 
       }
 
