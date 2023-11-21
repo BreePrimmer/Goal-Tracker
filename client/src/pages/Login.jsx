@@ -53,7 +53,7 @@ export default function Login() {
         </span>
       ) : (
         <span>
-          Logging in?{" "}
+          Already have an account?{" "}
           <span
             onClick={() => {
               setLoggingIn(true);
