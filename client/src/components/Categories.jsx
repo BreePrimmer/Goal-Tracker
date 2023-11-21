@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Categories() {
   const [createCategory, setCreateCategory] = useState(false);
@@ -17,7 +18,9 @@ export default function Categories() {
     <div className="category-container">
       <ul className="categories">
         <li id="my-category">My categories</li>
-        <li className="category">General</li>
+        <li className="category">
+          <Link to="/category">General</Link>
+        </li>
         {/* {exampleList.map((category, index) => (
           <li className="category" key={category}>
             {category}
@@ -25,14 +28,14 @@ export default function Categories() {
         ))} */}
         <li
           className="category"
-          id='new-category'
+          id="new-category"
           onClick={() => {
             setCreateCategory(!createCategory);
           }}>
           New +
         </li>
         {createCategory && (
-          <form id='new-category-form' onSubmit={categoryFormHandler}>
+          <form id="new-category-form" onSubmit={categoryFormHandler}>
             <input
               type="text"
               name="newCategory"
