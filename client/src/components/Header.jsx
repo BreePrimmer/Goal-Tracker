@@ -5,6 +5,7 @@ export default function Header() {
     <header className="header-container">
       <Link to="/">
         <h1 className="title">Goal Tracker</h1>
+        {/* <FontAwesomeIcon icon="fa-solid fa-trophy" /> */}
       </Link>
 
       <nav>
