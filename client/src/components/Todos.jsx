@@ -4,6 +4,8 @@ export default function Todos() {
   const [createTodo, setCreateTodo] = useState(false);
   const [newTodo, setNewTodo] = useState("");
 
+  const exampleList = ["Fitness", "School", "Work"];
+
   const newTodoFormHandler = (e) => {
     e.preventDefault();
     setCreateTodo(false);
@@ -18,6 +20,11 @@ export default function Todos() {
         <li className="to-do-li">Placeholder todo</li>
         <li className="to-do-li">Placeholder todo</li>
         <li className="to-do-li">Placeholder todo</li>
+        {/* {exampleList.map((todo, index) => (
+          <li className="to-do-li" key={todo}>
+            {todo}
+          </li>
+        ))} */}
       </ul>
 
       {!createTodo ? (

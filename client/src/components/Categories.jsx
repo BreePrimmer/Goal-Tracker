@@ -4,6 +4,8 @@ export default function Categories() {
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
+  const exampleList = ["Fitness", "School", "Work"];
+
   const categoryFormHandler = (e) => {
     e.preventDefault();
     console.log(newCategory);
@@ -16,6 +18,11 @@ export default function Categories() {
       <ul className="categories">
         <li id="my-category">My categories</li>
         <li className="category">General</li>
+        {/* {exampleList.map((category, index) => (
+          <li className="category" key={category}>
+            {category}
+          </li>
+        ))} */}
         <li
           className="category"
           id='new-category'

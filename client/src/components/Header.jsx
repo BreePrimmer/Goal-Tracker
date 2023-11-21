@@ -10,7 +10,9 @@ export default function Header() {
 
       <nav>
         <ul>
-          <li id="login">Login</li>
+          <li>
+            <Link to="/login" id='login'>Login</Link>
+          </li>
         </ul>
       </nav>
     </header>

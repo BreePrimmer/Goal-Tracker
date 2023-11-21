@@ -87,6 +87,7 @@ header {
 }
 #login {
   font-size: 160%;
+  color: var(--white);
 }
 
 /* --------------- CATEGORY COMPONENT STYLING -------------- */
