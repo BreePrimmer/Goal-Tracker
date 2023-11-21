@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import Homepage from "./pages/Homepage.jsx";
 import GoalView from "./pages/GoalView.jsx";
 import CategoryView from "./pages/CategoryView.jsx";
+import Login from "./pages/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/Goal",
         element: <GoalView />,
+      },
+      {
+        path: "/Login",
+        element: <Login />,
       },
     ],
   },

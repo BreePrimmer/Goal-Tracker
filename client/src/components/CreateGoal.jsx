@@ -2,27 +2,59 @@ import { useState } from "react";
 
 export default function CreateGoal() {
   const [longTerm, setLongTerm] = useState(true);
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [goalName, setGoalName] = useState("");
 
   const goalFormHandler = (e) => {
     e.preventDefault();
+    console.log(goalName);
+    console.log(category);
+    console.log(description);
+    console.log(`Long term: ${longTerm}`);
+    console.log(endDate);
+    setLongTerm(true);
+    setCategory("");
+    setDescription("");
+    setEndDate("");
   };
   return (
     <div className="goal-cont">
       <span id="new-goal">Make a new goal</span>
-      <form>
+      <form className="new-goal-cont" onSubmit={goalFormHandler}>
         <div className="goal-spacing">
-          <label className="form-title" htmlFor="newGoalCategory">
-            Category:
+          <label className="form-title" htmlFor="goalName">
+            Name:
           </label>
           <input
             className="form-input"
             type="text"
             name="newGoalCategory"
-            id=""
+            id="goalName"
+            value={goalName}
+            onChange={(e) => {
+              setGoalName(e.target.value);
+            }}
           />
+          <div className="goal-spacing">
+            <label className="form-title" htmlFor="goalCategory">
+              Category:
+            </label>
+            <input
+              className="form-input"
+              type="text"
+              name="newGoalCategory"
+              id="goalCategory"
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+            />
+          </div>
         </div>
         <div className="goal-spacing" id="desc-cont">
-          <label className="form-title" htmlFor="newGoalDesc">
+          <label className="form-title" htmlFor="desc">
             Description:
           </label>
           <textarea
@@ -30,19 +62,46 @@ export default function CreateGoal() {
             id="desc"
             type="text"
             name="newGoalDesc"
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
           />
         </div>
         <div className="goal-spacing">
-          <span className="form-title">Short term</span> or{" "}
-          <span className="form-title">Long term</span>
+          <span
+            className="form-title"
+            onClick={() => {
+              setLongTerm(false);
+            }}>
+            Short term
+          </span>{" "}
+          or{" "}
+          <span
+            className="form-title"
+            onClick={() => {
+              setLongTerm(true);
+            }}>
+            Long term
+          </span>
         </div>
         <div className="goal-spacing">
-          <label className="form-title" htmlFor="newGoalDate">
+          <label className="form-title" htmlFor="endDate">
             End Date
           </label>
-          <input className="form-input" type="datetime-local" />
+          <input
+            className="form-input"
+            type="datetime-local"
+            id="endDate"
+            value={endDate}
+            onChange={(e) => {
+              setEndDate(e.target.value);
+            }}
+          />
         </div>
-        <button type="submit">Create Goal</button>
+        <button className="goal-btn" type="submit">
+          Create Goal
+        </button>
       </form>
     </div>
   );
