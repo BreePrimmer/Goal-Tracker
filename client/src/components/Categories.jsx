@@ -25,13 +25,14 @@ export default function Categories() {
         ))} */}
         <li
           className="category"
+          id='new-category'
           onClick={() => {
             setCreateCategory(!createCategory);
           }}>
           New +
         </li>
         {createCategory && (
-          <form onSubmit={categoryFormHandler}>
+          <form id='new-category-form' onSubmit={categoryFormHandler}>
             <input
               type="text"
               name="newCategory"
