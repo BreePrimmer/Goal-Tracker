@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export default function CreateGoal() {
-  const [longTerm, setLongTerm] = useState(true);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -12,7 +11,6 @@ export default function CreateGoal() {
     console.log(goalName);
     console.log(category);
     console.log(description);
-    console.log(`Long term: ${longTerm}`);
     console.log(endDate);
     setLongTerm(true);
     setCategory("");
@@ -67,23 +65,6 @@ export default function CreateGoal() {
               setDescription(e.target.value);
             }}
           />
-        </div>
-        <div className="goal-spacing">
-          <span
-            className="form-title"
-            onClick={() => {
-              setLongTerm(false);
-            }}>
-            Short term
-          </span>{" "}
-          or{" "}
-          <span
-            className="form-title"
-            onClick={() => {
-              setLongTerm(true);
-            }}>
-            Long term
-          </span>
         </div>
         <div className="goal-spacing">
           <label className="form-title" htmlFor="endDate">
