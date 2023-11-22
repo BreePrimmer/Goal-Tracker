@@ -52,20 +52,16 @@ export default function Login() {
     // window.location.replace("/");
   };
   return (
-<<<<<<< HEAD
-    <div>
-      {JSON.stringify(formData)}
-      <form onSubmit={loggingIn ? loginFormHandler : signupFormHandler}>
-        <div>
-          <label htmlFor="username">Username:</label>
-=======
-    <div id='login-cont'>
-      <form id='login-form' onSubmit={loggingIn ? loginUser : signupUser}>
-        <div className='login-input-cont'>
-          <label className='form-title' htmlFor="username">Username:</label>
->>>>>>> eaf12e16ccf335510f8174651e1436fc095e6353
+    <div id="login-cont">
+      <form
+        id="login-form"
+        onSubmit={loggingIn ? loginFormHandler : signupFormHandler}>
+        <div className="login-input-cont">
+          <label className="form-title" htmlFor="username">
+            Username:
+          </label>
           <input
-            className='login-input'
+            className="login-input"
             type="text"
             name="username"
             id="username"
@@ -73,10 +69,12 @@ export default function Login() {
             onChange={handleInputChange}
           />
         </div>
-        <div className='login-input-cont'>
-          <label className='form-title' htmlFor="email">Email:</label>
+        <div className="login-input-cont">
+          <label className="form-title" htmlFor="email">
+            Email:
+          </label>
           <input
-            className='login-input'
+            className="login-input"
             type="email"
             name="email"
             id="email"
@@ -84,10 +82,12 @@ export default function Login() {
             onChange={handleInputChange}
           />
         </div>
-        <div className='login-input-cont'>
-          <label className='form-title' htmlFor="password">Password:</label>
+        <div className="login-input-cont">
+          <label className="form-title" htmlFor="password">
+            Password:
+          </label>
           <input
-            className='login-input'
+            className="login-input"
             type="password"
             name="password"
             id="password"
@@ -95,10 +95,12 @@ export default function Login() {
             onChange={handleInputChange}
           />
         </div>
-        <button id='login-btn' type="submit">{loggingIn ? `Log in` : `Sign up`}</button>
+        <button id="login-btn" type="submit">
+          {loggingIn ? `Log in` : `Sign up`}
+        </button>
       </form>
       {loggingIn ? (
-        <span className='form-title' id='new-user'>
+        <span className="form-title" id="new-user">
           New to us?{" "}
           <span
             onClick={() => {
@@ -108,7 +110,7 @@ export default function Login() {
           </span>
         </span>
       ) : (
-        <span className='form-title'>
+        <span className="form-title">
           Already have an account?{" "}
           <span
             onClick={() => {
