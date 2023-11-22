@@ -10,18 +10,36 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       return await User.findOne({ _id: args.id });
+    },
+    me: async (parent, args, context) => { //Queries the logged in user
+      if(context.user) {
+        return User.findOne({ _id: context.user._id })
+      }
+      else {
+        throw AuthenticationError;
+      }
     }
   },
 
   Mutation: {
     newUser: async (parent, { username, email, password, context }) => {
-      const newUser = await User.create({ username, email, password });
-      const token = signToken(newUser);
+      try {
+        const newUser = await User.create({ username, email, password });
+        const token = signToken(newUser);
 
-      return { newUser, token };
+        if(!newUser){
+          throw new error('User creation failed')
+        }
+        return { newUser, token };
+
+      } catch (error) {
+        throw new Error(error);
+      }
+
+
     },
-    login: async (parent, { email, password }, c) => {
-      const user = await User.findOne({ email });
+    login: async (parent, { username, password }, context) => {
+      const user = await User.findOne({ username });
 
       if (!user) {
         throw AuthenticationError;
@@ -34,7 +52,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
-
+      console.log(`Logging in user: ${user.username}`)
       return { token, user };
     },
 
@@ -50,7 +68,7 @@ const resolvers = {
 
         const newCategory = {
           name: name,
-          todos: []
+          goals: []
         };
 
         existingUser.categories.push(newCategory);
@@ -66,7 +84,7 @@ const resolvers = {
 
     },
     //Date Needs to be formatted in ISO 8601 timestamps. Ex. 2023-11-17T03:36:41.779Z
-    newToDo: async (parent, { user, categoryId, text, date }, context) => {
+    newGoal: async (parent, { user, categoryId, text, date }, context) => {
 
       if (user && categoryId && text && date) {
 
@@ -89,59 +107,59 @@ const resolvers = {
           throw new Error('Category not found');
         }
 
-        const newToDo = {
+        const newGoal = {
           text: text,
           date: date
         }
 
-        updatedCategory.todos.push(newToDo)
+        updatedCategory.goals.push(newGoal)
         await existingUser.save();
-        console.log(`user: ${user} created todo: \'${text}\' in category: ${categoryId} for date: ${date}`)
+        console.log(`user: ${user} created goal: \'${text}\' in category: ${categoryId} for date: ${date}`)
       }
       else {
-        console.error('Missing Category id, User, or Todo text')
-        throw new Error('Missing Category id, User, or Todo text')
+        console.error('Missing Category id, User, or goal text')
+        throw new Error('Missing Category id, User, or goal text')
       }
 
     },
 
-    deleteToDo: async (parent, { user, toDoId }, context) => {
-      // console.log(toDoId);
-      if (user && toDoId) {
+    deleteGoal: async (parent, { user, goalId }, context) => {
+      // console.log(goalId);
+      if (user && goalId) {
         const existingUser = await User.findById(user);
         if (!existingUser) {
           console.error('User not Found')
           throw new Error('User not Found')
         }
 
-        var todoDeleted = false
+        var goalDeleted = false
 
         existingUser.categories.forEach(category => {
-          const todoIndex = category.todos.findIndex(todo => todo._id.toString() === toDoId);
-          if (todoIndex !== -1) {
-            category.todos.splice(todoIndex, 1);
-            todoDeleted = true
+          const goalIndex = category.goals.findIndex(goal => goal._id.toString() === goalId);
+          if (goalIndex !== -1) {
+            category.goals.splice(goalIndex, 1);
+            goalDeleted = true
           }
         });
 
-        if (!todoDeleted) {
-          console.error('Todo not Found')
-          throw new Error('Todo not Found')
+        if (!goalDeleted) {
+          console.error('Goal not Found')
+          throw new Error('Goal not Found')
         }
         else {
           await existingUser.save();
-          console.log(`user: ${user} succesfully deleted todo`)
+          console.log(`user: ${user} succesfully deleted goal`)
         }
       }
       else {
-        console.error('Missing todo id or user')
-        throw new Error('Missing todo id or user')
+        console.error('Missing goal id or user')
+        throw new Error('Missing goal id or user')
       }
     },
-    // Pass completed as true to mark completed as true
-    completeToDo: async (parent, { user, toDoId, completed }, context) => {
+    // Pass completed as boolean true to mark completed goal as true
+    completeGoal: async (parent, { user, goalId, completed }, context) => {
       // console.log(completed)
-      if (user && toDoId && completed) {
+      if (user && goalId && completed) {
 
 
         const existingUser = await User.findById(user);
@@ -150,31 +168,31 @@ const resolvers = {
           throw new Error('User not Found')
         }
 
-        var todoFound = false
+        var goalFound = false
 
         existingUser.categories.forEach(category => {
-          const todoIndex = category.todos.findIndex(todo => todo._id.toString() === toDoId);
-          if (todoIndex !== -1) {
-            if (category.todos[todoIndex].completed === true) {
-              console.error('Todo already completed')
-              throw new Error('Todo already completed')
+          const goalIndex = category.goals.findIndex(goal => goal._id.toString() === goalId);
+          if (goalIndex !== -1) {
+            if (category.goals[goalIndex].completed === true) {
+              console.error('Goal already completed')
+              throw new Error('Goal already completed')
             }
-            category.todos[todoIndex].completed = completed;
-            todoFound = true;
+            category.goals[goalIndex].completed = completed;
+            goalFound = true;
           }
         });
 
-        if (!todoFound) {
-          console.error('Todo not Found')
-          throw new Error('Todo not Found')
+        if (!goalFound) {
+          console.error('Goal not Found')
+          throw new Error('Goal not Found')
         } else {
           await existingUser.save();
-          console.log(`user: ${user} succesfully completed todo: ${toDoId}`)
+          console.log(`user: ${user} succesfully completed goal: ${goalId}`)
         }
 
       } else {
-        console.error('Missing todo id, user, or flag')
-        throw new Error('Missing todo id, user, or flag')
+        console.error('Missing goal id, user, or flag')
+        throw new Error('Missing goal id, user, or flag')
       }
     },
 
@@ -203,8 +221,59 @@ const resolvers = {
           console.error('Category not found');
           throw new Error('Category not found');
         }
+      }
 
+    },
 
+    createTodo: async (parent, { user, text }) => {
+      // console.log(user)
+      if (user && text) {
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        const newTodo = {
+          text: text,
+        };
+
+        existingUser.todos.push(newTodo);
+        await existingUser.save();
+
+        console.log(`user: ${user} created new todo`)
+
+      } else {
+        console.error('Missing todo text or User');
+        throw new Error('Missing todo text or User');
+      }
+    },
+
+    deleteTodo: async (parent, { user, todoId }) => {
+      if (user && todoId) {
+        const existingUser = await User.findById(user);
+        if (!existingUser) {
+          console.error('User not Found')
+          throw new Error('User not Found')
+        }
+
+        // console.log(existingUser)
+
+        const todoIndex = existingUser.todos.findIndex(
+          todo => todo._id.toString() === todoId
+        );
+
+        if (todoIndex !== -1) {
+          existingUser.todos.splice(todoIndex, 1)
+          await existingUser.save();
+          console.log(`user: ${user} succesfully deleted category: ${todoId}`)
+        } else {
+          console.error('Todo not found');
+          throw new Error('Todo not found');
+        }
+      } else {
+        console.error('Missing todo id or User');
+        throw new Error('Missing todo id Name or User');
       }
 
     }

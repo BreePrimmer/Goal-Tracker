@@ -8,6 +8,8 @@ import GoalView from "./pages/GoalView.jsx";
 import CategoryView from "./pages/CategoryView.jsx";
 import Login from "./pages/Login.jsx";
 
+import Test from './pages/test.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
         path: "/Login",
         element: <Login />,
       },
+      {
+        path: '/Test',
+        element: <Test />
+      }
     ],
   },
 ]);
