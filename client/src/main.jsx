@@ -8,7 +8,7 @@ import GoalView from "./pages/GoalView.jsx";
 import CategoryView from "./pages/CategoryView.jsx";
 import Login from "./pages/Login.jsx";
 
-import Test from './pages/Test.jsx';
+import Test from './pages/test.jsx';
 
 const router = createBrowserRouter([
   {

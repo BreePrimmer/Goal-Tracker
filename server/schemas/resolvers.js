@@ -38,8 +38,8 @@ const resolvers = {
 
 
     },
-    login: async (parent, { email, password }, context) => {
-      const user = await User.findOne({ email });
+    login: async (parent, { username, password }, context) => {
+      const user = await User.findOne({ username });
 
       if (!user) {
         throw AuthenticationError;
