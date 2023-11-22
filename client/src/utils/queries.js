@@ -1,20 +1,24 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_ME = gql `
-    query singleUser ($id : ID!) {
-     user(id: $id ) {
+    query me {
+     me{
         _id
         username
         email
-        goals {
-            _id
-            text
-            completed
-            date
-        }
         categories{
             _id
             name
+            goals{
+                _id
+                title
+                text
+                date
+            }
+        }
+        todos{
+            _id
+            text
         }
     }
 }
