@@ -10,17 +10,35 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       return await User.findOne({ _id: args.id });
+    },
+    me: async (parent, args, context) => { //Queries the logged in user
+      if(context.user) {
+        return User.findOne({ _id: context.user._id })
+      }
+      else {
+        throw AuthenticationError;
+      }
     }
   },
 
   Mutation: {
     newUser: async (parent, { username, email, password, context }) => {
-      const newUser = await User.create({ username, email, password });
-      const token = signToken(newUser);
+      try {
+        const newUser = await User.create({ username, email, password });
+        const token = signToken(newUser);
 
-      return { newUser, token };
+        if(!newUser){
+          throw new error('User creation failed')
+        }
+        return { newUser, token };
+
+      } catch (error) {
+        throw new Error(error);
+      }
+
+
     },
-    login: async (parent, { email, password }, c) => {
+    login: async (parent, { email, password }, context) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -34,7 +52,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
-
+      console.log(`Logging in user: ${user.username}`)
       return { token, user };
     },
 
@@ -138,7 +156,7 @@ const resolvers = {
         throw new Error('Missing goal id or user')
       }
     },
-    // Pass completed as true to mark completed as true
+    // Pass completed as boolean true to mark completed goal as true
     completeGoal: async (parent, { user, goalId, completed }, context) => {
       // console.log(completed)
       if (user && goalId && completed) {
@@ -203,8 +221,6 @@ const resolvers = {
           console.error('Category not found');
           throw new Error('Category not found');
         }
-
-
       }
 
     },

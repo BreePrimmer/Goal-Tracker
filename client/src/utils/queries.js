@@ -6,16 +6,15 @@ export const QUERY_ME = gql `
         _id
         username
         email
-        todos {
+        goals {
             _id
             text
-             completed
-             date
+            completed
+            date
         }
         categories{
             _id
             name
-            
         }
     }
 }
