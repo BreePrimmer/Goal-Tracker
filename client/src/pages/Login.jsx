@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { NEW_USER, LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 export default function Login() {
   const [loggingIn, setLoggingIn] = useState(true);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -14,7 +12,7 @@ export default function Login() {
   });
 
   const [createUser, { error }] = useMutation(NEW_USER);
-  const [loginUser, { err }] = useMutation(LOGIN_USER);
+  const [loginUser] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -25,9 +23,12 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const { data } = await createUser({
+      const { data } = await loginUser({
         variables: { ...formData },
       });
+      const { token, user } = data.login;
+      console.log(user);
+      Auth.login(token);
     } catch (err) {
       console.error(err);
     }
@@ -69,19 +70,22 @@ export default function Login() {
             onChange={handleInputChange}
           />
         </div>
-        <div className="login-input-cont">
-          <label className="form-title" htmlFor="email">
-            Email:
-          </label>
-          <input
-            className="login-input"
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
-        </div>
+
+        {!loggingIn && (
+          <div className="login-input-cont">
+            <label className="form-title" htmlFor="email">
+              Email:
+            </label>
+            <input
+              className="login-input"
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </div>
+        )}
         <div className="login-input-cont">
           <label className="form-title" htmlFor="password">
             Password:
