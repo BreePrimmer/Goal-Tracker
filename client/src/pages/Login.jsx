@@ -1,39 +1,68 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { NEW_USER, LOGIN_USER } from "../utils/mutations";
 
 export default function Login() {
   const [loggingIn, setLoggingIn] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-  const loginUser = (e) => {
+  const [createUser, { error }] = useMutation(NEW_USER);
+  const [loginUser, { err }] = useMutation(LOGIN_USER);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const loginFormHandler = async (e) => {
     e.preventDefault();
-    console.log(username, password, email);
+
+    try {
+      const { data } = await createUser({
+        variables: { ...formData },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
+    console.log(formData);
     console.log("User logged in!");
-    setUsername("");
-    setEmail("");
-    setPassword("");
     // window.location.replace("/");
   };
-  const signupUser = (e) => {
+  const signupFormHandler = async (e) => {
     e.preventDefault();
-    console.log(username, password, email);
+
+    try {
+      const { data } = await createUser({
+        variables: { ...formData },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
+    console.log(formData);
     console.log("User signed up!");
     // window.location.replace("/");
   };
   return (
     <div>
-      <form onSubmit={loggingIn ? loginUser : signupUser}>
+      {JSON.stringify(formData)}
+      <form onSubmit={loggingIn ? loginFormHandler : signupFormHandler}>
         <div>
           <label htmlFor="username">Username:</label>
           <input
             type="text"
             name="username"
             id="username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
+            value={formData.username}
+            onChange={handleInputChange}
           />
         </div>
         <div>
@@ -42,10 +71,8 @@ export default function Login() {
             type="email"
             name="email"
             id="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            value={formData.email}
+            onChange={handleInputChange}
           />
         </div>
         <div>
@@ -54,15 +81,12 @@ export default function Login() {
             type="password"
             name="password"
             id="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            value={formData.password}
+            onChange={handleInputChange}
           />
         </div>
         <button type="submit">{loggingIn ? `Log in` : `Sign up`}</button>
       </form>
-
       {loggingIn ? (
         <span>
           New to us?{" "}
