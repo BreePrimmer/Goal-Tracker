@@ -42,7 +42,9 @@ export default function GoalView() {
         {goalList.map((goal) => {
           return (
             <li key={goal.title} className="form-title" id="goal-name">
-              <span>{goal.title}</span>
+              <Link to={`/Category/${categoryName}/${goal._id}`}>
+                <span>{goal.title}</span>
+              </Link>
             </li>
           );
         })}
