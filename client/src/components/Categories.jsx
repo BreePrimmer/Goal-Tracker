@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Categories() {
+export default function Categories(props) {
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
@@ -15,7 +15,15 @@ export default function Categories() {
     <div className="category-container">
       <ul className="categories">
         <li id="my-category">My categories</li>
-        <li className="category">General</li>
+        {props.userData.map((category) => {
+          return (
+            <div key={category.name}>
+              <li className="category">
+                <Link to={`/category/${category.name}`}>{category.name}</Link>
+              </li>
+            </div>
+          );
+        })}
         <li
           className="category"
           onClick={() => {
