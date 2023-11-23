@@ -25,16 +25,12 @@ mutation login($username: String!, $password: String!) {
 
 
 export const NEW_CATEGORY = gql`
-mutation newCategory($name:String, $user:ID) {
-    newCategory(name:$name, user:$user) {
+mutation newCategory($name:String!, $user:ID!) {
+    newCategory(name: $name, user: $user) {
         name
         toDo {
             completed
             date
-        }
-        user {
-            username
-            _id
         }
     }
 }  
@@ -54,7 +50,7 @@ mutation newGoal($user:ID!, $text:String!, $categoryId:ID!, $date:String!) {
 
 export const DELETE_CATEGORY = gql`
 mutation deleteCategory($user:ID!, $categoryId:ID!) {
-    deleteCategory(user:$user ,categoryId: $categoryId){
+    deleteCategory(user: $user, categoryId: $categoryId){
         _id
         name
         user {
