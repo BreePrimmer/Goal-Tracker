@@ -1,21 +1,47 @@
 import { useState } from "react";
+import { QUERY_ME } from "../utils/queries";
+import { useMutation } from "@apollo/client";
+import { NEW_GOAL } from "../utils/mutations";
 
-export default function CreateGoal() {
+export default function CreateGoal(props) {
+
+  const userData = props.userData;
+
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
   const [goalName, setGoalName] = useState("");
 
-  const goalFormHandler = (e) => {
+  const [createGoalMutation] = useMutation(NEW_GOAL);
+
+  const goalFormHandler = async (e) => {
     e.preventDefault();
     console.log(goalName);
     console.log(category);
     console.log(description);
     console.log(endDate);
-    setLongTerm(true);
-    setCategory("");
-    setDescription("");
-    setEndDate("");
+
+    try {
+      const { data } = await createGoalMutation({
+        variables: {
+          user: userData._id,
+          title: goalName,
+          text: description,
+          date: endDate,
+          categoryId: category
+        }
+      });
+
+      console.log('New Goal Created: ', data.title)
+
+    } catch (error) {
+      console.error(error)
+    }
+
+    setGoalName('');
+    setCategory('');
+    setDescription('');
+    setEndDate('');
   };
   return (
     <div className="goal-cont">
@@ -39,16 +65,18 @@ export default function CreateGoal() {
             <label className="form-title" htmlFor="goalCategory">
               Category:
             </label>
-            <input
-              className="form-input"
-              type="text"
-              name="newGoalCategory"
+            <select
+              name="category-select"
               id="goalCategory"
               value={category}
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}
-            />
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              {userData.categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="goal-spacing" id="desc-cont">

@@ -33,15 +33,13 @@ mutation newCategory($name:String!, $user:ID!) {
 `;
 
 export const NEW_GOAL = gql`
-mutation newGoal($user:ID!, $text:String!, $categoryId:ID!, $date:String!) {
-    newGoal(user:$user, text:$text, categoryId: $categoryId, date:$date) {
-        _id
-        title
-        text
-        completed
-        date
+mutation newGoal($user: ID!, $title: String!, $text: String!, $date: String, $categoryId: ID) {
+    newGoal(user: $user, title: $title, text: $text, date: $date, categoryId: $categoryId) {
+      title
+      text
+      completed
     }
-}
+  }
 `;
 
 export const DELETE_CATEGORY = gql`

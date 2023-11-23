@@ -84,9 +84,9 @@ const resolvers = {
 
     },
     //Date Needs to be formatted in ISO 8601 timestamps. Ex. 2023-11-17T03:36:41.779Z
-    newGoal: async (parent, { user, categoryId, text, date }, context) => {
+    newGoal: async (parent, { user, categoryId, title ,text, date }, context) => {
 
-      if (user && categoryId && text && date) {
+      if (user && categoryId && text && date && title) {
 
         const existingUser = await User.findById(user);
         if (!existingUser) {
@@ -108,6 +108,7 @@ const resolvers = {
         }
 
         const newGoal = {
+          title: title,
           text: text,
           date: date
         }
