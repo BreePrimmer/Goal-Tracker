@@ -36,7 +36,6 @@ export default function Todos(props) {
     setNewTodo("");
     
   };
-  // [{"__typename":"Todo","_id":"655d92f6d18bba64a1805044","text":"Do Homework 1.2"}]
 
   return (
     <div className="todo-cont">
