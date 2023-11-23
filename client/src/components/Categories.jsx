@@ -4,6 +4,8 @@ export default function Categories(props) {
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
+  const exampleList = ["Fitness", "School", "Work"];
+
   const categoryFormHandler = (e) => {
     e.preventDefault();
     console.log(newCategory);
@@ -26,13 +28,14 @@ export default function Categories(props) {
         })}
         <li
           className="category"
+          id="new-category"
           onClick={() => {
-            setCreateCategory(true);
+            setCreateCategory(!createCategory);
           }}>
           New +
         </li>
         {createCategory && (
-          <form onSubmit={categoryFormHandler}>
+          <form id="new-category-form" onSubmit={categoryFormHandler}>
             <input
               type="text"
               name="newCategory"
