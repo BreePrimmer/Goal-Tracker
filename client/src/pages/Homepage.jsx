@@ -1,6 +1,11 @@
 import CreateGoal from "../components/CreateGoal";
 import Categories from "../components/Categories";
 import Todos from "../components/Todos";
+import { LOGIN_USER } from "../utils/mutations";
+import { useMutation, useQuery } from "@apollo/client";
+import Auth from "../utils/auth";
+
+import { QUERY_ME } from "../utils/queries";
 
 export default function Homepage() {
   const token = Auth.getToken();

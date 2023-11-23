@@ -36,7 +36,6 @@ export default function GoalView() {
   const goalList = goalCategory[0].goals;
   console.log(goalCategory[0].goals);
   return (
-<<<<<<< HEAD
     <div id="goal-list-cont">
       <ul id="goal-list">
         {/* <li>{JSON.stringify(myProp)}</li> */}
@@ -51,16 +50,6 @@ export default function GoalView() {
       <Link id="rtn-btn" to={"/"}>
         &lt;-
       </Link>
-=======
-    <div id='goal-list-cont'>
-      <ul id='goal-list'>
-        <li className='form-title' id="goal-name">Goal one</li>
-        <li className='form-title' id="goal-name">Goal two</li>
-        <li className='form-title' id="goal-name">Goal three</li>
-        <li className='form-title' id="goal-name">Goal four</li>
-      </ul>
-      <Link id='rtn-btn' to={"/"}>&lt;-</Link>
->>>>>>> a96b3a1b5e3c8c86f660e9810df738fdc7dc83da
     </div>
   );
 }
