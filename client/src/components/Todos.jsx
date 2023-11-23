@@ -27,51 +27,50 @@ export default function Todos(props) {
               {todo}
             </li>
           ))} */}
-        {/* </ul> */}
-    <div id='to-do-border'>
-      <ul className="to-do-ul">
-        {props.userData.map((todo) => (
-          <li className="to-do-li" key={todo._id}>
-            {todo.text}
-          </li>
-        ))}
-      </ul>
-    </div>
+      {/* </ul> */}
+      <div id="to-do-border">
+        <ul className="to-do-ul">
+          {props.userData.map((todo) => (
+            <li className="to-do-li" key={todo._id}>
+              {todo.text}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-        {!createTodo ? (
+      {!createTodo ? (
+        <button
+          id="to-do-btn"
+          onClick={() => {
+            setCreateTodo(true);
+          }}>
+          Add new
+        </button>
+      ) : (
+        <div>
+          <form onSubmit={newTodoFormHandler}>
+            <label htmlFor="newTodoName">What's the new todo? </label>
+            <input
+              type="text"
+              id="newTodo"
+              value={newTodo}
+              onChange={(e) => {
+                setNewTodo(e.target.value);
+              }}
+            />
+            <button type="submit" id="to-do-btn">
+              Submit
+            </button>
+          </form>
           <button
             id="to-do-btn"
             onClick={() => {
-              setCreateTodo(true);
+              setCreateTodo(false);
             }}>
-            Add new
+            Undo
           </button>
-        ) : (
-          <div>
-            <form onSubmit={newTodoFormHandler}>
-              <label htmlFor="newTodoName">What's the new todo? </label>
-              <input
-                type="text"
-                id="newTodo"
-                value={newTodo}
-                onChange={(e) => {
-                  setNewTodo(e.target.value);
-                }}
-              />
-              <button type="submit" id="to-do-btn">
-                Submit
-              </button>
-            </form>
-            <button
-              id="to-do-btn"
-              onClick={() => {
-                setCreateTodo(false);
-              }}>
-              Undo
-            </button>
-          </div>
-        )}
         </div>
+      )}
     </div>
   );
 }
