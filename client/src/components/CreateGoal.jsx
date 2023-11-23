@@ -7,7 +7,7 @@ export default function CreateGoal(props) {
 
   const userData = props.userData;
 
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(userData.categories.length > 0 ? userData.categories[0]._id : "");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
   const [goalName, setGoalName] = useState("");
