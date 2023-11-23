@@ -26,14 +26,12 @@ export default function Homepage() {
   }
 
   const userData = data?.me;
-  if (data) {
-    console.log(userData);
-  }
   return (
     <div>
-      <Categories />
+      <Categories userData={userData.categories} />
       <CreateGoal />
-      <Todos userData={userData} />
+      <Todos userData={userData.todos} />
+      {JSON.stringify(userData.categories[0].goals)}
     </div>
   );
 }
