@@ -85,12 +85,6 @@ mutation newToDo($user:ID!, $text:String!) {
     createTodo(user:$user, text:$text) {
         _id
         text
-        completed
-        date
-        user {
-            username
-            _id
-        }
     }
 }
 `;
@@ -101,8 +95,6 @@ mutation deleteToDo($toDoId:ID!, $user:ID!){
     deleteToDo(toDoId:$toDoId, user:$user) {
         _id
         text
-        completed
-        date
     }
 }
 `;
@@ -112,12 +104,6 @@ mutation completedToDo($user:ID!, $toDoId:ID!) {
     completeToDo(user: $user, toDoId: $toDoId) {
         _id
         text
-        completed
-        date
-        user {
-            _id
-            username
-        }
     }
 }  
 `
