@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Todos() {
+export default function Todos(props) {
   const [createTodo, setCreateTodo] = useState(false);
   const [newTodo, setNewTodo] = useState("");
 
@@ -12,11 +12,12 @@ export default function Todos() {
     setNewTodo("");
     console.log(newTodo);
   };
+  // [{"__typename":"Todo","_id":"655d92f6d18bba64a1805044","text":"Do Homework 1.2"}]
 
   return (
     <div className="todo-cont">
       <h1 id="to-do">To-do's</h1>
-      <div id='to-do-border'>
+      {/* <div id='to-do-border'>
         <ul className="to-do-ul">
           <li className="to-do-li">Placeholder todo</li>
           <li className="to-do-li">Placeholder todo</li>
@@ -26,7 +27,16 @@ export default function Todos() {
               {todo}
             </li>
           ))} */}
-        </ul>
+        {/* </ul> */}
+    <div id='to-do-border'>
+      <ul className="to-do-ul">
+        {props.userData.map((todo) => (
+          <li className="to-do-li" key={todo._id}>
+            {todo.text}
+          </li>
+        ))}
+      </ul>
+    </div>
 
         {!createTodo ? (
           <button

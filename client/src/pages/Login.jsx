@@ -1,73 +1,110 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { NEW_USER, LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 export default function Login() {
   const [loggingIn, setLoggingIn] = useState(true);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-  const loginUser = (e) => {
+  const [createUser, { error }] = useMutation(NEW_USER);
+  const [loginUser] = useMutation(LOGIN_USER);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const loginFormHandler = async (e) => {
     e.preventDefault();
-    console.log(username, password, email);
+
+    try {
+      const { data } = await loginUser({
+        variables: { ...formData },
+      });
+      const { token, user } = data.login;
+      console.log(user);
+      Auth.login(token);
+    } catch (err) {
+      console.error(err);
+    }
+
+    console.log(formData);
     console.log("User logged in!");
-    setUsername("");
-    setEmail("");
-    setPassword("");
     // window.location.replace("/");
   };
-  const signupUser = (e) => {
+  const signupFormHandler = async (e) => {
     e.preventDefault();
-    console.log(username, password, email);
+
+    try {
+      const { data } = await createUser({
+        variables: { ...formData },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
+    console.log(formData);
     console.log("User signed up!");
     // window.location.replace("/");
   };
   return (
-    <div id='login-cont'>
-      <form id='login-form' onSubmit={loggingIn ? loginUser : signupUser}>
-        <div className='login-input-cont'>
-          <label className='form-title' htmlFor="username">Username:</label>
+    <div id="login-cont">
+      <form
+        id="login-form"
+        onSubmit={loggingIn ? loginFormHandler : signupFormHandler}>
+        <div className="login-input-cont">
+          <label className="form-title" htmlFor="username">
+            Username:
+          </label>
           <input
-            className='login-input'
+            className="login-input"
             type="text"
             name="username"
             id="username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
+            value={formData.username}
+            onChange={handleInputChange}
           />
         </div>
-        <div className='login-input-cont'>
-          <label className='form-title' htmlFor="email">Email:</label>
+
+        {!loggingIn && (
+          <div className="login-input-cont">
+            <label className="form-title" htmlFor="email">
+              Email:
+            </label>
+            <input
+              className="login-input"
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </div>
+        )}
+        <div className="login-input-cont">
+          <label className="form-title" htmlFor="password">
+            Password:
+          </label>
           <input
-            className='login-input'
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-        <div className='login-input-cont'>
-          <label className='form-title' htmlFor="password">Password:</label>
-          <input
-            className='login-input'
+            className="login-input"
             type="password"
             name="password"
             id="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            value={formData.password}
+            onChange={handleInputChange}
           />
         </div>
-        <button id='login-btn' type="submit">{loggingIn ? `Log in` : `Sign up`}</button>
+        <button id="login-btn" type="submit">
+          {loggingIn ? `Log in` : `Sign up`}
+        </button>
       </form>
-
       {loggingIn ? (
-        <span className='form-title' id='new-user'>
+        <span className="form-title" id="new-user">
           New to us?{" "}
           <span
             onClick={() => {
@@ -77,7 +114,7 @@ export default function Login() {
           </span>
         </span>
       ) : (
-        <span className='form-title'>
+        <span className="form-title">
           Already have an account?{" "}
           <span
             onClick={() => {

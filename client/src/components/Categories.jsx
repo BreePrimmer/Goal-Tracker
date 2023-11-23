@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Categories() {
+export default function Categories(props) {
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
@@ -45,6 +45,16 @@ export default function Categories() {
           </li>
         ))} */}
         {/* <li
+        {props.userData.map((category) => {
+          return (
+            <div key={category.name}>
+              <li className="category">
+                <Link to={`/category/${category.name}`}>{category.name}</Link>
+              </li>
+            </div>
+          );
+        })}
+        <li
           className="category"
           id="new-category"
           onClick={() => {
