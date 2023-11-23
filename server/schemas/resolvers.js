@@ -266,7 +266,7 @@ const resolvers = {
         if (todoIndex !== -1) {
           existingUser.todos.splice(todoIndex, 1)
           await existingUser.save();
-          console.log(`user: ${user} succesfully deleted category: ${todoId}`)
+          console.log(`user: ${user} succesfully deleted todo: ${todoId}`)
         } else {
           console.error('Todo not found');
           throw new Error('Todo not found');

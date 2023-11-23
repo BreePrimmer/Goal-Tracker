@@ -87,8 +87,8 @@ mutation newToDo($user:ID!, $text:String!) {
 
 
 export const DELETE_TODO = gql` 
-mutation deleteToDo($toDoId:ID!, $user:ID!){
-    deleteToDo(toDoId:$toDoId, user:$user) {
+mutation deleteTodo($todoId:ID!, $user:ID!){
+    deleteTodo(todoId:$todoId, user:$user) {
         _id
         text
     }
