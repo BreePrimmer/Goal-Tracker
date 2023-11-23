@@ -31,7 +31,7 @@ export default function Homepage() {
       <Categories userData={userData.categories} />
       <CreateGoal />
       <Todos userData={userData.todos} />
-      {JSON.stringify(userData.categories[0].goals)}
+      {JSON.stringify(userData.categories[0].name)}
     </div>
   );
 }

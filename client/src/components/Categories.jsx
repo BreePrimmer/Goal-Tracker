@@ -18,15 +18,12 @@ export default function Categories(props) {
     <div className="category-container">
       <ul className="categories">
         <li id="my-category">My categories</li>
-        <div id='cat-border'>
-          <li className="category">
-            <Link to="/category">General</Link>
-          </li>
-          {/* {exampleList.map((category, index) => (
-            <li className="category" key={category}>
-              {category}
+        <div id="cat-border">
+          {props.userData.map((category) => (
+            <li className="category" key={category.name}>
+              <Link to={`/category/${category.name}`}>{category.name}</Link>
             </li>
-          ))} */}
+          ))}
           <li
             className="category"
             id="new-category"
