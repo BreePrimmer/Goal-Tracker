@@ -1,4 +1,15 @@
 import { gql } from '@apollo/client';
+export const NEW_USER = gql`
+mutation newUser($username: String!, $email: String!, $password: String!) {
+    newUser(username: $username, email: $email, password: $password) {
+        token
+        user {
+            _id
+            username
+        }
+    }
+}  
+`;
 
 export const LOGIN_USER = gql`
 mutation login($username: String!, $password: String!) {
@@ -12,21 +23,10 @@ mutation login($username: String!, $password: String!) {
 }
 `;
 
-export const NEW_USER = gql`
-mutation newUser($username: String!, $email: String!, $password: String!) {
-    newUser(username: $username, email: $email, password: $password) {
-        token
-        user {
-            _id
-            username
-        }
-    }
-}  
-`;
 
 export const NEW_CATEGORY = gql`
-mutation newCategory($name: String, $user: ID) {
-    newCategory(name: $name, user: $user) {
+mutation newCategory($name:String, $user:ID) {
+    newCategory(name:$name, user:$user) {
         name
         toDo {
             completed
@@ -40,9 +40,53 @@ mutation newCategory($name: String, $user: ID) {
 }  
 `;
 
-export const NEW_TO_DO = gql`
-mutation newToDo($user: ID!, $text: String!, $completed: Boolean) {
-    newToDo(user: $user, text: $text, completed: $completed) {
+export const NEW_GOAL = gql`
+mutation newGoal($user:ID!, $text:String!, categoryId:ID!, $date:String!) {
+    newGoal(user:$user, text:$text, categoryid:$categoryID, date:$date) {
+        _id
+        title
+        text
+        completed
+        date
+    }
+}
+`;
+
+export const DELETE_CATEGORY = gql`
+mutation deleteCategory($user: ID!, $categoryId: ID!) {
+    deleteCategory(user:$user ,categoryID: $categoryId){
+        _id
+        name
+        user {
+            username
+        }
+    }
+}
+`;
+
+export const DELETE_GOAL = gql`
+mutation deleteGoal(user: ID!, goalId: ID!){
+    deleteGoal(user: $user, goalId:$goalID){
+        title
+        date
+    }
+}
+`;
+
+export const COMPLETE_GOAL = gql`
+mutation completeGoal(user: ID!, goalId:ID!, completed:Boolean!) {
+    completeGoal(user:$user, goalID:$goalId, completed: $completed){
+        title
+        text
+        completed
+        date
+    }
+}
+`;
+
+export const CREATE_TODO = gql`
+mutation newToDo($user ID!, $text:String!) {
+    createTodo(user:$user, text:$text) {
         _id
         text
         completed
@@ -55,21 +99,10 @@ mutation newToDo($user: ID!, $text: String!, $completed: Boolean) {
 }
 `;
 
-export const DELETE_CATEGORY = gql`
-mutation deleteCategory($CatId: ID!) {
-    deleteCategory(CatID: $CatId){
-        _id
-        name
-        user {
-            username
-        }
-    }
-}
-`;
 
 export const DELETE_TODO = gql` 
-mutation deleteToDo($toDoId: ID!){
-    deleteToDo(toDoId: $toDoId) {
+mutation deleteToDo($toDoId:ID!, user:ID!){
+    deleteToDo(toDoId:$toDoId, user:user) {
         _id
         text
         completed
