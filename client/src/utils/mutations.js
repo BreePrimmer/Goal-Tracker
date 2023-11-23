@@ -95,12 +95,3 @@ mutation deleteToDo($toDoId:ID!, $user:ID!){
 }
 `;
 
-export const COMPLETED_TODO = gql`
-mutation completedToDo($user:ID!, $toDoId:ID!) {
-    completeToDo(user: $user, toDoId: $toDoId) {
-        _id
-        text
-    }
-}  
-`
-

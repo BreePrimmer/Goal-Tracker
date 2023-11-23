@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { NEW_CATEGORY } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
 
 export default function Categories(props) {
 
@@ -11,7 +12,9 @@ export default function Categories(props) {
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
-  const [createCategoryMutation] = useMutation(NEW_CATEGORY);
+  const [createCategoryMutation] = useMutation(NEW_CATEGORY, {
+    refetchQueries: [{ query: QUERY_ME }]
+  });
 
   const categoryFormHandler = async (e) => {
     e.preventDefault();

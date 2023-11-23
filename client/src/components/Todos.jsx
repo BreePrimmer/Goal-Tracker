@@ -1,30 +1,51 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_TODO } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
 
-export default function Todos() {
+export default function Todos(props) {
+
+  const userData = props.userData;
+
   const [createTodo, setCreateTodo] = useState(false);
   const [newTodo, setNewTodo] = useState("");
 
-  const exampleList = ["Fitness", "School", "Work"];
+  const [createTodoMutation] = useMutation(CREATE_TODO, {
+    refetchQueries: [{ query: QUERY_ME }]
+  });
 
-  const newTodoFormHandler = (e) => {
+  const newTodoFormHandler = async (e) => {
     e.preventDefault();
+    // console.log(newTodo);
+
+    try{
+      const { data } = await createTodoMutation({
+        variables: {
+          text: newTodo,
+          user: userData._id
+        }
+      })
+
+      console.log("Todo created:", data.newTodo);
+
+    }catch(error){
+      console.log(error);
+    }
+
     setCreateTodo(false);
     setNewTodo("");
-    console.log(newTodo);
+    
   };
 
   return (
     <div className="todo-cont">
       <h1 id="to-do">To-do's</h1>
       <ul className="to-do-ul">
-        <li className="to-do-li">Placeholder todo</li>
-        <li className="to-do-li">Placeholder todo</li>
-        <li className="to-do-li">Placeholder todo</li>
-        {/* {exampleList.map((todo, index) => (
-          <li className="to-do-li" key={todo}>
-            {todo}
-          </li>
-        ))} */}
+        {userData.todos.map( (todo) => {
+          return (
+            <li className="to-do-li" key={todo._id}>{todo.text}</li>
+          )
+        })}
       </ul>
 
       {!createTodo ? (
