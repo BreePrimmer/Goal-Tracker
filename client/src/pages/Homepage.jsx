@@ -27,7 +27,7 @@ export default function Homepage() {
 
   const userData = data?.me;
   return (
-    <div>
+    <div className='desktop-view'>
       <Categories userData={userData.categories} />
       <CreateGoal />
       <Todos userData={userData.todos} />
