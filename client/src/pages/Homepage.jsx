@@ -4,7 +4,7 @@ import Todos from "../components/Todos";
 
 export default function Homepage() {
   return (
-    <div>
+    <div className='desktop-view'>
       <Categories />
       <CreateGoal />
       <Todos />
