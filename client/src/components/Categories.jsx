@@ -1,14 +1,37 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { NEW_CATEGORY } from "../utils/mutations";
 
-export default function Categories() {
+export default function Categories(props) {
+
+  const userData = props.userData;
+
+  console.log(userData);
+
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
-  const exampleList = ["Fitness", "School", "Work"];
+  const [createCategoryMutation] = useMutation(NEW_CATEGORY);
 
-  const categoryFormHandler = (e) => {
+  const categoryFormHandler = async (e) => {
     e.preventDefault();
     console.log(newCategory);
+
+    try{
+      const { data } = await createCategoryMutation({
+        variables: {
+          name: newCategory,
+          user: userData._id
+        }
+      })
+
+      console.log("Category created:", data.newCategory);
+
+    }
+    catch(error){
+      console.error(error)
+    }
+
     setNewCategory("");
     setCreateCategory(false);
   };
@@ -17,12 +40,12 @@ export default function Categories() {
     <div className="category-container">
       <ul className="categories">
         <li id="my-category">My categories</li>
-        <li className="category">General</li>
-        {/* {exampleList.map((category, index) => (
-          <li className="category" key={category}>
-            {category}
-          </li>
-        ))} */}
+        {userData.categories.map( (category) => {
+          return(
+            <li key={category.name} className="category">{category.name}</li>
+          )
+        } )}
+
         <li
           className="category"
           id='new-category'

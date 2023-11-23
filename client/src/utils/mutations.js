@@ -28,10 +28,6 @@ export const NEW_CATEGORY = gql`
 mutation newCategory($name:String!, $user:ID!) {
     newCategory(name: $name, user: $user) {
         name
-        toDo {
-            completed
-            date
-        }
     }
 }  
 `;
