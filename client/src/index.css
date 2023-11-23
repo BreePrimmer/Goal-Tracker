@@ -15,6 +15,7 @@
 
   /* colors */
   --white: #ffffff;
+  --light-grey: #f4f4f4;
   --main-green: #77DD76;
   --light-green: #a9f573fe;
 }
@@ -105,7 +106,7 @@ header {
   font-size: 110%;
   font-weight: bold;
   border-bottom-style: solid;
-  border-bottom-color: var(--white);
+  border-bottom-color: var(--light-grey);
 }
 #my-category {
   padding: 15px;
@@ -127,7 +128,7 @@ header {
 #new-goal{
   display: flex;
   justify-content: center;
-  padding: 15px;
+  padding: 20px;
   background-color: var(--light-green);
   color: var(--white);
   font-size: 120%;
@@ -176,11 +177,11 @@ header {
 }
 #to-do {
   text-align: center;
-  font-size: 150%;
+  font-size: 120%;
   background-color: var(--light-green);
   color: var(--white);
-  padding: 15px;
-  margin-bottom: -15px;
+  padding: 20px;
+  margin:0px;
 }
 .to-do-ul {
   background-color: var(--white);
@@ -266,213 +267,139 @@ footer {
   height: 82vh;
 }
 
+/* ------------------ LOGIN PAGE STYLING -------------------- */
+
+#login-cont {
+  /* background-color: lightblue; */
+  height: 56vh;
+}
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  background-color: lightblue;
+  margin-top: 15%;
+}
+.login-input-cont {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+.login-input {
+  width: 50%;
+}
+#login-btn {
+  margin-top: 20px;
+}
+#email {
+  margin-left: 37px;
+}
+#password {
+  margin-left: 8px;
+}
+#new-user {
+  margin-left: 41%;
+  padding-top: 20px;
+}
+
+
 /* ======================= BREAKPOINTS ===================== */
 
 /* ---------------------- PHONE SCREENS -------------------- */
 @media screen and (max-width: 480px) {
-  /* -------------------------------------------------------------------------- */
-  /* header/navbar styling */
-  /* .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--main-green);
-    padding: 10px 20px;
-  }
-  .title {
-    color: var(--white);
-    font-size: 160%;
-    font-weight: bold;
-  }
-  .login {
-    color: var(--white);
-    font-size: 160%;
-  } */
-  /* ------------------------------------------------------------- */
-  /* categories styling */
-   /* .category-container {
-    display: block;
-    justify-content: center;
-  }
 
-  /* .categories {
-    text-align: center;
-    padding: 0px;
-    margin: 0px;
-  }
-
-  .category {
-    background-color: var(--white);
-    padding: 10px;
-    color: var(--light-green);
-    font-size: 110%;
-    font-weight: bold;
-    border-bottom-style: solid;
-    border-bottom-color: var(--white);
-  }
-  #my-category {
-    padding: 15px;
-    background-color: var(--light-green);
-    color: var(--white);
-    font-size: 120%;
-    font-weight: bold;
-    padding: 20px
-  } */ 
-  /* ----------------------------------------------------------------- */
-  /* New goal styling */
-  /* #new-goal{
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    background-color: var(--light-green);
-    color: var(--white);
-    font-size: 120%;
-    font-weight: bold;
-  }
-  .new-goal-cont {
-    padding-top:10px;
-  }
-  .goal-spacing {
-    margin-top: 15px;
-  }
-  .form-title {
-    color: var(--main-green);
-    font-size: 110%;
-    font-weight: bold;
-    margin: 0px 20px;
-  }
-  .form-input {
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: var(--light-green);
-  }
-  #desc-cont {
-    display: flex;
-    flex-direction: column;
-  }
-  #desc {
-    margin-top: 15px;
-    margin-left: 20px;
-    height: 50px;
-    width: 70%;
-  }
-  .goal-cont {
-    background-color: var(--white);
-    padding-bottom: 15px;
-    margin-bottom: -15px;
-  }
-  .goal-btn {
-    margin-left: 31%;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    background-color: var(--light-green);
-    color: var(--white);
-  } */
-  /* --------------------------------------------------------------- */
-  /* todos styling */
-  /* .todo-cont {
-    background-color: var(--white);
-    padding-bottom: 10px;
-  }
-  #to-do {
-    text-align: center;
-    font-size: 150%;
-    background-color: var(--light-green);
-    color: var(--white);
-    padding: 15px;
-    margin-bottom: -15px;
-  }
-  .to-do-ul {
-    background-color: var(--white);
-    padding: 20px 0px;
-    padding-bottom: 0px;
-  }
-  .to-do-li {
-    padding-left: 10px;
-    padding-bottom: 10px;
-    font-size: 110%;
-    font-weight: bold;
-    margin: 10px;
-    border-bottom-style: solid;
-    border-color: var(--light-green);
-    color: var(--main-green);
-  }
-  #to-do-btn {
-    margin-left: 10px;
-    margin-top: -3px;
-    margin-bottom: 10px;
-    background-color: var(--light-green);
-    color: var(--white);
-  }
-  #to-do-btn:hover {
-    background-color: #f5f373fe;
-  } */
-
-/* --------- PAGE STYLING -------- */
-  /* /goal */
-  /* .goal-desc {
-    padding: 0px 20px;
-  }
-  #goal-cat {
-    padding: 20px;
-    color: var(--white);
-    background-color: var(--light-green);
-    margin-top: 0px;
-  }
-  #desc-date {
-    display: flex;
-    flex-direction: column;
-  }
-  #desc-date span {
-    padding-top: 5px;
-  }
-  #desc-cont {
-    padding-bottom: 25px;
-  } */
-  /* ------------------------------------- */
-  /* /category */
-  /* #goal-list {
-    padding-left: 0px;
-    margin-top: 0px;
-  }
-  #goal-name {
-    margin-left: 0px;
-    padding: 10px 20px;
-    background-color: var(--white);
-    border-bottom-style: solid;
-    width: 100%;
-
-  }
-  #rtn-btn {
-    background-color: var(--white);
-    height: 15px;
-    padding: 5px;
-    margin-left: 20px;
-    border-style: solid;
-    align-content: center;
-
-  }
-  #goal-list-cont {
-    padding-top: 0px;
-    background-color: var(--white);
-    height: 82vh;
-  } */
 }
 
 /* breakpoint for ipads/tablets */
-@media screen and (max-width: 768px) {
-
-
-}
-
-/* breakpoint for laptops/small screens */
-@media screen and (max-width: 1024px) {
-  #to-do-btn:hover {
-    background-color: #f5f373fe;
+@media screen and (min-width: 768px) {
+  body {
+    background-color:#d6eef7fe;
   }
 }
 
-/* desktops */
-@media screen and (max-width: 1200px) {
+/* breakpoint for laptops/small screens */
+@media screen and (min-width: 1024px) {
+  .desktop-view {
+    display: flex;
+  }
 
+  body {
+    height: 90vh;
+    background-color: var(--light-grey);
+  }
+  /* ------------------ CATEGORIES --------------- */
+  .category-container {
+    width: 25%;
+  }
+  .category {
+    padding: 25px;
+  }
+  #my-category {
+    /* border-left-style: solid; */
+    border-radius: 25px;
+    margin-left: 10px;
+    /* border-left-width: 10px; */
+  }
+  #cat-border {
+    border-style: solid;
+    border-color: var(--light-grey);
+    border-width: 15px;
+    border-right-style: hidden;
+  }
+  /* -------------------- NEW GOAL ------------------ */
+  .goal-cont {
+    width: 50%;
+    padding: 0px;
+  }
+  .new-goal-cont {
+    border-style: solid;
+    border-color: var(--light-grey);
+    border-width: 15px;
+    /* border-radius: 25px; */
+  }
+  #new-goal {
+    margin: 0px 10px;
+    border-radius: 25px;
+  }
+  #desc {
+    height: 20vh;
+    width: 60vh;
+  }
+  .goal-btn {
+    margin: 30px 40%;
+  }
+  /* --------------------- TO-DOS --------------------- */
+  .todo-cont {
+    width: 25%;
+  }
+  #to-do {
+    border-radius: 25px;
+    margin-right: 10px;
+  }
+  #to-do-border {
+    border-style: solid;
+    border-color: var(--light-grey);
+    border-width: 15px;
+    /* border-top-right-radius: 25px; */
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+  }
+
+  footer {
+    margin-top: 15px;
+  }
+
+}
+
+
+
+/* desktops */
+@media screen and (min-width: 1200px) {
+  body {
+    background-color: var(--light-grey);
+  }
+  .desktop-view {
+    display: flex;
+  }
 }

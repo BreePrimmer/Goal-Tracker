@@ -1,17 +1,12 @@
-export default function SingleGoalView() {
+export default function SingleGoalView(props) {
+  const goal = props.goal[0];
   return (
-    <div id='desc-cont'>
+    <div id="desc-cont">
       <div>
-        <span className='form-title'>Description:</span>
-        <p className='goal-desc'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-          illum, autem in porro unde distinctio blanditiis temporibus alias
-          repellendus sit omnis eveniet cum, numquam nihil tenetur eaque
-          laboriosam corrupti possimus?
-        </p>
+        <span className="form-title">Description:</span>
+        <p className="goal-desc">{goal.text}</p>
         <div id="desc-date">
-          <span className='form-title'>Short term</span>
-          <span className='form-title'>End date: 11/29/2023</span>
+          <span className="form-title">{goal.date}</span>
         </div>
       </div>
     </div>

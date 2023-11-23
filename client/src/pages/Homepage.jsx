@@ -2,11 +2,9 @@
 import CreateGoal from "../components/CreateGoal";
 import Categories from "../components/Categories";
 import Todos from "../components/Todos";
-
-
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
+import { QUERY_ME } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 
 export default function Homepage() {
 
