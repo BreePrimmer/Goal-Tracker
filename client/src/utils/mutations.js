@@ -41,8 +41,8 @@ mutation newCategory($name:String, $user:ID) {
 `;
 
 export const NEW_GOAL = gql`
-mutation newGoal($user:ID!, $text:String!, categoryId:ID!, $date:String!) {
-    newGoal(user:$user, text:$text, categoryid:$categoryID, date:$date) {
+mutation newGoal($user:ID!, $text:String!, $categoryId:ID!, $date:String!) {
+    newGoal(user:$user, text:$text, categoryId: $categoryId, date:$date) {
         _id
         title
         text
@@ -53,8 +53,8 @@ mutation newGoal($user:ID!, $text:String!, categoryId:ID!, $date:String!) {
 `;
 
 export const DELETE_CATEGORY = gql`
-mutation deleteCategory($user: ID!, $categoryId: ID!) {
-    deleteCategory(user:$user ,categoryID: $categoryId){
+mutation deleteCategory($user:ID!, $categoryId:ID!) {
+    deleteCategory(user:$user ,categoryId: $categoryId){
         _id
         name
         user {
@@ -65,8 +65,8 @@ mutation deleteCategory($user: ID!, $categoryId: ID!) {
 `;
 
 export const DELETE_GOAL = gql`
-mutation deleteGoal(user: ID!, goalId: ID!){
-    deleteGoal(user: $user, goalId:$goalID){
+mutation deleteGoal($user:ID!, $goalId:ID!){
+    deleteGoal(user: $user, goalId:$goalId){
         title
         date
     }
@@ -74,7 +74,7 @@ mutation deleteGoal(user: ID!, goalId: ID!){
 `;
 
 export const COMPLETE_GOAL = gql`
-mutation completeGoal(user: ID!, goalId:ID!, completed:Boolean!) {
+mutation completeGoal($user:ID!, $goalId:ID!, $completed:Boolean!) {
     completeGoal(user:$user, goalID:$goalId, completed: $completed){
         title
         text
@@ -85,7 +85,7 @@ mutation completeGoal(user: ID!, goalId:ID!, completed:Boolean!) {
 `;
 
 export const CREATE_TODO = gql`
-mutation newToDo($user ID!, $text:String!) {
+mutation newToDo($user:ID!, $text:String!) {
     createTodo(user:$user, text:$text) {
         _id
         text
@@ -101,8 +101,8 @@ mutation newToDo($user ID!, $text:String!) {
 
 
 export const DELETE_TODO = gql` 
-mutation deleteToDo($toDoId:ID!, user:ID!){
-    deleteToDo(toDoId:$toDoId, user:user) {
+mutation deleteToDo($toDoId:ID!, $user:ID!){
+    deleteToDo(toDoId:$toDoId, user:$user) {
         _id
         text
         completed
@@ -112,7 +112,7 @@ mutation deleteToDo($toDoId:ID!, user:ID!){
 `;
 
 export const COMPLETED_TODO = gql`
-mutation completedToDo($user: ID!, $toDoId: ID!) {
+mutation completedToDo($user:ID!, $toDoId:ID!) {
     completeToDo(user: $user, toDoId: $toDoId) {
         _id
         text
