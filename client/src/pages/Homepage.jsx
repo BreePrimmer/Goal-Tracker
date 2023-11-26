@@ -7,26 +7,25 @@ import { QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
 export default function Homepage() {
-
   const isLoggedIn = Auth.loggedIn();
 
   const token = Auth.getToken();
   // Ternary operation checks to see if the user is logged in to avoid errors later on
-  const { loading, error, data } = Auth.loggedIn() ? useQuery(QUERY_ME, {
-    context: {
-      headers: {
-        authorization: `Bearer ${token}`
-      }
-    }
-  }) : { loading: false, error: null, data: null }
-
-  // console.log(data)
+  const { loading, error, data } = Auth.loggedIn()
+    ? useQuery(QUERY_ME, {
+        context: {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        },
+      })
+    : { loading: false, error: null, data: null };
 
   if (loading) {
-    return <h2 style={{ color: 'black' }}>loading . . .</h2>
+    return <h2 style={{ color: "black" }}>loading . . .</h2>;
   }
   if (error) {
-    return <h2 style={{ color: 'red' }}>ERROR!</h2>
+    return <h2 style={{ color: "red" }}>ERROR!</h2>;
   }
 
   const userData = data?.me;
@@ -39,16 +38,15 @@ export default function Homepage() {
       {Auth.loggedIn() ? (
         <>
           {/* passing userData as props */}
-          <Categories userData={userData}/>
+          <Categories userData={userData} />
           <CreateGoal userData={userData} />
-          <Todos userData={userData}/>
+          <Todos userData={userData} />
         </>
       ) : (
         <>
-          <span style={{color:'red'}}>Please Login</span>
+          <span style={{ color: "red" }}>Please Login</span>
         </>
       )}
-
     </div>
   );
 }
