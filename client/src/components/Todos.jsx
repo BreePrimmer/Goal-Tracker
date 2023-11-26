@@ -4,11 +4,6 @@ import { CREATE_TODO, DELETE_TODO } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
 
 export default function Todos(props) {
-  // <div id="to-do-border">
-  {
-    /* <ul className="to-do-ul">
-  {props.userData.map((todo) => ( */
-  }
   const userData = props.userData;
 
   const [createTodo, setCreateTodo] = useState(false);
