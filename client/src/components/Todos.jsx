@@ -63,11 +63,11 @@ export default function Todos(props) {
         {userData.todos.map((todo) => {
           return (
             <li className="to-do-li" key={todo._id}>
-              <button
+              <button id='to-do-btn'
                 onClick={() => {
                   deleteTodoHandler(todo._id);
                 }}>
-                Delete
+                -
               </button>
               {todo.text}
             </li>
@@ -81,7 +81,7 @@ export default function Todos(props) {
           onClick={() => {
             setCreateTodo(true);
           }}>
-          Add new
+          +
         </button>
       ) : (
         <div id='new-to-do-cont'>

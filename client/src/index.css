@@ -53,12 +53,12 @@ li {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border-color: var(--orange-yellow);
   padding: 0.6em 1.2em;
   font-size: 1em;
-  font-weight: 500;
+  /* font-weight: 500; */
   font-family: inherit;
-  background-color: var(--light-green);
+  background-color: var(--orange-yellow);
   color: var(--white);
   cursor: pointer;
   transition: border-color 0.25s;
@@ -172,8 +172,6 @@ header {
   margin-left: 31%;
   margin-top: 25px;
   margin-bottom: 15px;
-  background-color: var(--light-green);
-  color: var(--white);
 }
 
 /* ------------------- TO-DO'S STYLING ------------------- */
@@ -196,7 +194,7 @@ header {
   padding-bottom: 0px;
 }
 .to-do-li {
-  padding-left: 10px;
+  margin-left: -10px;
   padding-bottom: 10px;
   font-size: 110%;
   font-weight: bold;
@@ -253,62 +251,90 @@ footer {
 }
 #goal-name {
   margin-left: 0px;
-  padding: 10px 20px;
+  padding: 20px 20px;
+  text-align: center;
   background-color: var(--white);
-  border-bottom-style: solid;
-  width: 100%;
+  border-style: solid;
+  border-width: 15px;
+  border-color: var(--light-grey);
+  border-bottom: hidden;
+  width: 85%;
 
 }
 #rtn-btn {
   background-color: var(--white);
   height: 15px;
   padding: 5px;
-  margin-left: 20px;
+  margin-left: 15px;
+  margin-top: 15px;
   border-style: solid;
-  align-content: center;
-
+  align-content: center; 
+  border-radius: 8px;
+  border-color: var(--orange-yellow);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-family: inherit;
+  background-color: var(--orange-yellow);
+  color: var(--white);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+#rtn-btn:hover {
+  background-color: #f5f373fe;
 }
 #goal-list-cont {
   padding-top: 0px;
   background-color: var(--white);
   height: 82vh;
+  background-color: var(--light-grey);
 }
 
 /* ------------------ LOGIN PAGE STYLING -------------------- */
 
 #login-cont {
-  /* background-color: lightblue; */
-  height: 56vh;
-}
-#login-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
-  background-color: lightblue;
-  margin-top: 15%;
+  background-color: var(--light-grey);
+}
+#login-form {
+  width: 40vh;
+  height: 60vh;
+  margin: 10vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: var(--white);
+  padding: 20px;
+  border-style: solid;
+  border-color: var(--light-green);
 }
 .login-input-cont {
   display: flex;
-  flex-direction: row;
-  padding-top: 20px;
+  flex-direction: column;
+  padding-top: 50px;
 }
 .login-input {
-  width: 50%;
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 15px;
 }
 #login-btn {
-  margin-top: 20px;
+  margin-top: 60px;
+  width: 92%;
+  margin-left: 15px;
 }
 #email {
   margin-left: 37px;
 }
-#password {
+/* #password {
   margin-left: 8px;
-}
+} */
 #new-user {
-  margin-left: 41%;
-  padding-top: 20px;
-}
+  margin-top: -20vh;
+  margin-bottom: 15vh;
+} 
 
 
 /* ======================= BREAKPOINTS ===================== */
@@ -341,12 +367,20 @@ footer {
   }
   .category {
     padding: 25px;
+    border-bottom-style: solid;
+    border-width: 15px;
+    border-color: var(--light-grey)
   }
   #my-category {
-    /* border-left-style: solid; */
-    /* border-radius: 25px; */
     margin-left: 10px;
-    /* border-left-width: 10px; */
+    border-top-style: solid;
+    border-top-width: 15px;
+    border-color: var(--light-grey)
+    /* border-style: solid;
+    border-width: 15px;
+    border-color: var(--main-green);
+    border-top-style: hidden;
+    border-bottom-style: hidden; */
   }
   #cat-border {
     border-style: solid;
@@ -366,12 +400,16 @@ footer {
     /* border-radius: 25px; */
   }
   #new-goal {
-    margin: 0px 10px;
+    /* margin: 0px 10px; */
     border-style: solid;
+    border-width: 15px;
+    border-color: var(--light-grey);
+    border-bottom-style: hidden;
+    /* border-style: solid;
     border-width: 15px;
     border-color: var(--main-green);
     border-top-style: hidden;
-    border-bottom-style: hidden;
+    border-bottom-style: hidden; */
     /* border-radius: 25px; */
   }
   #desc {
@@ -391,29 +429,32 @@ footer {
   #to-do {
     /* border-radius: 25px; */
     /* margin-right: 10px; */
-    border-style: solid;
+    /* border-style: solid;
     border-width: 15px;
     border-color: var(--main-green);
     border-top-style: hidden;
-    border-bottom-style: hidden;
+    border-bottom-style: hidden; */
+    border-top-style: solid;
+    border-top-width: 15px;
+    border-color: var(--light-grey)
   }
   .to-do-li {
     margin-top: -15px;
+    margin-left: 10px;
   }
   #to-do-btn {
-    padding: 10px;
-    width: 75px;
+    margin-right: 10px;
   }
   #to-do-border {
     border-top-style: solid;
     border-color: var(--light-grey);
     border-width: 15px;
   }
-  #new-to-do-cont {
+  /* #new-to-do-cont {
     display: flex;
     flex-direction: column;
     align-items: center;
-  } 
+  }  */
   #new-to-do-label {
     color: black;
   }
