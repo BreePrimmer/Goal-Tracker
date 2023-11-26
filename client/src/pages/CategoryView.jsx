@@ -38,7 +38,6 @@ export default function GoalView() {
   return (
     <div id="goal-list-cont">
       <ul id="goal-list">
-        {/* <li>{JSON.stringify(myProp)}</li> */}
         {goalList.map((goal) => {
           return (
             <li key={goal.title} className="form-title" id="goal-name">

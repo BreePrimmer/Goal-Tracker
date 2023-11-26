@@ -33,32 +33,6 @@ export default function Categories(props) {
             New +
           </li>
         </div>
-        {/* <li className="category">
-          <Link to="/category">General</Link>
-        </li> */}
-        {/* {exampleList.map((category, index) => (
-          <li className="category" key={category}>
-            {category}
-          </li>
-        ))} */}
-        {/* <li
-        {props.userData.map((category) => {
-          return (
-            <div key={category.name}>
-              <li className="category">
-                <Link to={`/category/${category.name}`}>{category.name}</Link>
-              </li>
-            </div>
-          );
-        })}
-        <li
-          className="category"
-          id="new-category"
-          onClick={() => {
-            setCreateCategory(!createCategory);
-          }}>
-          New +
-        </li> */}
         {createCategory && (
           <form id="new-category-form" onSubmit={categoryFormHandler}>
             <input

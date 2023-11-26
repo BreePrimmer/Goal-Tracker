@@ -17,17 +17,6 @@ export default function Todos(props) {
   return (
     <div className="todo-cont">
       <h1 id="to-do">To-do's</h1>
-      {/* <div id='to-do-border'>
-        <ul className="to-do-ul">
-          <li className="to-do-li">Placeholder todo</li>
-          <li className="to-do-li">Placeholder todo</li>
-          <li className="to-do-li">Placeholder todo</li>
-          {/* {exampleList.map((todo, index) => (
-            <li className="to-do-li" key={todo}>
-              {todo}
-            </li>
-          ))} */}
-      {/* </ul> */}
       <div id="to-do-border">
         <ul className="to-do-ul">
           {props.userData.map((todo) => (
