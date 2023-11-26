@@ -47,9 +47,9 @@ export default function Todos(props) {
           Add new
         </button>
       ) : (
-        <div>
-          <form onSubmit={newTodoFormHandler}>
-            <label htmlFor="newTodoName">What's the new todo? </label>
+        <div id='new-to-do-cont'>
+          <form id='new-to-do-form' onSubmit={newTodoFormHandler}>
+            <label id="new-to-do-label" htmlFor="newTodoName">What's the new todo? </label>
             <input
               type="text"
               id="newTodo"

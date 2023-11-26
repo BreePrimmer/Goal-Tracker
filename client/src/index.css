@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Amatic+SC&family=Patrick+Hand&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Alfa Slab One', serif;
+  /* font-family: 'Amatic SC', sans-serif;
+  font-family: 'Patrick Hand', cursive; */
   line-height: 1.5;
-  font-weight: 400;
+  /* font-weight: 00; */
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -14,10 +19,12 @@
   -webkit-text-size-adjust: 100%;
 
   /* colors */
-  --white: #ffffff;
+  --white: rgb(255, 255, 255);
   --light-grey: #f4f4f4;
-  --main-green: #77DD76;
-  --light-green: #a9f573fe;
+  --main-green: #5559bd;
+  --light-green: #5793cbfe;
+  --orange-yellow: #F2C452;
+  --very-light-blue: #92c4f3fe;
 }
 
 /* ------------------ GENERAL STYLING --------------------- */
@@ -51,7 +58,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--main-green);
+  background-color: var(--light-green);
   color: var(--white);
   cursor: pointer;
   transition: border-color 0.25s;
@@ -102,7 +109,7 @@ header {
 .category {
   background-color: var(--white);
   padding: 10px;
-  color: var(--light-green);
+  color: var(--orange-yellow);
   font-size: 110%;
   font-weight: bold;
   border-bottom-style: solid;
@@ -141,7 +148,7 @@ header {
   margin-top: 15px;
 }
 .form-title {
-  color: var(--main-green);
+  color: var(--orange-yellow);
   font-size: 110%;
   font-weight: bold;
   margin: 0px 20px;
@@ -195,8 +202,8 @@ header {
   font-weight: bold;
   margin: 10px;
   border-bottom-style: solid;
-  border-color: var(--light-green);
-  color: var(--main-green);
+  border-color: var(--very-light-blue);
+  color: var(--orange-yellow);
 }
 #to-do-btn {
   margin-left: 10px;
@@ -337,7 +344,7 @@ footer {
   }
   #my-category {
     /* border-left-style: solid; */
-    border-radius: 25px;
+    /* border-radius: 25px; */
     margin-left: 10px;
     /* border-left-width: 10px; */
   }
@@ -360,7 +367,12 @@ footer {
   }
   #new-goal {
     margin: 0px 10px;
-    border-radius: 25px;
+    border-style: solid;
+    border-width: 15px;
+    border-color: var(--main-green);
+    border-top-style: hidden;
+    border-bottom-style: hidden;
+    /* border-radius: 25px; */
   }
   #desc {
     height: 20vh;
@@ -372,18 +384,41 @@ footer {
   /* --------------------- TO-DOS --------------------- */
   .todo-cont {
     width: 25%;
+    border-right-style: solid;
+    border-right-width: 15px;
+    border-right-color: var(--light-grey);
   }
   #to-do {
-    border-radius: 25px;
-    margin-right: 10px;
+    /* border-radius: 25px; */
+    /* margin-right: 10px; */
+    border-style: solid;
+    border-width: 15px;
+    border-color: var(--main-green);
+    border-top-style: hidden;
+    border-bottom-style: hidden;
+  }
+  .to-do-li {
+    margin-top: -15px;
+  }
+  #to-do-btn {
+    padding: 10px;
+    width: 75px;
   }
   #to-do-border {
-    border-style: solid;
+    border-top-style: solid;
     border-color: var(--light-grey);
     border-width: 15px;
-    /* border-top-right-radius: 25px; */
-    border-left-style: hidden;
-    border-bottom-style: hidden;
+  }
+  #new-to-do-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } 
+  #new-to-do-label {
+    color: black;
+  }
+  #new-to-do-form {
+    margin-left: 15px;
   }
 
   footer {
