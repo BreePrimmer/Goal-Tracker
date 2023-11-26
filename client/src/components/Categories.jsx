@@ -1,15 +1,36 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { NEW_CATEGORY } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
 import { Link } from "react-router-dom";
 
 export default function Categories(props) {
+  const userData = props.userData;
+
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
-  const exampleList = ["Fitness", "School", "Work"];
+  const [createCategoryMutation] = useMutation(NEW_CATEGORY, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
 
-  const categoryFormHandler = (e) => {
+  const categoryFormHandler = async (e) => {
     e.preventDefault();
     console.log(newCategory);
+
+    try {
+      const { data } = await createCategoryMutation({
+        variables: {
+          name: newCategory,
+          user: userData._id,
+        },
+      });
+
+      console.log("Category created:", data.newCategory);
+    } catch (error) {
+      console.error(error);
+    }
+
     setNewCategory("");
     setCreateCategory(false);
   };
@@ -19,7 +40,7 @@ export default function Categories(props) {
       <ul className="categories">
         <li id="my-category">My categories</li>
         <div id="cat-border">
-          {props.userData.map((category) => (
+          {userData?.categories.map((category) => (
             <li className="category" key={category.name}>
               <Link to={`/category/${category.name}`}>{category.name}</Link>
             </li>
@@ -32,33 +53,7 @@ export default function Categories(props) {
             }}>
             New +
           </li>
-        </div>
-        {/* <li className="category">
-          <Link to="/category">General</Link>
-        </li> */}
-        {/* {exampleList.map((category, index) => (
-          <li className="category" key={category}>
-            {category}
-          </li>
-        ))} */}
-        {/* <li
-        {props.userData.map((category) => {
-          return (
-            <div key={category.name}>
-              <li className="category">
-                <Link to={`/category/${category.name}`}>{category.name}</Link>
-              </li>
-            </div>
-          );
-        })}
-        <li
-          className="category"
-          id="new-category"
-          onClick={() => {
-            setCreateCategory(!createCategory);
-          }}>
-          New +
-        </li> */}
+        </div>{" "}
         {createCategory && (
           <form id="new-category-form" onSubmit={categoryFormHandler}>
             <input

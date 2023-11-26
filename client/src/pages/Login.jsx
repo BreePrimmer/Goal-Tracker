@@ -35,7 +35,6 @@ export default function Login() {
 
     console.log(formData);
     console.log("User logged in!");
-    // window.location.replace("/");
   };
   const signupFormHandler = async (e) => {
     e.preventDefault();
@@ -50,7 +49,6 @@ export default function Login() {
 
     console.log(formData);
     console.log("User signed up!");
-    // window.location.replace("/");
   };
   return (
     <div id="login-cont">
