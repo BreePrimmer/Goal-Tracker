@@ -88,6 +88,9 @@ header {
   background-color: var(--main-green);
   padding: 10px 20px;
 }
+#trophy {
+  color: var(--orange-yellow);
+}
 #title {
   font-size: 160%;
   font-weight: bold;
