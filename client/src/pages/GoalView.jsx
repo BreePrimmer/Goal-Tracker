@@ -41,7 +41,7 @@ export default function GoalView() {
       <h2 id="goal-cat">{categoryName}</h2>
       <SingleGoalView goal={currentGoal} />
       {JSON.stringify(currentGoal)}
-      <Categories userData={userData.categories} />
+      <Categories userData={userData} />
     </div>
   );
 }

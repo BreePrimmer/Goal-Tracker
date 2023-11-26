@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 export default function Categories(props) {
   const userData = props.userData;
 
-  console.log(userData);
-
   const [createCategory, setCreateCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 
@@ -42,7 +40,7 @@ export default function Categories(props) {
       <ul className="categories">
         <li id="my-category">My categories</li>
         <div id="cat-border">
-          {userData.categories.map((category) => (
+          {userData?.categories.map((category) => (
             <li className="category" key={category.name}>
               <Link to={`/category/${category.name}`}>{category.name}</Link>
             </li>
