@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { NEW_CATEGORY } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Categories(props) {
   const userData = props.userData;
@@ -16,7 +16,7 @@ export default function Categories(props) {
 
   const categoryFormHandler = async (e) => {
     e.preventDefault();
-    console.log(newCategory);
+    // console.log(newCategory);
 
     try {
       const { data } = await createCategoryMutation({
@@ -41,8 +41,10 @@ export default function Categories(props) {
         <li id="my-category">My categories</li>
         <div id="cat-border">
           {userData?.categories.map((category) => (
-            <li className="category" key={category.name}>
-              <Link to={`/category/${category.name}`}>{category.name}</Link>
+            <li className="category" key={category._id}>
+              <Link to={`/category/${category.name}`} state={{ userData }}>
+                {category.name}
+              </Link>
             </li>
           ))}
           <li

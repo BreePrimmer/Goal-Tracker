@@ -29,9 +29,9 @@ export default function Homepage() {
   }
 
   const userData = data?.me;
-  if (data) {
+  // if (data) {
     // console.log(userData)
-  }
+  // }
 
   return (
     <div>

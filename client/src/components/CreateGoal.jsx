@@ -21,27 +21,38 @@ export default function CreateGoal(props) {
   const goalFormHandler = async (e) => {
     e.preventDefault();
 
-    if(preCategory){
-      setCategory(preCategory);
-    }
-
-    console.log(goalName);
-    console.log(category);
-    console.log(description);
-    console.log(endDate);
+    // console.log(goalName);
+    // console.log(category);
+    // console.log(description);
+    // console.log(endDate);
 
     try {
-      const { data } = await createGoalMutation({
-        variables: {
-          user: userData._id,
-          title: goalName,
-          text: description,
-          date: endDate,
-          categoryId: category
-        }
-      });
 
-      console.log('New Goal Created: ', data.title)
+
+      if(preCategory){
+        const { data } = await createGoalMutation({
+          variables: {
+            user: userData._id,
+            title: goalName,
+            text: description,
+            date: endDate,
+            categoryId: preCategory 
+          }
+        });
+        console.log('New Goal Created')
+      }else{
+        const { data } = await createGoalMutation({
+          variables: {
+            user: userData._id,
+            title: goalName,
+            text: description,
+            date: endDate,
+            categoryId: category 
+          }
+        });
+        console.log('New Goal Created')
+      }
+      
 
     } catch (error) {
       console.error(error)

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
@@ -7,8 +7,8 @@ import CreateGoal from "../components/CreateGoal";
 
 import { QUERY_ME } from "../utils/queries";
 
-export default function CategoryView(props) {
-  // const userData = props.location.state.userData;
+export default function CategoryView() {
+
   let { categoryName } = useParams();
 
   const token = Auth.getToken();
@@ -34,6 +34,8 @@ export default function CategoryView(props) {
   const goalCategory = userData.categories.filter(
     (goal) => goal.name === categoryName
   );
+
+  // console.log(goalCategory)
 
   const goalList = goalCategory[0].goals;
   // console.log(goalCategory[0].goals);
