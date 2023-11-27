@@ -7,7 +7,6 @@ import { QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
 export default function Homepage() {
-  const isLoggedIn = Auth.loggedIn();
 
   const token = Auth.getToken();
   // Ternary operation checks to see if the user is logged in to avoid errors later on
