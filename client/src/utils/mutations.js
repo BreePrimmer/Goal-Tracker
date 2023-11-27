@@ -57,10 +57,6 @@ export const DELETE_CATEGORY = gql`
   mutation deleteCategory($user: ID!, $categoryId: ID!) {
     deleteCategory(user: $user, categoryId: $categoryId) {
       _id
-      name
-      user {
-        username
-      }
     }
   }
 `;

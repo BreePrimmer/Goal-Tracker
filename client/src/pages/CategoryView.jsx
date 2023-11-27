@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Link, useParams} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
 import CreateGoal from "../components/CreateGoal";
 
 import { QUERY_ME } from "../utils/queries";
+import { DELETE_CATEGORY } from "../utils/mutations";
 
 export default function CategoryView() {
 
@@ -14,12 +15,12 @@ export default function CategoryView() {
   const token = Auth.getToken();
   const { loading, error, data } = Auth.loggedIn()
     ? useQuery(QUERY_ME, {
-        context: {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
+      context: {
+        headers: {
+          authorization: `Bearer ${token}`,
         },
-      })
+      },
+    })
     : { loading: false, error: null, data: null };
 
   if (loading) {
@@ -39,9 +40,29 @@ export default function CategoryView() {
 
   const goalList = goalCategory[0].goals;
   // console.log(goalCategory[0].goals);
+
+  const [deleteCategoryMutation] = useMutation(DELETE_CATEGORY);
+
+  const handleCategoryDelete = async () => {
+
+    try {
+      const { data } = await deleteCategoryMutation({
+        variables: {
+          user: userData._id,
+          categoryId: goalCategory[0]._id
+        }
+      })
+      console.log('Deleted Category - rerouting')
+      window.location.assign(`/`)
+    }
+    catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div id="goal-list-cont">
-      <h2 style={{color: 'black'}}>{categoryName}</h2>
+      <h2 style={{ color: 'black' }}>{categoryName}</h2>
       <ul id="goal-list">
         {goalList.map((goal) => {
           return (
@@ -54,7 +75,8 @@ export default function CategoryView() {
             </li>
           );
         })}
-        <li><CreateGoal userData={userData} category={goalCategory[0]._id}/></li>
+        <li><CreateGoal userData={userData} category={goalCategory[0]._id} /></li>
+        <li><button style={{ color: 'red' }} onClick={handleCategoryDelete}>Delete Category</button></li>
       </ul>
       <Link id="rtn-btn" to={"/"}>
         &lt;-
