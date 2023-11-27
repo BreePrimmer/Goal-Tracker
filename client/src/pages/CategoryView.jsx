@@ -1,15 +1,17 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Link, useParams, useLocation } from "react-router-dom";
 import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
+import CreateGoal from "../components/CreateGoal";
 
 import { QUERY_ME } from "../utils/queries";
 
-export default function GoalView() {
+export default function CategoryView(props) {
+  // const userData = props.location.state.userData;
   let { categoryName } = useParams();
 
   const token = Auth.getToken();
-
   const { loading, error, data } = Auth.loggedIn()
     ? useQuery(QUERY_ME, {
         context: {
@@ -34,7 +36,7 @@ export default function GoalView() {
   );
 
   const goalList = goalCategory[0].goals;
-  console.log(goalCategory[0].goals);
+  // console.log(goalCategory[0].goals);
   return (
     <div id="goal-list-cont">
       <ul id="goal-list">
@@ -42,11 +44,14 @@ export default function GoalView() {
           return (
             <li key={goal.title} className="form-title" id="goal-name">
               <Link to={`/Category/${categoryName}/${goal._id}`}>
-                <span>{goal.title}</span>
+                <span>
+                  {goal.complete ? (<>{goal.title} - completed</>) : (<>{goal.title}</>)}
+                </span>
               </Link>
             </li>
           );
         })}
+        <li><CreateGoal userData={userData} /></li>
       </ul>
       <Link id="rtn-btn" to={"/"}>
         &lt;-

@@ -12,7 +12,9 @@ export default function CreateGoal(props) {
   const [endDate, setEndDate] = useState("");
   const [goalName, setGoalName] = useState("");
 
-  const [createGoalMutation] = useMutation(NEW_GOAL);
+  const [createGoalMutation] = useMutation(NEW_GOAL, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
 
   const goalFormHandler = async (e) => {
     e.preventDefault();

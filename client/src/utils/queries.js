@@ -14,6 +14,7 @@ export const QUERY_ME = gql`
           title
           text
           date
+          completed
         }
       }
       todos {
