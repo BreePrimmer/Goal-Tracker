@@ -42,10 +42,10 @@ export default function CategoryView(props) {
       <ul id="goal-list">
         {goalList.map((goal) => {
           return (
-            <li key={goal.title} className="form-title" id="goal-name">
+            <li key={goal._id} className="form-title" id="goal-name">
               <Link to={`/Category/${categoryName}/${goal._id}`}>
                 <span>
-                  {goal.complete ? (<>{goal.title} - completed</>) : (<>{goal.title}</>)}
+                  {goal.completed ? (<>{goal.title} - completed</>) : (<>{goal.title}</>)}
                 </span>
               </Link>
             </li>
