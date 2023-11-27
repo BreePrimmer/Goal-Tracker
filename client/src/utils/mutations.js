@@ -75,12 +75,9 @@ export const DELETE_GOAL = gql`
 `;
 
 export const COMPLETE_GOAL = gql`
-  mutation completeGoal($user: ID!, $goalId: ID!, $completed: Boolean!) {
-    completeGoal(user: $user, goalID: $goalId, completed: $completed) {
-      title
-      text
-      completed
-      date
+  mutation completeGoal($user: ID!, $goalId: ID!, $completed: Boolean) {
+    completeGoal(user: $user, goalId: $goalId, completed: $completed) {
+      _id
     }
   }
 `;

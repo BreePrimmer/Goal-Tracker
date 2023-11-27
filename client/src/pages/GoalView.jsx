@@ -45,7 +45,7 @@ export default function GoalView() {
       </Link>
       <h2 id="goal-cat">{categoryName}</h2>
       <SingleGoalView goal={currentGoal} />
-      {JSON.stringify(currentGoal)}
+      {/* {JSON.stringify(currentGoal)} */}
       {/* <Categories userData={userData} /> */}
       
     </div>
