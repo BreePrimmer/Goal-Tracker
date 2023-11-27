@@ -6,6 +6,8 @@ import { NEW_GOAL } from "../utils/mutations";
 export default function CreateGoal(props) {
 
   const userData = props.userData;
+  const preCategory = props.category;
+  console.log(preCategory);
 
   const [category, setCategory] = useState(userData.categories.length > 0 ? userData.categories[0]._id : "");
   const [description, setDescription] = useState("");
@@ -18,6 +20,11 @@ export default function CreateGoal(props) {
 
   const goalFormHandler = async (e) => {
     e.preventDefault();
+
+    if(preCategory){
+      setCategory(preCategory);
+    }
+
     console.log(goalName);
     console.log(category);
     console.log(description);
@@ -63,7 +70,8 @@ export default function CreateGoal(props) {
               setGoalName(e.target.value);
             }}
           />
-          <div className="goal-spacing">
+          {preCategory ? (<></>) : (<>
+            <div className="goal-spacing">
             <label className="form-title" htmlFor="goalCategory">
               Category:
             </label>
@@ -80,6 +88,8 @@ export default function CreateGoal(props) {
               ))}
             </select>
           </div>
+          </>)}
+          
         </div>
         <div className="goal-spacing" id="desc-cont">
           <label className="form-title" htmlFor="desc">

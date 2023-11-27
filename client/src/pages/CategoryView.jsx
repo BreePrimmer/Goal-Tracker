@@ -39,6 +39,7 @@ export default function CategoryView(props) {
   // console.log(goalCategory[0].goals);
   return (
     <div id="goal-list-cont">
+      <h2 style={{color: 'black'}}>{categoryName}</h2>
       <ul id="goal-list">
         {goalList.map((goal) => {
           return (
@@ -51,7 +52,7 @@ export default function CategoryView(props) {
             </li>
           );
         })}
-        <li><CreateGoal userData={userData} /></li>
+        <li><CreateGoal userData={userData} category={goalCategory[0]._id}/></li>
       </ul>
       <Link id="rtn-btn" to={"/"}>
         &lt;-
