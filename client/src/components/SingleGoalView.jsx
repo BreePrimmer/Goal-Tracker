@@ -2,12 +2,14 @@
 import { QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { COMPLETE_GOAL } from "../utils/mutations";
+import { COMPLETE_GOAL, DELETE_GOAL } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 export default function SingleGoalView(props) {
   const goal = props.goal[0];
-  console.log(goal);
+  const category = props.category;
+  // console.log(goal);
+  // console.log(category);
 
   const token = Auth.getToken();
   const { loading, error, data } = Auth.loggedIn()
@@ -36,8 +38,6 @@ export default function SingleGoalView(props) {
 
   const handleCompleteGoal = async () =>{
     try{
-      console.log(userData)
-
       const data = await completeGoalMutation({
         variables: {
           user: userData._id,
@@ -50,6 +50,25 @@ export default function SingleGoalView(props) {
 
     }
     catch(error){
+      console.error(error)
+    }
+  }
+
+  const [deleteGoalMutation] = useMutation(DELETE_GOAL);
+
+  const handleDeleteGoal = async () => {
+    try{
+      const data = await deleteGoalMutation({
+        variables: {
+          user: userData._id,
+          goalId: goal._id
+        }
+      })
+
+      console.log('Goal Deleted - rerouting')
+      window.location.assign(`/Category/${category}`)
+
+    }catch(error){
       console.error(error)
     }
   }
@@ -73,6 +92,9 @@ export default function SingleGoalView(props) {
               <button type="submit" onClick={handleCompleteGoal}>Complete Goal</button>
             </>
           )}
+        </div>
+        <div>
+          <button style={{color: 'red'}} onClick={handleDeleteGoal} className="form-title">Delete Goal</button>
         </div>
       </div>
     </div>

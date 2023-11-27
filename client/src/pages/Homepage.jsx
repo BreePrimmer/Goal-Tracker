@@ -44,7 +44,7 @@ export default function Homepage() {
         </>
       ) : (
         <>
-          <span style={{ color: "red" }}>Please Login</span>
+          {window.location.assign('/login')}
         </>
       )}
     </div>
