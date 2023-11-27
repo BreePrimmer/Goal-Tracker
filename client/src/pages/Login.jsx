@@ -107,7 +107,7 @@ export default function Login() {
           <span
             onClick={() => {
               setLoggingIn(false);
-            }}>
+            }} style={{cursor: 'pointer'}}>
             Sign up!
           </span>
         </span>
@@ -117,7 +117,7 @@ export default function Login() {
           <span
             onClick={() => {
               setLoggingIn(true);
-            }}>
+            }} style={{cursor: 'pointer'}}>
             Log in!
           </span>
         </span>
