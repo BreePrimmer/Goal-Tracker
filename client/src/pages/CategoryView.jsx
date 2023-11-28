@@ -40,9 +40,8 @@ export default function CategoryView() {
   const goalList = goalCategory[0].goals;
   // console.log(goalCategory[0].goals);
 
-  const [deleteCategoryMutation] = useMutation(DELETE_CATEGORY);
-
   const handleCategoryDelete = async () => {
+    const [deleteCategoryMutation] = useMutation(DELETE_CATEGORY);
     try {
       const { data } = await deleteCategoryMutation({
         variables: {
