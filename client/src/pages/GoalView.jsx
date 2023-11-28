@@ -14,12 +14,12 @@ export default function GoalView() {
 
   const { loading, error, data } = Auth.loggedIn()
     ? useQuery(QUERY_ME, {
-        context: {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
+      context: {
+        headers: {
+          authorization: `Bearer ${token}`,
         },
-      })
+      },
+    })
     : { loading: false, error: null, data: null };
 
   if (loading) {
@@ -31,15 +31,18 @@ export default function GoalView() {
 
   const userData = data?.me;
 
+  const [deleteGoalMutation] = useMutation(DELETE_GOAL);
+
   const [completeGoalMutation] = useMutation(COMPLETE_GOAL, {
     refetchQueries: [{ query: QUERY_ME }],
   });
+
   const handleCompleteGoal = async () => {
     try {
       const data = await completeGoalMutation({
         variables: {
           user: userData._id,
-          goalId: goal._id,
+          goalId: goalId,
           completed: true,
         },
       });
@@ -50,13 +53,13 @@ export default function GoalView() {
     }
   };
 
-  const [deleteGoalMutation] = useMutation(DELETE_GOAL);
   const handleDeleteGoal = async () => {
+    
     try {
       const data = await deleteGoalMutation({
         variables: {
           user: userData._id,
-          goalId: goal._id,
+          goalId: goalId,
         },
       });
 
@@ -112,7 +115,8 @@ export default function GoalView() {
                   <button
                     id="complete-goal-btn"
                     type="submit"
-                    onClick={handleCompleteGoal}>
+                    onClick={handleCompleteGoal}
+                    >
                     Complete Goal
                   </button>
                 </>
