@@ -59,22 +59,29 @@ export default function Todos(props) {
   return (
     <div className="todo-cont">
       <h1 id="to-do">To-do's</h1>
-      <ul className="to-do-ul">
-        {userData.todos.map((todo) => {
-          return (
-            <li className="to-do-li" key={todo._id}>
-              <button
-                id="to-do-btn"
-                onClick={() => {
-                  deleteTodoHandler(todo._id);
-                }}>
-                -
-              </button>
-              {todo.text}
-            </li>
-          );
-        })}
-      </ul>
+      {JSON.stringify(userData.todos)}
+      {userData.todos == "" ? (
+        <ul className="to-do-ul">
+          <li className="to-do-li">No todos yet!</li>
+        </ul>
+      ) : (
+        <ul className="to-do-ul">
+          {userData.todos.map((todo) => {
+            return (
+              <li className="to-do-li" key={todo._id}>
+                <button
+                  id="to-do-btn"
+                  onClick={() => {
+                    deleteTodoHandler(todo._id);
+                  }}>
+                  -
+                </button>
+                {todo.text}
+              </li>
+            );
+          })}
+        </ul>
+      )}
 
       {!createTodo ? (
         <button
