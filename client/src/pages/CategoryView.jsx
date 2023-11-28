@@ -9,7 +9,6 @@ import { QUERY_ME } from "../utils/queries";
 import { DELETE_CATEGORY } from "../utils/mutations";
 
 export default function CategoryView() {
-
   let { categoryName } = useParams();
 
   const token = Auth.getToken();
@@ -36,8 +35,6 @@ export default function CategoryView() {
     (goal) => goal.name === categoryName
   );
 
-  // console.log(goalCategory)
-
   const goalList = goalCategory[0].goals;
   // console.log(goalCategory[0].goals);
 
@@ -49,37 +46,55 @@ export default function CategoryView() {
       const { data } = await deleteCategoryMutation({
         variables: {
           user: userData._id,
-          categoryId: goalCategory[0]._id
-        }
-      })
-      console.log('Deleted Category - rerouting')
-      window.location.assign(`/`)
+          categoryId: goalCategory[0]._id,
+        },
+      });
+      console.log("Deleted Category - rerouting");
+      window.location.assign(`/`);
+    } catch (error) {
+      console.error(error);
     }
-    catch (error) {
-      console.error(error)
-    }
-  }
+  };
 
   return (
     <div id="goal-list-cont">
-      <h2 id='category-name'>{categoryName}</h2>
-      <ul id="goal-list">
-        {goalList.map((goal) => {
-          return (
-            <li key={goal._id} className="form-title" id="goal-name">
-              <Link id='cat-color' to={`/Category/${categoryName}/${goal._id}`}>
-                <span>
-                  {goal.completed ? (<>{goal.title} - completed</>) : (<>{goal.title}</>)}
-                </span>
-              </Link>
-            </li>
-          );
-        })}
-        <div id='desktop-new-goal'>
-        <li id='cat-view-goal'><CreateGoal userData={userData} category={goalCategory[0]._id} /></li>1
-        </div>
-        <li><button id='delete-category-btn' onClick={handleCategoryDelete}>Delete Category</button></li>
-      </ul>
+      <h2 style={{ color: "black" }}>{categoryName}</h2>
+      {goalList == "" ? (
+        <ul id="goal-list">
+          <li className="form-title" id="goal-name">
+            No goals yet!
+          </li>
+          <li>
+            <CreateGoal userData={userData} category={goalCategory[0]._id} />
+          </li>
+        </ul>
+      ) : (
+        <ul id="goal-list">
+          {goalList.map((goal) => {
+            return (
+              <li key={goal._id} className="form-title" id="goal-name">
+                <Link to={`/Category/${categoryName}/${goal._id}`}>
+                  <span>
+                    {goal.completed ? (
+                      <>{goal.title} - completed</>
+                    ) : (
+                      <>{goal.title}</>
+                    )}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+          <li>
+            <CreateGoal userData={userData} category={goalCategory[0]._id} />
+          </li>
+          <li>
+            <button style={{ color: "red" }} onClick={handleCategoryDelete}>
+              Delete Category
+            </button>
+          </li>
+        </ul>
+      )}
       <Link className="rtn-btn" to={"/"}>
         &lt;-
       </Link>

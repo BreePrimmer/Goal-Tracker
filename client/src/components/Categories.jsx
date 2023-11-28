@@ -52,7 +52,8 @@ export default function Categories(props) {
             id="new-category"
             onClick={() => {
               setCreateCategory(!createCategory);
-            }} style={{cursor: 'pointer'}}>
+            }}
+            style={{ cursor: "pointer" }}>
             New +
           </li>
         </div>{" "}
