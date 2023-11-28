@@ -1,15 +1,14 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import CreateGoal from "../components/CreateGoal";
 import Categories from "../components/Categories";
 import Todos from "../components/Todos";
-import { LOGIN_USER } from "../utils/mutations";
-import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
-
 import { QUERY_ME } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 
 export default function Homepage() {
   const token = Auth.getToken();
-
+  // Ternary operation checks to see if the user is logged in to avoid errors later on
   const { loading, error, data } = Auth.loggedIn()
     ? useQuery(QUERY_ME, {
         context: {
@@ -28,12 +27,22 @@ export default function Homepage() {
   }
 
   const userData = data?.me;
+  // if (data) {
+  // console.log(userData)
+  // }
+
   return (
-    <div>
-      <Categories userData={userData.categories} />
-      <CreateGoal />
-      <Todos userData={userData.todos} />
-      {JSON.stringify(userData.categories[0].goals)}
+    <div class="desktop-view">
+      {Auth.loggedIn() ? (
+        <>
+          {/* passing userData as props */}
+          <Categories userData={userData} />
+          <CreateGoal userData={userData} />
+          <Todos userData={userData} />
+        </>
+      ) : (
+        <>{window.location.assign("/login")}</>
+      )}
     </div>
   );
 }

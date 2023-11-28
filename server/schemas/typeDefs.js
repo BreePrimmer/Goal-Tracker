@@ -44,8 +44,8 @@ const typeDefs = gql`
   type Mutation{
     newUser(username: String!, email:String!, password: String!) : Auth
     login(username: String!, password: String!): Auth
-    newCategory(name: String!, user: ID): Category
-    newGoal(user: ID!, text: String!, categoryId: ID, date: String): Goal
+    newCategory(name: String!, user: ID!): Category
+    newGoal(user: ID!, title: String!, text: String!, categoryId: ID, date: String): Goal
     deleteCategory(user: ID!, categoryId: ID!): Category
     deleteGoal(user: ID!, goalId: ID!) : Goal
     completeGoal(user: ID!, goalId: ID!, completed: Boolean): Goal

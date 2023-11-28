@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <CategoryView />,
       },
       {
-        path: "/Goal",
+        path: "/Category/:categoryName/:goalId",
         element: <GoalView />,
       },
       {
