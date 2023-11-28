@@ -60,17 +60,11 @@ export default function Todos(props) {
     <div className="todo-cont">
       <h1 id="to-do">To-do's</h1>
       <ul className="to-do-ul">
-<<<<<<< HEAD
-        {props.userData.map((todo) => (
-          <li className="to-do-li" key={todo._id}>
-            {todo.text}
-          </li>
-        ))}
-=======
         {userData.todos.map((todo) => {
           return (
             <li className="to-do-li" key={todo._id}>
-              <button id='to-do-btn'
+              <button
+                id="to-do-btn"
                 onClick={() => {
                   deleteTodoHandler(todo._id);
                 }}>
@@ -80,7 +74,6 @@ export default function Todos(props) {
             </li>
           );
         })}
->>>>>>> frontend-styling
       </ul>
 
       {!createTodo ? (
@@ -92,9 +85,11 @@ export default function Todos(props) {
           +
         </button>
       ) : (
-        <div id='new-to-do-cont'>
-          <form id='new-to-do-form' onSubmit={newTodoFormHandler}>
-            <label id="new-to-do-label" htmlFor="newTodoName">What's the new todo? </label>
+        <div id="new-to-do-cont">
+          <form id="new-to-do-form" onSubmit={newTodoFormHandler}>
+            <label id="new-to-do-label" htmlFor="newTodoName">
+              What's the new todo?{" "}
+            </label>
             <input
               type="text"
               id="newTodo"
