@@ -6,33 +6,53 @@ import { NEW_GOAL } from "../utils/mutations";
 export default function CreateGoal(props) {
 
   const userData = props.userData;
+  const preCategory = props.category;
+  // console.log(preCategory);
 
   const [category, setCategory] = useState(userData.categories.length > 0 ? userData.categories[0]._id : "");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
   const [goalName, setGoalName] = useState("");
 
-  const [createGoalMutation] = useMutation(NEW_GOAL);
+  const [createGoalMutation] = useMutation(NEW_GOAL, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
 
   const goalFormHandler = async (e) => {
     e.preventDefault();
-    console.log(goalName);
-    console.log(category);
-    console.log(description);
-    console.log(endDate);
+
+    // console.log(goalName);
+    // console.log(category);
+    // console.log(description);
+    // console.log(endDate);
 
     try {
-      const { data } = await createGoalMutation({
-        variables: {
-          user: userData._id,
-          title: goalName,
-          text: description,
-          date: endDate,
-          categoryId: category
-        }
-      });
 
-      console.log('New Goal Created: ', data.title)
+
+      if(preCategory){
+        const { data } = await createGoalMutation({
+          variables: {
+            user: userData._id,
+            title: goalName,
+            text: description,
+            date: endDate,
+            categoryId: preCategory 
+          }
+        });
+        console.log('New Goal Created')
+      }else{
+        const { data } = await createGoalMutation({
+          variables: {
+            user: userData._id,
+            title: goalName,
+            text: description,
+            date: endDate,
+            categoryId: category 
+          }
+        });
+        console.log('New Goal Created')
+      }
+      
 
     } catch (error) {
       console.error(error)
@@ -61,7 +81,8 @@ export default function CreateGoal(props) {
               setGoalName(e.target.value);
             }}
           />
-          <div className="goal-spacing">
+          {preCategory ? (<></>) : (<>
+            <div className="goal-spacing">
             <label className="form-title" htmlFor="goalCategory">
               Category:
             </label>
@@ -78,6 +99,8 @@ export default function CreateGoal(props) {
               ))}
             </select>
           </div>
+          </>)}
+          
         </div>
         <div className="goal-spacing" id="desc-cont">
           <label className="form-title" htmlFor="desc">

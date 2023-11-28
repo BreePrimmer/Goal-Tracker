@@ -96,7 +96,7 @@ header {
   font-weight: bold;
   color: var(--white);
 }
-#login {
+#login, #logout {
   font-size: 160%;
   color: var(--white);
 }
