@@ -117,6 +117,7 @@ header {
   font-weight: bold;
   border-bottom-style: solid;
   border-bottom-color: var(--light-grey);
+  border-width: 15px;
 }
 #my-category {
   padding: 15px;
@@ -181,7 +182,7 @@ header {
   margin-bottom: -15px;
 }
 .goal-btn {
-  margin-left: 31%;
+  margin-left: 35%;
   margin-top: 25px;
   margin-bottom: 15px;
 }
@@ -217,8 +218,12 @@ header {
 }
 #to-do-btn {
   margin-left: 10px;
+  margin-right: 10px;
   margin-top: -3px;
   margin-bottom: 10px;
+}
+#new-to-do-btn {
+  margin-left: 20px;
 }
 
 /* ---------------------- FOOTER STYLING ----------------- */
@@ -289,10 +294,33 @@ footer {
 #complete-goal-btn {
   margin-left: 20px;
   margin-bottom: 20px;
+  font-size: 110%;
 }
-
+#complete-goal-btn:hover {
+  color: lightgreen;
+}
+#delete-goal-btn {
+  color: white;
+}
+#delete-goal-btn:hover {
+  color: lightsalmon;
+}
+#one-goal-cont {
+  height: 65vh;
+}
 /* ----------------- CATEGORY/VIEW GOALS PAGE ---------------------- */
-
+#category-name {
+  background-color: var(--light-green);
+  color: white;
+  padding: 20px 20px;
+  margin-top: 0px;
+  margin-bottom:0px;
+}
+#cat-view-goal {
+  border-style: solid;
+  border-top-width: 15px;
+  border-color: var(--light-grey);
+}
 #goal-list {
   padding-left: 0px;
   margin-top: 0px;
@@ -308,6 +336,16 @@ footer {
   border-bottom: hidden;
   width: 85%;
 
+}
+#delete-category-btn {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+#cat-color {
+  color: var(--orange-yellow);
+}
+#cat-color:hover {
+  text-decoration: underline;
 }
 .rtn-btn {
   background-color: var(--white);
@@ -327,14 +365,16 @@ footer {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-#rtn-btn:hover {
+.rtn-btn:hover {
   background-color: #f5f373fe;
+  color: white;
 }
 #goal-list-cont {
   padding-top: 0px;
   background-color: var(--white);
-  height: 82vh;
-  background-color: var(--light-grey);
+  height: 110vh;
+  /* background-color: var(--light-grey); */
+  margin-bottom: -15px;
 }
 
 /* ------------------ LOGIN PAGE STYLING -------------------- */
@@ -514,6 +554,12 @@ footer {
     margin-top: 15px;
   }
 
+
+  /* =========================== PAGES ================================= */
+  /* #desktop-new-goal {
+    margin-left: 30%;
+    width: 200vh;
+  } */
 }
 
 /* --------------------- Error Page --------------------- */
@@ -539,8 +585,8 @@ footer {
 /* desktops */
 @media screen and (min-width: 1200px) {
   body {
-    background-color: var(--light-grey);
-  }
+    background-color: var(--white);
+  } 
   .desktop-view {
     display: flex;
   }
