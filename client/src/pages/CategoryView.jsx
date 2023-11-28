@@ -14,12 +14,12 @@ export default function CategoryView() {
   const token = Auth.getToken();
   const { loading, error, data } = Auth.loggedIn()
     ? useQuery(QUERY_ME, {
-      context: {
-        headers: {
-          authorization: `Bearer ${token}`,
+        context: {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         },
-      },
-    })
+      })
     : { loading: false, error: null, data: null };
 
   if (loading) {
@@ -41,7 +41,6 @@ export default function CategoryView() {
   const [deleteCategoryMutation] = useMutation(DELETE_CATEGORY);
 
   const handleCategoryDelete = async () => {
-
     try {
       const { data } = await deleteCategoryMutation({
         variables: {
@@ -63,9 +62,6 @@ export default function CategoryView() {
         <ul id="goal-list">
           <li className="form-title" id="goal-name">
             No goals yet!
-          </li>
-          <li>
-            <CreateGoal userData={userData} category={goalCategory[0]._id} />
           </li>
         </ul>
       ) : (
