@@ -40,14 +40,17 @@ export default function GoalView() {
 
   return (
     <div>
-      <Link id="rtn-btn" to={`/category/${categoryName}`}>
-        &lt;-
-      </Link>
-      <h2 id="goal-cat">{categoryName}</h2>
+      <div id='view-goal-cont'>
+        <h2 id="goal-cat">{categoryName}</h2>
+        <Link className='rtn-btn' id='single-goal-btn' to={`/category/${categoryName}`}>
+          &lt;-
+        </Link>
+      </div>
+      <div>
       <SingleGoalView goal={currentGoal} category={goalCategory[0].name}/>
       {/* {JSON.stringify(currentGoal)} */}
       {/* <Categories userData={userData} /> */}
-      
+      </div>
     </div>
   );
 }

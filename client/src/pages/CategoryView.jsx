@@ -84,7 +84,7 @@ export default function CategoryView() {
           </button>
         </li>
       </ul>
-      <Link id="rtn-btn" to={"/"}>
+      <Link className="rtn-btn" to={"/"}>
         &lt;-
       </Link>
     </div>

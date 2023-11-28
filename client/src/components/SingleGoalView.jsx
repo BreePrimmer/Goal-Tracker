@@ -72,13 +72,15 @@ export default function SingleGoalView(props) {
   return (
     <div id="desc-cont">
       <div>
-        <h2 className="form-title">{goal.title}</h2>
-        <span className="form-title">Description:</span>
-        <p className="goal-desc" style={{ color: "black" }}>
-          {goal.text}
-        </p>
-        <div id="desc-date">
-          <span className="form-title">{goal.date}</span>
+        <h2 id="goal-title">{goal.title}</h2>
+        <div id="view-goal-area">
+          <div id="view-goal-text">
+            <span className="form-title">Description:</span>
+            <p id="view-goal-desc">{goal.text}</p>
+            <div id="desc-date">
+              <span className="form-title">{goal.date}</span>
+            </div>
+          </div>
         </div>
         <div>
           {goal.completed ? (
@@ -87,7 +89,10 @@ export default function SingleGoalView(props) {
             </>
           ) : (
             <>
-              <button type="submit" onClick={handleCompleteGoal}>
+              <button
+                id="complete-goal-btn"
+                type="submit"
+                onClick={handleCompleteGoal}>
                 Complete Goal
               </button>
             </>
