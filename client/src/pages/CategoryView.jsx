@@ -35,10 +35,7 @@ export default function CategoryView() {
     (goal) => goal.name === categoryName
   );
 
-  // console.log(goalCategory)
-
   const goalList = goalCategory[0].goals;
-  // console.log(goalCategory[0].goals);
 
   const handleCategoryDelete = async () => {
     const [deleteCategoryMutation] = useMutation(DELETE_CATEGORY);
@@ -59,7 +56,6 @@ export default function CategoryView() {
   return (
     <div id="goal-list-cont">
       <h2 style={{ color: "black" }}>{categoryName}</h2>
-      {JSON.stringify(goalList)}
       {goalList == "" ? (
         <ul id="goal-list">
           <li className="form-title" id="goal-name">
