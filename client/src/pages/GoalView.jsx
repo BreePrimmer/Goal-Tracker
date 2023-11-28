@@ -6,6 +6,7 @@ import Categories from "../components/Categories";
 import Auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries";
 import { useMutation, useQuery } from "@apollo/client";
+import { COMPLETE_GOAL, DELETE_GOAL } from "../utils/mutations";
 
 export default function GoalView() {
   let { categoryName, goalId } = useParams();
@@ -30,6 +31,42 @@ export default function GoalView() {
 
   const userData = data?.me;
 
+  const [completeGoalMutation] = useMutation(COMPLETE_GOAL, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
+  const handleCompleteGoal = async () => {
+    try {
+      const data = await completeGoalMutation({
+        variables: {
+          user: userData._id,
+          goalId: goal._id,
+          completed: true,
+        },
+      });
+
+      console.log("Goal completed!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const [deleteGoalMutation] = useMutation(DELETE_GOAL);
+  const handleDeleteGoal = async () => {
+    try {
+      const data = await deleteGoalMutation({
+        variables: {
+          user: userData._id,
+          goalId: goal._id,
+        },
+      });
+
+      console.log("Goal Deleted - rerouting");
+      window.location.assign(`/Category/${categoryName}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const goalCategory = userData.categories.filter(
     (goal) => goal.name === categoryName
   );
@@ -40,17 +77,60 @@ export default function GoalView() {
 
   return (
     <div>
-      <div id='view-goal-cont'>
+      <div id="view-goal-cont">
         <h2 id="goal-cat">{categoryName}</h2>
-        <Link className='rtn-btn' id='single-goal-btn' to={`/category/${categoryName}`}>
+        <Link
+          className="rtn-btn"
+          id="single-goal-btn"
+          to={`/category/${categoryName}`}>
           &lt;-
         </Link>
       </div>
       <div>
-      <SingleGoalView goal={currentGoal} category={goalCategory[0].name}/>
-      {/* {JSON.stringify(currentGoal)} */}
-      {/* <Categories userData={userData} /> */}
-      </div>
+        {/* <SingleGoalView goal={currentGoal} category={goalCategory[0].name} /> */}
+        {/* {JSON.stringify(currentGoal[0])} */}
+        {/* currentGoal.goal[0] and goalCategory[0].name.category */}
+        <div id="desc-cont">
+          <div>
+            <h2 id="goal-title">{currentGoal[0].title}</h2>
+            <div id="view-goal-area">
+              <div id="view-goal-text">
+                <span className="form-title">Description:</span>
+                <p id="view-goal-desc">{currentGoal[0].text}</p>
+                <div id="desc-date">
+                  <span className="form-title">{currentGoal[0].date}</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              {currentGoal[0].completed ? (
+                <>
+                  <span className="form-title">Completed Goal</span>
+                </>
+              ) : (
+                <>
+                  <button
+                    id="complete-goal-btn"
+                    type="submit"
+                    onClick={handleCompleteGoal}>
+                    Complete Goal
+                  </button>
+                </>
+              )}
+            </div>
+            <div>
+              <button
+                style={{ color: "red" }}
+                onClick={handleDeleteGoal}
+                className="form-title">
+                Delete Goal
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* {JSON.stringify(currentGoal)} */}
+        {/* <Categories userData={userData} /> */}
+      </div>{" "}
     </div>
   );
 }
