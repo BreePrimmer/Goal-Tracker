@@ -42,7 +42,7 @@ export default function Categories(props) {
         <div id="cat-border">
           {userData?.categories.map((category) => (
             <li className="category" key={category._id}>
-              <Link to={`/category/${category.name}`} state={{ userData }}>
+              <Link id='cat-link' to={`/category/${category.name}`} state={{ userData }}>
                 {category.name}
               </Link>
             </li>
@@ -52,7 +52,8 @@ export default function Categories(props) {
             id="new-category"
             onClick={() => {
               setCreateCategory(!createCategory);
-            }} style={{cursor: 'pointer'}}>
+            }}
+            style={{ cursor: "pointer" }}>
             New +
           </li>
         </div>{" "}

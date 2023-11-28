@@ -4,12 +4,13 @@ import { useMutation } from "@apollo/client";
 import { NEW_GOAL } from "../utils/mutations";
 
 export default function CreateGoal(props) {
-
   const userData = props.userData;
   const preCategory = props.category;
   // console.log(preCategory);
 
-  const [category, setCategory] = useState(userData.categories.length > 0 ? userData.categories[0]._id : "");
+  const [category, setCategory] = useState(
+    userData.categories.length > 0 ? userData.categories[0]._id : ""
+  );
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
   const [goalName, setGoalName] = useState("");
@@ -27,41 +28,37 @@ export default function CreateGoal(props) {
     // console.log(endDate);
 
     try {
-
-
-      if(preCategory){
+      if (preCategory) {
         const { data } = await createGoalMutation({
           variables: {
             user: userData._id,
             title: goalName,
             text: description,
             date: endDate,
-            categoryId: preCategory 
-          }
+            categoryId: preCategory,
+          },
         });
-        console.log('New Goal Created')
-      }else{
+        console.log("New Goal Created");
+      } else {
         const { data } = await createGoalMutation({
           variables: {
             user: userData._id,
             title: goalName,
             text: description,
             date: endDate,
-            categoryId: category 
-          }
+            categoryId: category,
+          },
         });
-        console.log('New Goal Created')
+        console.log("New Goal Created");
       }
-      
-
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
 
-    setGoalName('');
-    setCategory('');
-    setDescription('');
-    setEndDate('');
+    setGoalName("");
+    setCategory("");
+    setDescription("");
+    setEndDate("");
   };
   return (
     <div className="goal-cont">
@@ -81,26 +78,28 @@ export default function CreateGoal(props) {
               setGoalName(e.target.value);
             }}
           />
-          {preCategory ? (<></>) : (<>
-            <div className="goal-spacing">
-            <label className="form-title" htmlFor="goalCategory">
-              Category:
-            </label>
-            <select
-              name="category-select"
-              id="goalCategory"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              {userData.categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          </>)}
-          
+          {preCategory ? (
+            <></>
+          ) : (
+            <>
+              <div className="goal-spacing">
+                <label className="form-title" htmlFor="goalCategory">
+                  Category:
+                </label>
+                <select
+                  name="category-select"
+                  id="goalCategory"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}>
+                  {userData.categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
         </div>
         <div className="goal-spacing" id="desc-cont">
           <label className="form-title" htmlFor="desc">

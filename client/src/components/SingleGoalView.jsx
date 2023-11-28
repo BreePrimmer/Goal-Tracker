@@ -35,52 +35,52 @@ export default function SingleGoalView(props) {
     refetchQueries: [{ query: QUERY_ME }],
   });
 
-
-  const handleCompleteGoal = async () =>{
-    try{
+  const handleCompleteGoal = async () => {
+    try {
       const data = await completeGoalMutation({
         variables: {
           user: userData._id,
           goalId: goal._id,
-          completed: true
-        }
-      })
+          completed: true,
+        },
+      });
 
-      console.log('Goal completed!')
-
+      console.log("Goal completed!");
+    } catch (error) {
+      console.error(error);
     }
-    catch(error){
-      console.error(error)
-    }
-  }
+  };
 
   const [deleteGoalMutation] = useMutation(DELETE_GOAL);
 
   const handleDeleteGoal = async () => {
-    try{
+    try {
       const data = await deleteGoalMutation({
         variables: {
           user: userData._id,
-          goalId: goal._id
-        }
-      })
+          goalId: goal._id,
+        },
+      });
 
-      console.log('Goal Deleted - rerouting')
-      window.location.assign(`/Category/${category}`)
-
-    }catch(error){
-      console.error(error)
+      console.log("Goal Deleted - rerouting");
+      window.location.assign(`/Category/${category}`);
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   return (
     <div id="desc-cont">
       <div>
-        <h2 className="form-title">{goal.title}</h2>
-        <span className="form-title">Description:</span>
-        <p className="goal-desc" style={{color: 'black'}}>{goal.text}</p>
-        <div id="desc-date">
-          <span className="form-title">{goal.date}</span>
+        <h2 id="goal-title">{goal.title}</h2>
+        <div id="view-goal-area">
+          <div id="view-goal-text">
+            <span className="form-title">Description:</span>
+            <p id="view-goal-desc">{goal.text}</p>
+            <div id="desc-date">
+              <span className="form-title">{goal.date}</span>
+            </div>
+          </div>
         </div>
         <div>
           {goal.completed ? (
@@ -89,12 +89,22 @@ export default function SingleGoalView(props) {
             </>
           ) : (
             <>
-              <button type="submit" onClick={handleCompleteGoal}>Complete Goal</button>
+              <button
+                id="complete-goal-btn"
+                type="submit"
+                onClick={handleCompleteGoal}>
+                Complete Goal
+              </button>
             </>
           )}
         </div>
         <div>
-          <button style={{color: 'red'}} onClick={handleDeleteGoal} className="form-title">Delete Goal</button>
+          <button
+            style={{ color: "red" }}
+            onClick={handleDeleteGoal}
+            className="form-title">
+            Delete Goal
+          </button>
         </div>
       </div>
     </div>

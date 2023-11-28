@@ -126,6 +126,15 @@ header {
   font-weight: bold;
   padding: 20px
 }
+#cat-link {
+  color: #F2C452;
+}
+#cat-link:hover {
+  text-decoration: underline;
+}
+#new-category:hover {
+  text-decoration: underline;
+}
 #newCategory {
   margin-right: 15px;
 }
@@ -227,7 +236,7 @@ footer {
 
 /* --------------------GOAL PAGE ---------------------- */
 .goal-desc {
-  padding: 0px 20px;
+  padding: 0px 10px;
 }
 #goal-cat {
   padding: 20px;
@@ -244,6 +253,42 @@ footer {
 }
 #desc-cont {
   padding-bottom: 25px;
+}
+#view-goal-cont {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--light-green);
+  height: 70px;
+}
+#goal-title {
+  margin-left: 20px;
+  font-size: 200%;
+  margin-bottom: 10px;
+  color: var(--main-green)
+}
+#view-goal-desc {
+  color: var(--very-light-blue);
+  padding: 0px 20px;
+}
+#view-goal-area {
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 85%;
+  margin-left: 20px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--main-green);
+}
+#view-goal-text {
+  margin-left: -20px;
+}
+#single-goal-btn {
+  margin-right: 20px;
+  margin-left: 0px;
+}
+#complete-goal-btn {
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 /* ----------------- CATEGORY/VIEW GOALS PAGE ---------------------- */
@@ -264,7 +309,7 @@ footer {
   width: 85%;
 
 }
-#rtn-btn {
+.rtn-btn {
   background-color: var(--white);
   height: 15px;
   padding: 5px;
@@ -350,7 +395,7 @@ footer {
 /* breakpoint for ipads/tablets */
 @media screen and (min-width: 768px) {
   body {
-    background-color:#d6eef7fe;
+    background-color: white;
   }
 }
 
