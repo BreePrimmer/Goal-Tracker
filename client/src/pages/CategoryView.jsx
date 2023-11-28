@@ -59,31 +59,40 @@ export default function CategoryView() {
   return (
     <div id="goal-list-cont">
       <h2 style={{ color: "black" }}>{categoryName}</h2>
-      <ul id="goal-list">
-        {goalList.map((goal) => {
-          return (
-            <li key={goal._id} className="form-title" id="goal-name">
-              <Link to={`/Category/${categoryName}/${goal._id}`}>
-                <span>
-                  {goal.completed ? (
-                    <>{goal.title} - completed</>
-                  ) : (
-                    <>{goal.title}</>
-                  )}
-                </span>
-              </Link>
-            </li>
-          );
-        })}
-        <li>
-          <CreateGoal userData={userData} category={goalCategory[0]._id} />
-        </li>
-        <li>
-          <button style={{ color: "red" }} onClick={handleCategoryDelete}>
-            Delete Category
-          </button>
-        </li>
-      </ul>
+      {JSON.stringify(goalList)}
+      {goalList == "" ? (
+        <ul id="goal-list">
+          <li className="form-title" id="goal-name">
+            No goals yet!
+          </li>
+        </ul>
+      ) : (
+        <ul id="goal-list">
+          {goalList.map((goal) => {
+            return (
+              <li key={goal._id} className="form-title" id="goal-name">
+                <Link to={`/Category/${categoryName}/${goal._id}`}>
+                  <span>
+                    {goal.completed ? (
+                      <>{goal.title} - completed</>
+                    ) : (
+                      <>{goal.title}</>
+                    )}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+          <li>
+            <CreateGoal userData={userData} category={goalCategory[0]._id} />
+          </li>
+          <li>
+            <button style={{ color: "red" }} onClick={handleCategoryDelete}>
+              Delete Category
+            </button>
+          </li>
+        </ul>
+      )}
       <Link className="rtn-btn" to={"/"}>
         &lt;-
       </Link>

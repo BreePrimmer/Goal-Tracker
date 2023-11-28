@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useParams } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
-import SingleGoalView from "../components/SingleGoalView";
 import Categories from "../components/Categories";
 import Auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries";
@@ -14,12 +13,12 @@ export default function GoalView() {
 
   const { loading, error, data } = Auth.loggedIn()
     ? useQuery(QUERY_ME, {
-      context: {
-        headers: {
-          authorization: `Bearer ${token}`,
+        context: {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         },
-      },
-    })
+      })
     : { loading: false, error: null, data: null };
 
   if (loading) {
@@ -54,7 +53,6 @@ export default function GoalView() {
   };
 
   const handleDeleteGoal = async () => {
-    
     try {
       const data = await deleteGoalMutation({
         variables: {
@@ -90,9 +88,6 @@ export default function GoalView() {
         </Link>
       </div>
       <div>
-        {/* <SingleGoalView goal={currentGoal} category={goalCategory[0].name} /> */}
-        {/* {JSON.stringify(currentGoal[0])} */}
-        {/* currentGoal.goal[0] and goalCategory[0].name.category */}
         <div id="desc-cont">
           <div>
             <h2 id="goal-title">{currentGoal[0].title}</h2>
@@ -115,8 +110,7 @@ export default function GoalView() {
                   <button
                     id="complete-goal-btn"
                     type="submit"
-                    onClick={handleCompleteGoal}
-                    >
+                    onClick={handleCompleteGoal}>
                     Complete Goal
                   </button>
                 </>
