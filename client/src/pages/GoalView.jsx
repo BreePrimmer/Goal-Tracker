@@ -62,7 +62,7 @@ export default function GoalView() {
       });
 
       console.log("Goal Deleted - rerouting");
-      window.location.assign(`/Category/${categoryName}`);
+      window.location.assign(`/`);
     } catch (error) {
       console.error(error);
     }
