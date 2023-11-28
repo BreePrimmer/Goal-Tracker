@@ -33,7 +33,7 @@ export default function Homepage() {
   // }
 
   return (
-    <div class='desktop-view'>
+    <div className='desktop-view'>
       {Auth.loggedIn() ? (
         <>
           {/* passing userData as props */}

@@ -471,7 +471,25 @@ footer {
 
 }
 
+/* --------------------- Error Page --------------------- */
+.error-con{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
+.error-h1{
+  color: var(--orange-yellow);
+  background-color: var(--light-green);
+  padding: 15px;
+  border: var(--main-green) 3px;
+}
+
+.error-p{
+  color: var(--light-green);
+}
 
 /* desktops */
 @media screen and (min-width: 1200px) {
