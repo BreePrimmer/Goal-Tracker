@@ -1,31 +1,87 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_TODO, DELETE_TODO } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
 
-export default function Todos() {
+export default function Todos(props) {
+  const userData = props.userData;
+
   const [createTodo, setCreateTodo] = useState(false);
   const [newTodo, setNewTodo] = useState("");
 
-  const exampleList = ["Fitness", "School", "Work"];
+  const [createTodoMutation] = useMutation(CREATE_TODO, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
 
-  const newTodoFormHandler = (e) => {
+  const [deleteTodoMutation] = useMutation(DELETE_TODO, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
+
+  const newTodoFormHandler = async (e) => {
     e.preventDefault();
+    // console.log(newTodo);
+
+    try {
+      const { data } = await createTodoMutation({
+        variables: {
+          text: newTodo,
+          user: userData._id,
+        },
+      });
+
+      console.log("Todo created:", data.newTodo);
+    } catch (error) {
+      console.log(error);
+    }
+
     setCreateTodo(false);
     setNewTodo("");
-    console.log(newTodo);
+  };
+
+  // Delete Todo Handler
+  const deleteTodoHandler = async (todoId) => {
+    try {
+      console.log(todoId);
+      console.log(userData._id);
+      const { data } = await deleteTodoMutation({
+        variables: {
+          todoId: todoId,
+          user: userData._id,
+        },
+      });
+
+      console.log("Todo deleted");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="todo-cont">
       <h1 id="to-do">To-do's</h1>
-      <ul className="to-do-ul">
-        <li className="to-do-li">Placeholder todo</li>
-        <li className="to-do-li">Placeholder todo</li>
-        <li className="to-do-li">Placeholder todo</li>
-        {/* {exampleList.map((todo, index) => (
-          <li className="to-do-li" key={todo}>
-            {todo}
-          </li>
-        ))} */}
-      </ul>
+      {JSON.stringify(userData.todos)}
+      {userData.todos == "" ? (
+        <ul className="to-do-ul">
+          <li className="to-do-li">No todos yet!</li>
+        </ul>
+      ) : (
+        <ul className="to-do-ul">
+          {userData.todos.map((todo) => {
+            return (
+              <li className="to-do-li" key={todo._id}>
+                <button
+                  id="to-do-btn"
+                  onClick={() => {
+                    deleteTodoHandler(todo._id);
+                  }}>
+                  -
+                </button>
+                {todo.text}
+              </li>
+            );
+          })}
+        </ul>
+      )}
 
       {!createTodo ? (
         <button
@@ -33,12 +89,14 @@ export default function Todos() {
           onClick={() => {
             setCreateTodo(true);
           }}>
-          Add new
+          +
         </button>
       ) : (
-        <div>
-          <form onSubmit={newTodoFormHandler}>
-            <label htmlFor="newTodoName">What's the new todo? </label>
+        <div id="new-to-do-cont">
+          <form id="new-to-do-form" onSubmit={newTodoFormHandler}>
+            <label id="new-to-do-label" htmlFor="newTodoName">
+              What's the new todo?{" "}
+            </label>
             <input
               type="text"
               id="newTodo"

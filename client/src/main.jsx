@@ -7,8 +7,9 @@ import Homepage from "./pages/Homepage.jsx";
 import GoalView from "./pages/GoalView.jsx";
 import CategoryView from "./pages/CategoryView.jsx";
 import Login from "./pages/Login.jsx";
+import Error from "./pages/Error.jsx";
 
-import Test from './pages/test.jsx';
+import Test from "./pages/test.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +22,11 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/Category",
+        path: "/Category/:categoryName",
         element: <CategoryView />,
       },
       {
-        path: "/Goal",
+        path: "/Category/:categoryName/:goalId",
         element: <GoalView />,
       },
       {
@@ -33,9 +34,9 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/Test',
-        element: <Test />
-      }
+        path: "/Test",
+        element: <Test />,
+      },
     ],
   },
 ]);

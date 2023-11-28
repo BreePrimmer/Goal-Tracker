@@ -1,20 +1,61 @@
 import { useState } from "react";
+import { QUERY_ME } from "../utils/queries";
+import { useMutation } from "@apollo/client";
+import { NEW_GOAL } from "../utils/mutations";
 
-export default function CreateGoal() {
-  const [longTerm, setLongTerm] = useState(true);
-  const [category, setCategory] = useState("");
+export default function CreateGoal(props) {
+  const userData = props.userData;
+  const preCategory = props.category;
+  // console.log(preCategory);
+
+  const [category, setCategory] = useState(
+    userData.categories.length > 0 ? userData.categories[0]._id : ""
+  );
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
   const [goalName, setGoalName] = useState("");
 
-  const goalFormHandler = (e) => {
+  const [createGoalMutation] = useMutation(NEW_GOAL, {
+    refetchQueries: [{ query: QUERY_ME }],
+  });
+
+  const goalFormHandler = async (e) => {
     e.preventDefault();
-    console.log(goalName);
-    console.log(category);
-    console.log(description);
-    console.log(`Long term: ${longTerm}`);
-    console.log(endDate);
-    setLongTerm(true);
+
+    // console.log(goalName);
+    // console.log(category);
+    // console.log(description);
+    // console.log(endDate);
+
+    try {
+      if (preCategory) {
+        const { data } = await createGoalMutation({
+          variables: {
+            user: userData._id,
+            title: goalName,
+            text: description,
+            date: endDate,
+            categoryId: preCategory,
+          },
+        });
+        console.log("New Goal Created");
+      } else {
+        const { data } = await createGoalMutation({
+          variables: {
+            user: userData._id,
+            title: goalName,
+            text: description,
+            date: endDate,
+            categoryId: category,
+          },
+        });
+        console.log("New Goal Created");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    setGoalName("");
     setCategory("");
     setDescription("");
     setEndDate("");
@@ -37,21 +78,28 @@ export default function CreateGoal() {
               setGoalName(e.target.value);
             }}
           />
-          <div className="goal-spacing">
-            <label className="form-title" htmlFor="goalCategory">
-              Category:
-            </label>
-            <input
-              className="form-input"
-              type="text"
-              name="newGoalCategory"
-              id="goalCategory"
-              value={category}
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}
-            />
-          </div>
+          {preCategory ? (
+            <></>
+          ) : (
+            <>
+              <div className="goal-spacing">
+                <label className="form-title" htmlFor="goalCategory">
+                  Category:
+                </label>
+                <select
+                  name="category-select"
+                  id="goalCategory"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}>
+                  {userData.categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
         </div>
         <div className="goal-spacing" id="desc-cont">
           <label className="form-title" htmlFor="desc">
@@ -67,23 +115,6 @@ export default function CreateGoal() {
               setDescription(e.target.value);
             }}
           />
-        </div>
-        <div className="goal-spacing">
-          <span
-            className="form-title"
-            onClick={() => {
-              setLongTerm(false);
-            }}>
-            Short term
-          </span>{" "}
-          or{" "}
-          <span
-            className="form-title"
-            onClick={() => {
-              setLongTerm(true);
-            }}>
-            Long term
-          </span>
         </div>
         <div className="goal-spacing">
           <label className="form-title" htmlFor="endDate">
