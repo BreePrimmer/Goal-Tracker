@@ -78,7 +78,7 @@ export default function CategoryView() {
         <li><CreateGoal userData={userData} category={goalCategory[0]._id} /></li>
         <li><button style={{ color: 'red' }} onClick={handleCategoryDelete}>Delete Category</button></li>
       </ul>
-      <Link id="rtn-btn" to={"/"}>
+      <Link className="rtn-btn" to={"/"}>
         &lt;-
       </Link>
     </div>
