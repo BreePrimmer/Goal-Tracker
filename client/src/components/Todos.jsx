@@ -85,7 +85,7 @@ export default function Todos(props) {
 
       {!createTodo ? (
         <button
-          id="to-do-btn"
+          id="new-to-do-btn"
           onClick={() => {
             setCreateTodo(true);
           }}>
