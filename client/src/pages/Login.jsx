@@ -43,6 +43,8 @@ export default function Login() {
       const { data } = await createUser({
         variables: { ...formData },
       });
+      const { token } = data.newUser;
+      Auth.login(token)
     } catch (err) {
       console.error(err);
     }
