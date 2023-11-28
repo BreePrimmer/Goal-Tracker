@@ -62,12 +62,12 @@ export default function CategoryView() {
 
   return (
     <div id="goal-list-cont">
-      <h2 style={{ color: 'black' }}>{categoryName}</h2>
+      <h2 id='category-name'>{categoryName}</h2>
       <ul id="goal-list">
         {goalList.map((goal) => {
           return (
             <li key={goal._id} className="form-title" id="goal-name">
-              <Link to={`/Category/${categoryName}/${goal._id}`}>
+              <Link id='cat-color' to={`/Category/${categoryName}/${goal._id}`}>
                 <span>
                   {goal.completed ? (<>{goal.title} - completed</>) : (<>{goal.title}</>)}
                 </span>
@@ -75,8 +75,8 @@ export default function CategoryView() {
             </li>
           );
         })}
-        <li><CreateGoal userData={userData} category={goalCategory[0]._id} /></li>
-        <li><button style={{ color: 'red' }} onClick={handleCategoryDelete}>Delete Category</button></li>
+        <li id='cat-view-goal'><CreateGoal userData={userData} category={goalCategory[0]._id} /></li>
+        <li><button id='delete-category-btn' onClick={handleCategoryDelete}>Delete Category</button></li>
       </ul>
       <Link className="rtn-btn" to={"/"}>
         &lt;-

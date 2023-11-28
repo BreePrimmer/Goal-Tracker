@@ -98,7 +98,7 @@ export default function SingleGoalView(props) {
           )}
         </div>
         <div>
-          <button style={{color: 'red'}} onClick={handleDeleteGoal} className="form-title">Delete Goal</button>
+          <button id='delete-goal-btn' onClick={handleDeleteGoal} className="form-title">Delete Goal</button>
         </div>
       </div>
     </div>

@@ -117,6 +117,7 @@ header {
   font-weight: bold;
   border-bottom-style: solid;
   border-bottom-color: var(--light-grey);
+  border-width: 15px;
 }
 #my-category {
   padding: 15px;
@@ -289,10 +290,30 @@ footer {
 #complete-goal-btn {
   margin-left: 20px;
   margin-bottom: 20px;
+  font-size: 110%;
 }
-
+#complete-goal-btn:hover {
+  color: lightgreen;
+}
+#delete-goal-btn {
+  color: white;
+}
+#delete-goal-btn:hover {
+  color: lightsalmon;
+}
 /* ----------------- CATEGORY/VIEW GOALS PAGE ---------------------- */
-
+#category-name {
+  background-color: var(--light-green);
+  color: white;
+  padding: 20px 20px;
+  margin-top: 0px;
+  margin-bottom:0px;
+}
+#cat-view-goal {
+  border-style: solid;
+  border-top-width: 15px;
+  border-color: var(--light-grey);
+}
 #goal-list {
   padding-left: 0px;
   margin-top: 0px;
@@ -308,6 +329,16 @@ footer {
   border-bottom: hidden;
   width: 85%;
 
+}
+#delete-category-btn {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+#cat-color {
+  color: var(--orange-yellow);
+}
+#cat-color:hover {
+  text-decoration: underline;
 }
 .rtn-btn {
   background-color: var(--white);
