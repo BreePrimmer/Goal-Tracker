@@ -27,13 +27,13 @@ export default function Login() {
         variables: { ...formData },
       });
       const { token, user } = data.login;
-      console.log(user);
+      // console.log(user);
       Auth.login(token);
     } catch (err) {
       console.error(err);
     }
 
-    console.log(formData);
+    // console.log(formData);
     console.log("User logged in!");
   };
   const signupFormHandler = async (e) => {
@@ -47,7 +47,7 @@ export default function Login() {
       console.error(err);
     }
 
-    console.log(formData);
+    // console.log(formData);
     console.log("User signed up!");
   };
   return (
@@ -107,7 +107,7 @@ export default function Login() {
           <span
             onClick={() => {
               setLoggingIn(false);
-            }}>
+            }} style={{cursor: 'pointer'}}>
             Sign up!
           </span>
         </span>
@@ -117,7 +117,7 @@ export default function Login() {
           <span
             onClick={() => {
               setLoggingIn(true);
-            }}>
+            }} style={{cursor: 'pointer'}}>
             Log in!
           </span>
         </span>

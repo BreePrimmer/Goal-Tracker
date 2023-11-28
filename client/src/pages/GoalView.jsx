@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SingleGoalView from "../components/SingleGoalView";
 import Categories from "../components/Categories";
 import Auth from "../utils/auth";
@@ -38,10 +40,14 @@ export default function GoalView() {
 
   return (
     <div>
+      <Link id="rtn-btn" to={`/category/${categoryName}`}>
+        &lt;-
+      </Link>
       <h2 id="goal-cat">{categoryName}</h2>
-      <SingleGoalView goal={currentGoal} />
-      {JSON.stringify(currentGoal)}
-      <Categories userData={userData} />
+      <SingleGoalView goal={currentGoal} category={goalCategory[0].name}/>
+      {/* {JSON.stringify(currentGoal)} */}
+      {/* <Categories userData={userData} /> */}
+      
     </div>
   );
 }
