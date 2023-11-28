@@ -75,7 +75,9 @@ export default function CategoryView() {
             </li>
           );
         })}
-        <li id='cat-view-goal'><CreateGoal userData={userData} category={goalCategory[0]._id} /></li>
+        <div id='desktop-new-goal'>
+        <li id='cat-view-goal'><CreateGoal userData={userData} category={goalCategory[0]._id} /></li>1
+        </div>
         <li><button id='delete-category-btn' onClick={handleCategoryDelete}>Delete Category</button></li>
       </ul>
       <Link className="rtn-btn" to={"/"}>

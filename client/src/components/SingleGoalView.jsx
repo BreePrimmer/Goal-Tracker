@@ -74,7 +74,7 @@ export default function SingleGoalView(props) {
   }
 
   return (
-    <div id="desc-cont">
+    <div id="one-goal-cont">
       <div>
         <h2 id='goal-title'>{goal.title}</h2>
           <div id='view-goal-area'>
