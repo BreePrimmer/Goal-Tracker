@@ -14,12 +14,12 @@ export default function CategoryView() {
   const token = Auth.getToken();
   const { loading, error, data } = Auth.loggedIn()
     ? useQuery(QUERY_ME, {
-      context: {
-        headers: {
-          authorization: `Bearer ${token}`,
+        context: {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         },
-      },
-    })
+      })
     : { loading: false, error: null, data: null };
 
   if (loading) {
@@ -41,7 +41,6 @@ export default function CategoryView() {
   const [deleteCategoryMutation] = useMutation(DELETE_CATEGORY);
 
   const handleCategoryDelete = async () => {
-
     try {
       const { data } = await deleteCategoryMutation({
         variables: {
@@ -58,14 +57,11 @@ export default function CategoryView() {
 
   return (
     <div id="goal-list-cont">
-      <h2 style={{ color: "black" }}>{categoryName}</h2>
+      <h2 id='category-name'>{categoryName}</h2>
       {goalList == "" ? (
         <ul id="goal-list">
           <li className="form-title" id="goal-name">
             No goals yet!
-          </li>
-          <li>
-            <CreateGoal userData={userData} category={goalCategory[0]._id} />
           </li>
         </ul>
       ) : (
@@ -73,7 +69,7 @@ export default function CategoryView() {
           {goalList.map((goal) => {
             return (
               <li key={goal._id} className="form-title" id="goal-name">
-                <Link to={`/Category/${categoryName}/${goal._id}`}>
+                <Link id='cat-color' to={`/Category/${categoryName}/${goal._id}`}>
                   <span>
                     {goal.completed ? (
                       <>{goal.title} - completed</>
@@ -85,16 +81,18 @@ export default function CategoryView() {
               </li>
             );
           })}
-          <li>
-            <CreateGoal userData={userData} category={goalCategory[0]._id} />
-          </li>
-          <li>
-            <button style={{ color: "red" }} onClick={handleCategoryDelete}>
-              Delete Category
-            </button>
-          </li>
         </ul>
       )}
+      <div id='desktop-new-goal'>
+      <li id='cat-view-goal'>
+        <CreateGoal userData={userData} category={goalCategory[0]._id} />
+      </li>
+      </div>
+      <li>
+        <button id='delete-category-btn' onClick={handleCategoryDelete}>
+          Delete Category
+        </button>
+      </li>
       <Link className="rtn-btn" to={"/"}>
         &lt;-
       </Link>
