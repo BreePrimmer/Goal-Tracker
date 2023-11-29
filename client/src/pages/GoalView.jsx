@@ -118,7 +118,7 @@ export default function GoalView() {
             </div>
             <div>
               <button
-                style={{ color: "red" }}
+                id='delete-goal-btn'
                 onClick={handleDeleteGoal}
                 className="form-title">
                 Delete Goal
